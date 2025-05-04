@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
+import { Routes, Route, Outlet } from 'react-router-dom';
+
+// Layout Components
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+
+// Views Import
+import Home from './views/Home';
+import Contact from './views/Contact';
+import About from './views/About';
+import Resources from './views/Resources';
+
+import GroundStationPage from './views/GroundStation/GroundStationPage';
+import ObservationsPage from './views/observations/ObservationsPage';
+import ImagesPage from './views/images/ImagesPage';
+import SatellitesPage from './views/satellites/SatellitesPage';
+
+import NotFound from './views/NotFound';
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function MainLayout() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-blue-100 font-sans">
+      <Header />
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+function App() {
+
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="resources" element={<Resources />} />
+        <Route path="ground-station" element={<GroundStationPage />} />
+        <Route path="observations" element={<ObservationsPage />} />
+        <Route path="images" element={<ImagesPage />} />
+        <Route path="satellites" element={<SatellitesPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
+}
+
+export default App;
