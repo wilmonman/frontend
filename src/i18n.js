@@ -4,18 +4,18 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
 
 // Define only the namespaces currently needed
-const namespaces = ['app', 'home', 'about', 'contact', 'system', 'dashboard', 'observations'];
+const namespaces = ['app'];
 
 i18n
   .use(HttpApi)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    ns: namespaces, // Use the simplified list
+    ns: namespaces,
     defaultNS: 'app',
     supportedLngs: ['en', 'es'],
     fallbackLng: 'en',
-    debug: true, // Change to false for production
+    debug: process.env.NODE_ENV === 'development', 
     interpolation: {
       escapeValue: false,
     },
@@ -24,7 +24,7 @@ i18n
       caches: ['localStorage', 'cookie'],
     },
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
+      loadPath: './locales/{{lng}}/{{ns}}.json',
     },
   });
 

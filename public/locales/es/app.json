@@ -1,0 +1,41 @@
+{
+  "appName": "SatUIS",
+  "logoAlt": "Logo SatUIS",
+  "logoAriaLabel": "SatUIS Inicio",
+  "nav": {
+    "home": "Inicio",
+    "resources": "Recursos",
+    "groundStation": "Estación Terrena",
+    "observations": "Observaciones",
+    "images": "Imágenes",
+    "satellites": "Satélites"
+  },
+  "mobileMenuButton": {
+    "toggleLabel": "Alternar menú"
+  },
+  "languageSwitcher": {
+    "label": "Cambiar idioma a English",
+    "current": "ES",
+    "switchTo": "EN"
+  },
+  "themeSwitcher": {
+    "labelLight": "Cambiar a modo claro",
+    "labelDark": "Cambiar a modo oscuro"
+  },
+  "footer": {
+    "tagline": "Explorando los cielos y más allá a través de ondas de radio. Tu ventana a las comunicaciones satelitales.",
+    "usefulLinks": "Enlaces Útiles",
+    "resources": "Recursos",
+    "links": {
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "privacy": "Política de Privacidad",
+      "github": "GitHub",
+      "satnogs": "Red SatNOGS",
+      "docs": "Documentación"
+    },
+    "copyright": "© {{year}} Proyecto SatUIS. Todos los Derechos Reservados."
+  },
+  "e3tAriaLabel": "Visitar Sitio Web Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones (E3T) UIS",
+  "uisAriaLabel": "Visitar Sitio Web Universidad Industrial de Santander (UIS)"
+}
