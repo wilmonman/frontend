@@ -1,0 +1,33 @@
+{
+  "pageTitle": "Política de Privacidad",
+  "lastUpdated": "Última Actualización: {{date}}",
+  "commitment": {
+    "title": "Nuestro Compromiso con la Privacidad",
+    "paragraph1": "Bienvenido/a a la plataforma web de la Estación Terrena Satelital UIS. Tu privacidad es importante para nosotros. Esta Política de Privacidad explica cómo manejamos la información en relación con tu uso de nuestro sitio web y servicios.",
+    "paragraph2": "Estamos comprometidos con la transparencia y queremos que entiendas nuestras prácticas."
+  },
+  "informationNotCollected": {
+    "title": "Información que No Recopilamos",
+    "paragraph1": "No recopilamos, almacenamos ni procesamos ninguna Información de Identificación Personal (PII, por sus siglas en inglés) de nuestros usuarios. Puedes navegar por nuestro sitio web y utilizar sus funciones sin crear una cuenta ni proporcionar datos personales como tu nombre, dirección de correo electrónico, número de teléfono o dirección física."
+  },
+  "externalApiData": {
+    "title": "Datos de APIs Externas (SatNOGS)",
+    "paragraph1": "Nuestra plataforma muestra datos obtenidos de la red SatNOGS (Satellite Networked Open Ground Station) y potencialmente de otras APIs públicas. Estos datos incluyen información sobre observaciones satelitales, estados de estaciones terrenas, datos de telemetría y parámetros orbitales de satélites.",
+    "paragraph2": "Estos datos están disponibles públicamente y no contienen ninguna información personal sobre ti, el usuario de nuestro sitio web. Los datos se utilizan únicamente para proporcionar los servicios informativos y educativos que ofrece nuestra plataforma.",
+    "paragraph3": "Para más información sobre cómo SatNOGS maneja los datos, por favor consulta las políticas de SatNOGS."
+  },
+  "cookiesLocalStorage": {
+    "title": "Cookies y Almacenamiento Local",
+    "paragraph1": "Nuestro sitio web no utiliza cookies para rastrear usuarios o recopilar información personal. Podemos utilizar el almacenamiento local del navegador para guardar tus preferencias de visualización (como la configuración del tema claro/oscuro) o para almacenar temporalmente en caché los datos obtenidos de las APIs para mejorar el rendimiento y tu experiencia de navegación.",
+    "paragraph2": "Esta información almacenada no es personal y se limita a tu navegador. No se transmite a nuestros servidores con fines de seguimiento."
+  },
+  "thirdPartyServices": {
+    "title": "Servicios de Terceros",
+    "paragraph1": "Nuestro sitio web está alojado por un proveedor de hosting externo. Este proveedor puede recopilar registros estándar del servidor (por ejemplo, direcciones IP, tipo de navegador) con fines de seguridad y operativos, según sus propias políticas de privacidad. No tenemos acceso directo ni control sobre estos registros de una manera que nos permita identificar usuarios individuales para nuestro propio seguimiento.",
+    "paragraph2": "No empleamos servicios de análisis de terceros que rastreen datos personales de los usuarios (por ejemplo, Google Analytics). Cualquier enlace a sitios web externos se proporciona con fines informativos, y no somos responsables de las prácticas de privacidad de estos sitios externos."
+  },
+  "policyChanges": {
+    "title": "Cambios a Esta Política de Privacidad",
+    "paragraph1": "Podemos actualizar esta Política de Privacidad de vez en cuando. Te notificaremos cualquier cambio publicando la nueva Política de Privacidad en esta página y actualizando la fecha de \"Última Actualización\" en la parte superior. Se te aconseja revisar esta Política de Privacidad periódicamente para cualquier cambio."
+  }
+}

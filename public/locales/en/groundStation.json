@@ -1,0 +1,51 @@
+{
+  "page": {
+    "loadingData": "Loading Ground Station data for ID: {{stationId}}...",
+    "title": "Ground Station Dashboard",
+    "stationIdLabel": "ID",
+    "refreshButton": "Refresh",
+    "refreshButtonLoading": "Loading...",
+    "refreshButtonAriaLabel": "Refresh station data",
+    "errorLoadingData": "Error loading data for Station ID {{stationId}}:",
+    "showingLastKnownData": "Showing last known data.",
+    "updateFailed": "Update failed:",
+    "updateFailedShowingLast": ". Showing last loaded data.",
+    "noInfoAvailable": "No information available for Station ID: {{stationId}}.",
+    "errorFormatOrLength": "Invalid data format or unexpected number of stations received.",
+    "errorFetching": "Failed to load station data: {{message}}",
+    "errorNotFound": "No station found with ID: {{stationId}}"
+  },
+  "card": {
+    "waitingForData": "Waiting for station data...",
+    "imageAlt": "Image of {{stationName}}",
+    "defaultStationName": "ground station",
+    "imagePlaceholderText": "Station",
+    "unnamedStation": "Unnamed Station",
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "testing": "Testing",
+      "unknown": "Unknown"
+    },
+    "detailsTitle": "Details",
+    "locationLabel": "Location",
+    "altitudeLabel": "Altitude",
+    "altitudeUnit": "m",
+    "ownerLabel": "Owner",
+    "clientVersionLabel": "Client Version",
+    "createdLabel": "Created",
+    "lastSeenLabel": "Last Seen",
+    "descriptionLabel": "Description",
+    "performanceStatsTitle": "Performance Statistics",
+    "successRateLabel": "Success Rate",
+    "observationsLabel": "Observations:",
+    "totalLabel": "Total",
+    "futureLabel": "Future",
+    "antennaConfigTitle": "Antenna Configuration",
+    "frequencyLabel": "Freq",
+    "noAntennaInfo": "No antenna information available.",
+    "locationMapTitle": "Location Map",
+    "dataNotAvailable": "N/A",
+    "invalidDate": "Invalid Date"
+  }
+}

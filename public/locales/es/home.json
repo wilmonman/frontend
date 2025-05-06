@@ -1,0 +1,95 @@
+{
+  "pageTitle": "Estación Terrena Satelital UIS",
+  "introText": "¡Explora el cosmos desde la UIS! Te damos la bienvenida a la plataforma oficial del proyecto SatNOGS, tu puerta de entrada al fascinante mundo de la comunicación satelital y la ciencia abierta.",
+  "carousel": {
+    "item1": {
+      "alt": "Satélite Orbitando la Tierra",
+      "caption": "Siguiendo Satélites en Tiempo Real"
+    },
+    "item2": {
+      "alt": "Visualización de Señales de Radio desde el Espacio",
+      "caption": "Decodificando Señales del Cosmos"
+    },
+    "item3": {
+      "alt": "Antena de Estación Terrena Apuntando al Cielo",
+      "caption": "Nuestra Ventana al Universo"
+    },
+    "item4": {
+      "alt": "Imagen Satelital de la Tierra",
+      "caption": "Observando la Tierra desde Arriba"
+    },
+    "prevButtonLabel": "Imagen anterior",
+    "nextButtonLabel": "Siguiente imagen",
+    "slideButtonLabel": "Ir a la diapositiva {{slideNumber}}"
+  },
+  "projectSummarySection": {
+    "title": "Acerca de Nuestro Proyecto",
+    "paragraph1": "Esta iniciativa implementa un modelo funcional de una estación terrena en el campus de la UIS, basada en radio definida por software (SDR) y conectada a la red global SatNOGS. Nuestro objetivo principal es servir como una herramienta de divulgación científica, ofreciendo oportunidades de aprendizaje práctico y fomentando el interés en la tecnología espacial y las radiocomunicaciones.",
+    "paragraph2": "Buscamos ser un recurso valioso para la investigación, la enseñanza y la difusión del conocimiento científico, permitiendo a la comunidad universitaria y al público en general interactuar con el fascinante mundo de los satélites.",
+    "keyObjectivesTitle": "Objetivos Clave:",
+    "objective1": "Desarrollar una estación terrena SDR funcional integrada a SatNOGS.",
+    "objective2": "Difundir información y observaciones de forma lúdica e interactiva a través de esta plataforma web.",
+    "objective3": "Fomentar la participación en ciencia ciudadana y la exploración académica.",
+    "objective4": "Servir como herramienta educativa y de investigación en comunicaciones satelitales."
+  },
+  "connectingCosmosSection": {
+    "title": "Conectando con el Cosmos: La Aventura Satelital",
+    "paragraph1": "Los satélites son mucho más que simples puntos de luz en el cielo nocturno. Son nuestros ojos y oídos en el espacio, desempeñando roles cruciales en nuestro día a día. Desde facilitar las comunicaciones globales (como internet y televisión), permitir la navegación precisa (GPS), hasta monitorear el clima y nuestro medio ambiente.",
+    "paragraph2": "Algunos satélites nos observan de cerca en órbitas bajas (LEO), capturando imágenes detalladas de la Tierra, mientras que otros se sitúan en órbitas más lejanas (GEO) para cubrir vastas regiones con sus señales. Nuestra estación terrena en la UIS es una ventana a este universo de tecnología, permitiéndonos explorar estas maravillas, entender su funcionamiento y participar activamente en su seguimiento."
+  },
+  "whatToExploreSection": {
+    "title": "¿Qué Puedes Explorar?",
+    "stationPanelCard": {
+      "title": "Panel de Estación",
+      "description": "Observa el estado en vivo y la actividad de nuestra estación terrena."
+    },
+    "observationsCard": {
+      "title": "Observaciones",
+      "description": "Navega por los datos recibidos de diversos satélites."
+    },
+    "satelliteImagesCard": {
+      "title": "Imágenes Satelitales",
+      "description": "Visualiza imágenes de la Tierra capturadas por satélites meteorológicos."
+    },
+    "satelliteInfoCard": {
+      "title": "Info de Satélites",
+      "description": "Aprende sobre los diferentes satélites que rastreamos."
+    }
+  },
+  "technologyUsedSection": {
+    "title": "La Tecnología que Usamos",
+    "satnogsNetworkArticle": {
+      "title": "Red SatNOGS",
+      "description": "Nuestra estación es un miembro orgulloso de la red global SatNOGS. SatNOGS (Satellite Networked Open Ground Station) es un proyecto de código abierto impulsado por la comunidad que opera estaciones terrenas en todo el mundo. Este esfuerzo colaborativo permite un seguimiento exhaustivo y la recepción de datos de multitud de satélites, haciendo accesible la observación espacial.",
+      "buttonText": "Visita SatNOGS"
+    },
+    "gnuRadioArticle": {
+      "title": "GNU Radio",
+      "description": "GNU Radio es un potente kit de herramientas de desarrollo de software, libre y de código abierto. Proporciona los bloques de procesamiento de señales necesarios para implementar radios definidas por software (SDR). Esta tecnología es crucial para nuestra estación terrena, permitiéndonos procesar y decodificar de forma flexible las complejas señales de radio recibidas de los satélites.",
+      "buttonText": "Explora GNU Radio"
+    },
+    "sdrArticle": {
+      "title": "Radio Definida por Software (SDR)",
+      "description": "La Radio Definida por Software es una tecnología de radiocomunicación donde los componentes tradicionalmente implementados en hardware (mezcladores, filtros, amplificadores, etc.) se realizan mediante software en un computador. Esto ofrece una enorme flexibilidad, permitiendo a nuestra estación adaptarse a diferentes tipos de señales y satélites con solo cambiar el software."
+    }
+  },
+  "learnMoreSection": {
+    "title": "Aprende Más e Involúcrate",
+    "documentationCard": {
+      "title": "Nuestra Documentación",
+      "description": "Profundiza en cómo funciona nuestra plataforma y los datos que presentamos.",
+      "linkText": "Leer Documentación"
+    },
+    "aboutUsCard": {
+      "title": "Sobre Nosotros",
+      "description": "Conoce más sobre el equipo de la Estación Terrena UIS y nuestra misión.",
+      "linkText": "Conoce al Equipo"
+    },
+    "educationalResourcesCard": {
+      "title": "Recursos Educativos",
+      "description": "Encuentra enlaces y materiales útiles para expandir tu conocimiento.",
+      "linkText": "Explorar Recursos"
+    }
+  },
+  "imageNotAvailable": "Imagen No Disponible"
+}

@@ -1,0 +1,72 @@
+{
+  "pageTitle": "Documentation",
+  "pageSubtitle": "Understanding our platform and the data from SatNOGS.",
+  "introduction": {
+    "title": "Introduction & Overview",
+    "paragraph1": "This platform serves as a window into the operations of the UIS Satellite Ground Station and the broader SatNOGS network. Our aim is to provide accessible data and visualizations related to satellite tracking and radio communications.",
+    "paragraph2": "All data presented here is sourced primarily from the SatNOGS network (Satellite Networked Open Ground Station), a global, open-source project. SatNOGS consists of a network of volunteer-run ground stations that track and receive data from various satellites.<2/>",
+    "paragraph3": "This documentation will guide you through the different sections of our website, explain the types of data you can find, and help you understand its significance."
+  },
+  "platformFeatures": {
+    "title": "Platform Features & Data Explained",
+    "intro": "Our website is organized into several key sections, each providing different insights into satellite operations and data:",
+    "groundStation": {
+      "title": "Ground Station Dashboard",
+      "paragraph1": "This page provides an overview of our local ground station's status, current activity, and key performance indicators. You might find information about the station's location, antenna configuration, and recent operational history.",
+      "paragraph2": "Look for details on upcoming satellite passes scheduled for our station and its connectivity to the SatNOGS network."
+    },
+    "observationsLog": {
+      "title": "Observations Log",
+      "paragraph1": "Here you can browse a log of satellite observations. Each observation represents an attempt by a ground station (ours or others in the network) to receive data from a satellite during a specific pass.",
+      "paragraph2": "Key data points include the satellite name, observation time, ground station used, frequency, and the outcome of the observation (e.g., successful data reception, signal strength). You may also find links to \"waterfall\" plots (visual representations of radio signals) or demodulated data."
+    },
+    "satelliteImages": {
+      "title": "Satellite Images",
+      "paragraph1": "This section showcases images received from weather satellites (like NOAA APT) or other imaging satellites. These images are typically decoded from the raw radio signals captured during an observation.",
+      "paragraph2": "You can view the images and often find details about the satellite, the time of capture, and the ground station that received the signal."
+    },
+    "satelliteDatabase": {
+      "title": "Satellite Database",
+      "paragraph1": "Explore information about various satellites tracked by the SatNOGS network. This includes details like NORAD ID, common name, mission objectives, and orbital parameters (TLEs - Two-Line Elements).",
+      "paragraph2": "Understanding TLEs helps predict satellite passes and is crucial for tracking."
+    }
+  },
+  "understandingSatnogsData": {
+    "title": "Understanding SatNOGS Data",
+    "intro": "SatNOGS data is rich and varied. Here are some common concepts:",
+    "item1": "<strong>Observation:</strong> A scheduled attempt to receive signals from a satellite during a specific overhead pass.",
+    "item2": "<strong>Waterfall Plot:</strong> A visual representation of radio frequency strength over time, allowing identification of signals.",
+    "item3": "<strong>Payload/Demodulated Data:</strong> The actual information transmitted by the satellite, extracted from the radio signal (e.g., images, telemetry).",
+    "item4": "<strong>TLE (Two-Line Elements):</strong> A data format encoding the orbital elements of an Earth-orbiting object, used to predict its path.",
+    "wikiLink": "For in-depth information, the SatNOGS Wiki is an excellent resource.<2/>"
+  },
+  "dataFreshness": {
+    "title": "Data Freshness & Limitations",
+    "paragraph1": "The data displayed on our platform is fetched from the SatNOGS network. While we strive to present up-to-date information, there might be delays based on the SatNOGS database update frequency and our own caching mechanisms.",
+    "paragraph2": "The accuracy of observations and satellite data depends on the contributions of the global SatNOGS community and the operational status of individual ground stations and satellites."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions (FAQ)",
+    "q1_title": "Where does this data come from?",
+    "q1_answer": "Primarily from the SatNOGS network, an open-source, community-driven project. Some satellite orbital data (TLEs) may be sourced from public repositories like CelesTrak.",
+    "q2_title": "How often is the data updated?",
+    "q2_answer": "Data is typically updated regularly, but the exact frequency can vary. We aim to refresh data from SatNOGS multiple times a day.",
+    "q3_title": "Can I download the data?",
+    "q3_answer": "Currently, direct bulk download from our platform is not supported. However, much of the raw data is available through the SatNOGS network itself. We provide links to relevant SatNOGS resources where possible.",
+    "q4_title": "How can I contribute to SatNOGS?",
+    "q4_answer": "SatNOGS welcomes contributions! You can learn more about building a ground station, contributing software, or helping with documentation on the SatNOGS community page.<2/>"
+  },
+  "glossary": {
+    "title": "Brief Glossary",
+    "api": "<strong>API:</strong> Application Programming Interface. A way for different software programs to communicate with each other.",
+    "apt": "<strong>APT (Automatic Picture Transmission):</strong> A system used by some weather satellites (e.g., NOAA) to transmit analog images.",
+    "groundStation": "<strong>Ground Station:</strong> A terrestrial radio station designed for extraterrestrial telecommunication with spacecraft, or reception of radio waves from astronomical radio sources.",
+    "leo": "<strong>LEO (Low Earth Orbit):</strong> An orbit around Earth with an altitude typically between 160 kilometers (99 mi) and 2,000 kilometers (1,200 mi).",
+    "noradId": "<strong>NORAD ID (Satellite Catalog Number):</strong> A unique sequential 5-digit number assigned by NORAD to all artificial satellites.",
+    "sdr": "<strong>SDR (Software-Defined Radio):</strong> A radio communication system where components that have been typically implemented in hardware (e.g. mixers, filters, amplifiers, modulators/demodulators, detectors, etc.) are instead implemented by means of software on a personal computer or embedded system."
+  },
+  "contactFeedback": {
+    "title": "Contact & Feedback",
+    "paragraph1": "Have questions, suggestions, or want to report an issue? We'd love to hear from you! Please visit our Contact Page."
+  }
+}

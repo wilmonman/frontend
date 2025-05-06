@@ -1,0 +1,40 @@
+{
+  "page": {
+    "mainTitle": "NOAA 19 APT Images",
+    "myStationSectionTitle": "My Station ({{stationId}}) - Latest Images",
+    "myStationRefreshAriaLabel": "Refresh My Station images",
+    "myStationNoImages": "No relevant images found for your station.",
+    "otherStationsSectionTitle": "Other Stations - NOAA 19 APT Images",
+    "otherStationsRefreshAriaLabel": "Refresh Other Stations images",
+    "otherStationsNoImages": "No relevant images found in this section.",
+    "loadingImages": "Loading images...",
+    "errorTitle": "Error:",
+    "errorLoading": "Failed to load images: {{message}}",
+    "errorInvalidDataMyStation": "Invalid data format received for my station.",
+    "errorInvalidDataOtherStations": "Invalid data format received for other stations.",
+    "someDataDisplayedBelow": "(Some data might be displayed below)",
+    "refreshButton": "Refresh",
+    "refreshingButton": "Refreshing...",
+    "prevPageButton": "Previous",
+    "prevPageAriaLabel": "Previous page (Other Stations)",
+    "nextPageButton": "Next",
+    "nextPageAriaLabel": "Next page (Other Stations)",
+    "lightboxCloseAriaLabel": "Close lightbox",
+    "lightboxDefaultAlt": "Enlarged satellite image"
+  },
+  "card": {
+    "stationLabel": "Station",
+    "obsIdLabel": "Obs ID",
+    "imageAltText": "APT image from {{satelliteName}} observation {{obsId}}",
+    "observedLabel": "Observed",
+    "unknownSatellite": "Unknown Satellite",
+    "imageDataMissing": "Image data missing in observation.",
+    "viewObservationLink": "View Observation",
+    "viewObservationTitle": "View full observation details on SatNOGS Network",
+    "imagePlaceholderText": "APT Image"
+  },
+  "common": {
+    "dataNotAvailable": "N/A",
+    "invalidDate": "Invalid Date"
+  }
+}

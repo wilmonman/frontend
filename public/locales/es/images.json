@@ -1,0 +1,40 @@
+{
+  "page": {
+    "mainTitle": "Imágenes APT de NOAA 19",
+    "myStationSectionTitle": "Mi Estación ({{stationId}}) - Últimas Imágenes",
+    "myStationRefreshAriaLabel": "Actualizar imágenes de Mi Estación",
+    "myStationNoImages": "No se encontraron imágenes relevantes para tu estación.",
+    "otherStationsSectionTitle": "Otras Estaciones - Imágenes APT de NOAA 19",
+    "otherStationsRefreshAriaLabel": "Actualizar imágenes de Otras Estaciones",
+    "otherStationsNoImages": "No se encontraron imágenes relevantes en esta sección.",
+    "loadingImages": "Cargando imágenes...",
+    "errorTitle": "Error:",
+    "errorLoading": "Fallo al cargar imágenes: {{message}}",
+    "errorInvalidDataMyStation": "Formato de datos inválido recibido para mi estación.",
+    "errorInvalidDataOtherStations": "Formato de datos inválido recibido para otras estaciones.",
+    "someDataDisplayedBelow": "(Algunos datos podrían mostrarse a continuación)",
+    "refreshButton": "Actualizar",
+    "refreshingButton": "Actualizando...",
+    "prevPageButton": "Anterior",
+    "prevPageAriaLabel": "Página anterior (Otras Estaciones)",
+    "nextPageButton": "Siguiente",
+    "nextPageAriaLabel": "Página siguiente (Otras Estaciones)",
+    "lightboxCloseAriaLabel": "Cerrar lightbox",
+    "lightboxDefaultAlt": "Imagen satelital ampliada"
+  },
+  "card": {
+    "stationLabel": "Estación",
+    "obsIdLabel": "ID Obs.",
+    "imageAltText": "Imagen APT de {{satelliteName}} observación {{obsId}}",
+    "observedLabel": "Observado",
+    "unknownSatellite": "Satélite Desconocido",
+    "imageDataMissing": "Datos de imagen faltantes en la observación.",
+    "viewObservationLink": "Ver Observación",
+    "viewObservationTitle": "Ver detalles completos de la observación en SatNOGS Network",
+    "imagePlaceholderText": "Imagen APT"
+  },
+  "common": {
+    "dataNotAvailable": "N/D",
+    "invalidDate": "Fecha Inválida"
+  }
+}

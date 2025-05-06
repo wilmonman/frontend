@@ -1,0 +1,133 @@
+{
+  "pageTitle": "Recursos y Enlaces",
+  "pageSubtitle": "Explora sitios web útiles, herramientas y materiales educativos relacionados con la comunicación satelital, la tecnología de radio y las ciencias espaciales.",
+  "featuredSectionTitle": "Recursos Destacados",
+  "learningLinksSectionTitle": "Enlaces de Aprendizaje por Nivel",
+  "curiousFactsSectionTitle": "Datos Curiosos y El Espacio en tu Vida",
+  "imagePlaceholderError": "N/A",
+
+  "featuredLinks": {
+    "nasa": {
+      "title": "NASA Oficial",
+      "description": "Explora las misiones, investigaciones y descubrimientos de la agencia espacial de EE. UU."
+    },
+    "esa": {
+      "title": "Agencia Espacial Europea (ESA)",
+      "description": "Descubre los proyectos y avances de la ESA en la exploración espacial y observación terrestre."
+    },
+    "satnogsNetwork": {
+      "title": "Red SatNOGS",
+      "description": "La red global de estaciones terrenas satelitales de código abierto. ¡Nuestra estación es parte de ella!"
+    },
+    "heavensAbove": {
+      "title": "Heavens-Above",
+      "description": "Predicciones precisas de pasos de satélites (incluida la ISS) visibles desde tu ubicación."
+    },
+    "stuffinspace": {
+      "title": "Stuff in Space",
+      "description": "Visualización 3D en tiempo real de objetos orbitando la Tierra. ¡Impresionante!"
+    },
+    "satnogsDb": {
+      "title": "SatNOGS DB",
+      "description": "Base de datos colaborativa de satélites, transmisores y sus telemetrías."
+    },
+    "n2yo": {
+      "title": "N2YO.com",
+      "description": "Seguimiento de satélites en tiempo real, predicciones de pasos y mucha más información orbital."
+    },
+    "celestrak": {
+      "title": "CelesTrak",
+      "description": "Fuente autorizada de datos orbitales (TLEs) y herramientas analíticas sobre objetos espaciales."
+    }
+  },
+
+  "levels": {
+    "principiante": "Principiante",
+    "intermedio": "Intermedio",
+    "avanzado": "Avanzado"
+  },
+
+  "linksOfInterest": {
+    "queEsUnSatelite": {
+      "title": "¿Qué es un Satélite?",
+      "description": "Una explicación sencilla de la NASA sobre los satélites y sus usos."
+    },
+    "scan": {
+      "title": "Comunicaciones y Navegación Espacial (SCaN)",
+      "description": "Programa de la NASA para la infraestructura de comunicación espacial."
+    },
+    "arrl": {
+      "title": "ARRL",
+      "description": "Asociación nacional de Radioaficionados en EE. UU. (recursos en inglés)."
+    },
+    "amsat": {
+        "title": "AMSAT",
+        "description": "Corporación de Satélites de Radioaficionados, coordina proyectos satelitales amateur."
+    },
+    "tiposDeOrbitas": {
+        "title": "Tipos de Órbitas Satelitales",
+        "description": "Aprende sobre las órbitas LEO, MEO, GEO y más (ESA Kids)."
+    },
+    "comoFuncionanSats": {
+        "title": "¿Cómo Funcionan los Satélites?",
+        "description": "Una explicación de la tecnología satelital (HowStuffWorks, en inglés)."
+    },
+    "espectroRadio": {
+        "title": "Asignación del Espectro Radioeléctrico",
+        "description": "Información sobre la asignación de frecuencias de radio (ANE Colombia)."
+    },
+    "libreSpace": {
+        "title": "Libre Space Foundation",
+        "description": "Fundación de código abierto que diseña tecnologías espaciales."
+    },
+    "dsn": {
+        "title": "Red del Espacio Profundo (DSN)",
+        "description": "Red internacional de antenas de la NASA para misiones interplanetarias."
+    },
+    "sdrIntro": {
+        "title": "Introducción a SDR con RTL-SDR",
+        "description": "Información sobre Radio Definida por Software de bajo costo (sitio en inglés)."
+    },
+    "gnuRadio": {
+        "title": "GNU Radio",
+        "description": "Kit de herramientas de desarrollo de software libre para procesamiento de señales."
+    },
+    "dsp": {
+        "title": "DSPRelated",
+        "description": "Comunidad y recursos para Procesamiento Digital de Señales (en inglés)."
+    }
+  },
+
+  "curiousFacts": {
+    "gpsDiario": {
+      "title": "GPS: Tu Guía Espacial",
+      "text": "¿Sabías que el GPS de tu teléfono se conecta con al menos 4 satélites para saber dónde estás? ¡Hay una constelación de unos 30 satélites GPS orbitando la Tierra!",
+      "linkText": "Aprende más sobre GPS"
+    },
+    "velocidadISS": {
+      "title": "¡A Toda Velocidad!",
+      "text": "La Estación Espacial Internacional (ISS) viaja a unos 28,000 km/h. ¡Eso es como ir de Bogotá a Medellín en menos de un minuto! Da una vuelta completa a la Tierra cada 90 minutos.",
+      "linkText": "Datos de la ISS (NASA)"
+    },
+    "basuraEspacial": {
+      "title": "Basura en el Espacio",
+      "text": "Existen millones de pedazos de \"basura espacial\" orbitando la Tierra, desde satélites viejos hasta pequeñas piezas de cohetes. ¡Limpiar el espacio es un gran desafío!",
+      "linkText": "Basura espacial (ESA)"
+    },
+    "satelitesMeteorologicos": {
+        "title": "Vigilantes del Clima",
+        "text": "Los satélites meteorológicos nos ayudan a predecir el tiempo, monitorear huracanes y estudiar el cambio climático, ¡todo desde cientos de kilómetros de altura!",
+        "linkText": "Satélites y clima (NOAA)"
+    },
+    "televisionSatelital": {
+        "title": "TV desde el Cielo",
+        "text": "Muchos canales de televisión llegan a tu casa gracias a satélites geoestacionarios que parecen \"flotar\" fijos sobre un punto de la Tierra, a más de 35,000 km de altura.",
+        "linkText": "Cómo funciona la TV Satelital"
+    },
+    "primerSatelite": {
+        "title": "El \"Bip Bip\" que Cambió el Mundo",
+        "text": "El primer satélite artificial, Sputnik 1, lanzado en 1957, era una esfera metálica que solo emitía simples \"bips\" de radio, ¡pero inició la carrera espacial!",
+        "linkText": "Sobre el Sputnik 1 (NASA)"
+    }
+  }
+}

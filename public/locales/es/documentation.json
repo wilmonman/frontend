@@ -1,0 +1,72 @@
+{
+  "pageTitle": "Documentación",
+  "pageSubtitle": "Comprendiendo nuestra plataforma y los datos de SatNOGS.",
+  "introduction": {
+    "title": "Introducción y Panorama General",
+    "paragraph1": "Esta plataforma sirve como una ventana a las operaciones de la Estación Terrena Satelital UIS y la red más amplia de SatNOGS. Nuestro objetivo es proporcionar datos accesibles y visualizaciones relacionadas con el seguimiento de satélites y las radiocomunicaciones.",
+    "paragraph2": "Todos los datos presentados aquí provienen principalmente de la red SatNOGS (Satellite Networked Open Ground Station), un proyecto global y de código abierto. SatNOGS consiste en una red de estaciones terrenas operadas por voluntarios que rastrean y reciben datos de diversos satélites.<2/>",
+    "paragraph3": "Esta documentación te guiará a través de las diferentes secciones de nuestro sitio web, explicará los tipos de datos que puedes encontrar y te ayudará a comprender su significado."
+  },
+  "platformFeatures": {
+    "title": "Características de la Plataforma y Datos Explicados",
+    "intro": "Nuestro sitio web está organizado en varias secciones clave, cada una proporcionando diferentes perspectivas sobre las operaciones y datos satelitales:",
+    "groundStation": {
+      "title": "Panel de Estación Terrena",
+      "paragraph1": "Esta página proporciona una visión general del estado de nuestra estación terrena local, actividad actual e indicadores clave de rendimiento. Podrías encontrar información sobre la ubicación de la estación, configuración de la antena e historial operativo reciente.",
+      "paragraph2": "Busca detalles sobre los próximos pases de satélites programados para nuestra estación y su conectividad a la red SatNOGS."
+    },
+    "observationsLog": {
+      "title": "Registro de Observaciones",
+      "paragraph1": "Aquí puedes navegar por un registro de observaciones satelitales. Cada observación representa un intento de una estación terrena (la nuestra u otras en la red) de recibir datos de un satélite durante un pase específico.",
+      "paragraph2": "Los puntos de datos clave incluyen el nombre del satélite, hora de la observación, estación terrena utilizada, frecuencia y el resultado de la observación (por ejemplo, recepción exitosa de datos, intensidad de la señal). También puedes encontrar enlaces a gráficos de \"cascada\" (representaciones visuales de señales de radio) o datos demodulados."
+    },
+    "satelliteImages": {
+      "title": "Imágenes Satelitales",
+      "paragraph1": "Esta sección muestra imágenes recibidas de satélites meteorológicos (como NOAA APT) u otros satélites de imágenes. Estas imágenes generalmente se decodifican a partir de las señales de radio crudas capturadas durante una observación.",
+      "paragraph2": "Puedes ver las imágenes y, a menudo, encontrar detalles sobre el satélite, la hora de captura y la estación terrena que recibió la señal."
+    },
+    "satelliteDatabase": {
+      "title": "Base de Datos de Satélites",
+      "paragraph1": "Explora información sobre varios satélites rastreados por la red SatNOGS. Esto incluye detalles como el ID de NORAD, nombre común, objetivos de la misión y parámetros orbitales (TLEs - Elementos de Dos Líneas).",
+      "paragraph2": "Comprender los TLEs ayuda a predecir los pases de satélites y es crucial para el seguimiento."
+    }
+  },
+  "understandingSatnogsData": {
+    "title": "Comprendiendo los Datos de SatNOGS",
+    "intro": "Los datos de SatNOGS son ricos y variados. Aquí algunos conceptos comunes:",
+    "item1": "<strong>Observación:</strong> Un intento programado de recibir señales de un satélite durante un pase específico por encima del horizonte.",
+    "item2": "<strong>Gráfico de Cascada (Waterfall Plot):</strong> Una representación visual de la intensidad de la radiofrecuencia a lo largo del tiempo, permitiendo la identificación de señales.",
+    "item3": "<strong>Carga Útil/Datos Demodulados:</strong> La información real transmitida por el satélite, extraída de la señal de radio (por ejemplo, imágenes, telemetría).",
+    "item4": "<strong>TLE (Elementos de Dos Líneas):</strong> Un formato de datos que codifica los elementos orbitales de un objeto en órbita terrestre, utilizado para predecir su trayectoria.",
+    "wikiLink": "Para información detallada, la Wiki de SatNOGS es un excelente recurso.<2/>"
+  },
+  "dataFreshness": {
+    "title": "Actualidad y Limitaciones de los Datos",
+    "paragraph1": "Los datos que se muestran en nuestra plataforma se obtienen de la red SatNOGS. Aunque nos esforzamos por presentar información actualizada, pueden existir retrasos basados en la frecuencia de actualización de la base de datos de SatNOGS y nuestros propios mecanismos de caché.",
+    "paragraph2": "La precisión de las observaciones y los datos satelitales depende de las contribuciones de la comunidad global de SatNOGS y del estado operativo de las estaciones terrenas individuales y los satélites."
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes (FAQ)",
+    "q1_title": "¿De dónde provienen estos datos?",
+    "q1_answer": "Principalmente de la red SatNOGS, un proyecto de código abierto impulsado por la comunidad. Algunos datos orbitales de satélites (TLEs) pueden provenir de repositorios públicos como CelesTrak.",
+    "q2_title": "¿Con qué frecuencia se actualizan los datos?",
+    "q2_answer": "Los datos se actualizan generalmente de forma regular, pero la frecuencia exacta puede variar. Nuestro objetivo es refrescar los datos de SatNOGS varias veces al día.",
+    "q3_title": "¿Puedo descargar los datos?",
+    "q3_answer": "Actualmente, la descarga masiva directa desde nuestra plataforma no está soportada. Sin embargo, gran parte de los datos crudos están disponibles a través de la propia red SatNOGS. Proporcionamos enlaces a recursos relevantes de SatNOGS cuando es posible.",
+    "q4_title": "¿Cómo puedo contribuir a SatNOGS?",
+    "q4_answer": "¡SatNOGS agradece las contribuciones! Puedes aprender más sobre cómo construir una estación terrena, contribuir con software o ayudar con la documentación en la página de la comunidad SatNOGS.<2/>"
+  },
+  "glossary": {
+    "title": "Breve Glosario",
+    "api": "<strong>API:</strong> Interfaz de Programación de Aplicaciones. Una forma en que diferentes programas de software se comunican entre sí.",
+    "apt": "<strong>APT (Transmisión Automática de Imágenes):</strong> Un sistema utilizado por algunos satélites meteorológicos (por ejemplo, NOAA) para transmitir imágenes analógicas.",
+    "groundStation": "<strong>Estación Terrena:</strong> Una estación de radio terrestre diseñada para telecomunicaciones extraterrestres con naves espaciales, o recepción de ondas de radio de fuentes astronómicas.",
+    "leo": "<strong>LEO (Órbita Terrestre Baja):</strong> Una órbita alrededor de la Tierra con una altitud típicamente entre 160 kilómetros (99 mi) y 2,000 kilómetros (1,200 mi).",
+    "noradId": "<strong>ID de NORAD (Número de Catálogo de Satélite):</strong> Un número secuencial único de 5 dígitos asignado por NORAD a todos los satélites artificiales.",
+    "sdr": "<strong>SDR (Radio Definida por Software):</strong> Un sistema de radiocomunicación donde los componentes que típicamente se han implementado en hardware (por ejemplo, mezcladores, filtros, amplificadores, moduladores/demoduladores, detectores, etc.) se implementan mediante software en una computadora personal o sistema embebido."
+  },
+  "contactFeedback": {
+    "title": "Contacto y Comentarios",
+    "paragraph1": "¿Tienes preguntas, sugerencias o quieres reportar un problema? ¡Nos encantaría saber de ti! Por favor visita nuestra Página de Contacto."
+  }
+}

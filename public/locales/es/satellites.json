@@ -1,0 +1,46 @@
+{
+  "page": {
+    "mainTitle": "Satélites Destacados",
+    "facsatSectionTitle": "Constelación FACSAT",
+    "facsatRefreshAriaLabel": "Actualizar datos de FACSAT",
+    "otherSectionTitle": "Satélites NOAA y Otros de Interés",
+    "otherRefreshAriaLabel": "Actualizar datos de Otros Satélites",
+    "refreshButton": "Actualizar",
+    "refreshingButton": "Actualizando...",
+    "loadingSection": "Cargando {{sectionTitleForLoading}}...",
+    "errorTitle": "Error:",
+    "errorPartialSuccess": "Éxito parcial con problemas: {{issues}}",
+    "errorUnexpected": "Ocurrió un error inesperado: {{message}}",
+    "errorNoDataForId": "Sin datos para ID {{id}}",
+    "errorDataIssueForId": "Problema de datos para ID {{id}}",
+    "errorFailedId": "Falló ID {{id}}",
+    "noSatellitesFound": "No se encontraron satélites en esta categoría.",
+    "someDataDisplayedBelow": "(Algunos datos podrían mostrarse a continuación)"
+  },
+  "card": {
+    "imageAlt": "Imagen de {{satelliteName}}",
+    "imagePlaceholderText": "Satélite",
+    "unnamedSatellite": "Satélite Sin Nombre",
+    "noradIdTitle": "ID NORAD: {{noradId}}",
+    "statusLabel": "Estado",
+    "status": {
+      "alive": "Activo",
+      "dead": "Inactivo",
+      "future": "Futuro",
+      "reEntered": "Re-ingresado",
+      "unknown": "Desconocido"
+    },
+    "launchedLabel": "Lanzado",
+    "launchedTitle": "Lanzado: {{date}}",
+    "operatorLabel": "Operador",
+    "operatorTitle": "Operador: {{operator}}",
+    "countriesLabel": "Países",
+    "countriesTitle": "Países: {{countries}}",
+    "viewOnDbLink": "Ver en DB",
+    "viewOnDbTitle": "Ver {{satelliteName}} en SatNOGS DB"
+  },
+  "common": {
+    "dataNotAvailable": "N/D",
+    "invalidDate": "Fecha Inválida"
+  }
+}

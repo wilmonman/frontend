@@ -1,0 +1,46 @@
+{
+  "page": {
+    "mainTitle": "Featured Satellites",
+    "facsatSectionTitle": "FACSAT Constellation",
+    "facsatRefreshAriaLabel": "Refresh FACSAT data",
+    "otherSectionTitle": "NOAA & Other Satellites",
+    "otherRefreshAriaLabel": "Refresh Other Satellites data",
+    "refreshButton": "Refresh",
+    "refreshingButton": "Refreshing...",
+    "loadingSection": "Loading {{sectionTitleForLoading}}...",
+    "errorTitle": "Error:",
+    "errorPartialSuccess": "Partial success with issues: {{issues}}",
+    "errorUnexpected": "An unexpected error occurred: {{message}}",
+    "errorNoDataForId": "No data for ID {{id}}",
+    "errorDataIssueForId": "Data issue for ID {{id}}",
+    "errorFailedId": "Failed ID {{id}}",
+    "noSatellitesFound": "No satellites found in this category.",
+    "someDataDisplayedBelow": "(Some data might be displayed below)"
+  },
+  "card": {
+    "imageAlt": "Image of {{satelliteName}}",
+    "imagePlaceholderText": "Satellite",
+    "unnamedSatellite": "Unnamed Satellite",
+    "noradIdTitle": "NORAD ID: {{noradId}}",
+    "statusLabel": "Status",
+    "status": {
+      "alive": "Alive",
+      "dead": "Dead",
+      "future": "Future",
+      "reEntered": "Re-entered",
+      "unknown": "Unknown"
+    },
+    "launchedLabel": "Launched",
+    "launchedTitle": "Launched: {{date}}",
+    "operatorLabel": "Operator",
+    "operatorTitle": "Operator: {{operator}}",
+    "countriesLabel": "Countries",
+    "countriesTitle": "Countries: {{countries}}",
+    "viewOnDbLink": "View on DB",
+    "viewOnDbTitle": "View {{satelliteName}} on SatNOGS DB"
+  },
+  "common": {
+    "dataNotAvailable": "N/A",
+    "invalidDate": "Invalid Date"
+  }
+}

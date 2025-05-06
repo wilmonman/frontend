@@ -1,0 +1,33 @@
+{
+  "mainTitle": "About This Project",
+  "subTitle": "Learn more about the goals, technology, and vision behind this satellite ground station project.",
+  "projectType": "University Project",
+  "location": "UIS, Bucaramanga",
+  "githubButton": "View on GitHub",
+  "githubButtonTitleDisabled": "GitHub URL not configured",
+  "githubButtonTitleEnabled": "View project on GitHub",
+  "githubRepoNotConfiguredNote": "Note: GitHub repository URL needs to be configured in the code.",
+  "generalObjective": {
+    "title": "General Objective",
+    "text": "Develop and implement a functional satellite ground station integrated with the SatNOGS network, accompanied by a web platform for monitoring, data visualization, and educational outreach."
+  },
+  "specificObjectives": {
+    "title": "Specific Objectives",
+    "build": {
+      "title": "Build & Integrate",
+      "text": "Assemble the ground station hardware and integrate it with the SatNOGS network for automated satellite tracking and data reception."
+    },
+    "web": {
+      "title": "Develop Web Platform",
+      "text": "Create a user-friendly website to display station status, received observations, satellite images, and relevant project information."
+    },
+    "guide": {
+      "title": "Educate & Document",
+      "text": "Provide documentation and resources to educate users about satellite communication, radio technology, and the project itself."
+    }
+  },
+  "techVision": {
+    "title": "Technology & Vision",
+    "text": "Leveraging the power of the open-source <satnogsLink>SatNOGS network</satnogsLink> and software-defined radio, this project aims to foster interest in space science and technology within our university community and beyond."
+  }
+}

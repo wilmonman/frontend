@@ -1,0 +1,33 @@
+{
+  "mainTitle": "Acerca de Este Proyecto",
+  "subTitle": "Aprende más sobre los objetivos, la tecnología y la visión detrás de este proyecto de estación terrena satelital.",
+  "projectType": "Proyecto Universitario",
+  "location": "UIS, Bucaramanga",
+  "githubButton": "Ver en GitHub",
+  "githubButtonTitleDisabled": "URL de GitHub no configurada",
+  "githubButtonTitleEnabled": "Ver proyecto en GitHub",
+  "githubRepoNotConfiguredNote": "Nota: La URL del repositorio de GitHub necesita ser configurada en el código.",
+  "generalObjective": {
+    "title": "Objetivo General",
+    "text": "Desarrollar e implementar una estación terrena satelital funcional integrada a la red SatNOGS, acompañada de una plataforma web para monitoreo, visualización de datos y divulgación educativa."
+  },
+  "specificObjectives": {
+    "title": "Objetivos Específicos",
+    "build": {
+      "title": "Construir e Integrar",
+      "text": "Ensamblar el hardware de la estación terrena e integrarlo con la red SatNOGS para el seguimiento automatizado de satélites y la recepción de datos."
+    },
+    "web": {
+      "title": "Desarrollar Plataforma Web",
+      "text": "Crear un sitio web amigable para mostrar el estado de la estación, las observaciones recibidas, imágenes satelitales e información relevante del proyecto."
+    },
+    "guide": {
+      "title": "Educar y Documentar",
+      "text": "Proporcionar documentación y recursos para educar a los usuarios sobre comunicación satelital, tecnología de radio y el proyecto en sí."
+    }
+  },
+  "techVision": {
+    "title": "Tecnología y Visión",
+    "text": "Aprovechando el poder de la red de código abierto <satnogsLink>SatNOGS</satnogsLink> y la radio definida por software, este proyecto busca fomentar el interés en la ciencia y tecnología espacial dentro de nuestra comunidad universitaria y más allá."
+  }
+}

@@ -4,7 +4,20 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
 
 // Define only the namespaces currently needed
-const namespaces = ['app'];
+const namespaces = [
+  'app', 
+  'home', 
+  'resources', 
+  'notFound', 
+  'privacy', 
+  'contact', 
+  'about', 
+  'documentation',
+  'groundstation',
+  'observations',
+  'images',
+  'satellites'
+];
 
 i18n
   .use(HttpApi)

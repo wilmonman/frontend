@@ -1,0 +1,33 @@
+{
+  "pageTitle": "Privacy Policy",
+  "lastUpdated": "Last Updated: {{date}}",
+  "commitment": {
+    "title": "Our Commitment to Privacy",
+    "paragraph1": "Welcome to the UIS Satellite Ground Station web platform. Your privacy is important to us. This Privacy Policy explains how we handle information in relation to your use of our website and services.",
+    "paragraph2": "We are committed to transparency and want you to understand our practices."
+  },
+  "informationNotCollected": {
+    "title": "Information We Do Not Collect",
+    "paragraph1": "We do not collect, store, or process any Personally Identifiable Information (PII) from our users. You can browse our website and use its features without creating an account or providing any personal data such as your name, email address, phone number, or physical address."
+  },
+  "externalApiData": {
+    "title": "Data from External APIs (SatNOGS)",
+    "paragraph1": "Our platform displays data fetched from the SatNOGS (Satellite Networked Open Ground Station) network and potentially other public APIs. This data includes information about satellite observations, ground station statuses, telemetry data, and satellite orbital parameters.",
+    "paragraph2": "This data is publicly available and does not contain any personal information about you, the user of our website. The data is used solely to provide the informational and educational services offered by our platform.",
+    "paragraph3": "For more information on how SatNOGS handles data, please refer to the SatNOGS policies."
+  },
+  "cookiesLocalStorage": {
+    "title": "Cookies and Local Storage",
+    "paragraph1": "Our website does not use cookies for tracking users or collecting personal information. We may use browser local storage to save your display preferences (such as theme settings like light/dark mode) or to temporarily cache data fetched from APIs to improve performance and your Browse experience.",
+    "paragraph2": "This stored information is not personal and is confined to your browser. It is not transmitted to our servers for tracking purposes."
+  },
+  "thirdPartyServices": {
+    "title": "Third-Party Services",
+    "paragraph1": "Our website is hosted by a third-party hosting provider. This provider may collect standard server logs (e.g., IP addresses, browser type) for security and operational purposes, as per their own privacy policies. We do not have direct access to or control over these logs in a way that would identify individual users for our own tracking.",
+    "paragraph2": "We do not employ third-party analytics services that track personal user data (e.g., Google Analytics). Any links to external websites are provided for informational purposes, and we are not responsible for the privacy practices of these external sites."
+  },
+  "policyChanges": {
+    "title": "Changes to This Privacy Policy",
+    "paragraph1": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the \"Last Updated\" date at the top. You are advised to review this Privacy Policy periodically for any changes."
+  }
+}

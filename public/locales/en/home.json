@@ -1,0 +1,95 @@
+{
+  "pageTitle": "UIS Satellite Ground Station",
+  "introText": "Explore the cosmos from UIS! Welcome to the official SatNOGS project platform, your gateway to the fascinating world of satellite communication and open science.",
+  "carousel": {
+    "item1": {
+      "alt": "Satellite Orbiting Earth",
+      "caption": "Tracking Satellites in Real Time"
+    },
+    "item2": {
+      "alt": "Visualization of Radio Signals from Space",
+      "caption": "Decoding Signals from the Cosmos"
+    },
+    "item3": {
+      "alt": "Ground Station Antenna Pointing to the Sky",
+      "caption": "Our Window to the Universe"
+    },
+    "item4": {
+      "alt": "Earth Observation Satellite Image",
+      "caption": "Observing Earth from Above"
+    },
+    "prevButtonLabel": "Previous image",
+    "nextButtonLabel": "Next image",
+    "slideButtonLabel": "Go to slide {{slideNumber}}"
+  },
+  "projectSummarySection": {
+    "title": "About Our Project",
+    "paragraph1": "This initiative implements a functional model of a ground station on the UIS campus, based on software-defined radio (SDR) and connected to the global SatNOGS network. Our main goal is to serve as a scientific outreach tool, offering practical learning opportunities and fostering interest in space technology and radiocommunications.",
+    "paragraph2": "We aim to be a valuable resource for research, teaching, and the dissemination of scientific knowledge, allowing the university community and the general public to interact with the fascinating world of satellites.",
+    "keyObjectivesTitle": "Key Objectives:",
+    "objective1": "Develop a functional SDR ground station integrated with SatNOGS.",
+    "objective2": "Disseminate information and observations in a playful and interactive way through this web platform.",
+    "objective3": "Promote participation in citizen science and academic exploration.",
+    "objective4": "Serve as an educational and research tool in satellite communications."
+  },
+  "connectingCosmosSection": {
+    "title": "Connecting with the Cosmos: The Satellite Adventure",
+    "paragraph1": "Satellites are much more than simple points of light in the night sky. They are our eyes and ears in space, playing crucial roles in our daily lives. From facilitating global communications (like internet and television), enabling precise navigation (GPS), to monitoring the weather and our environment.",
+    "paragraph2": "Some satellites observe us closely in low Earth orbits (LEO), capturing detailed images of Earth, while others are situated in more distant orbits (GEO) to cover vast regions with their signals. Our ground station at UIS is a window to this universe of technology, allowing us to explore these wonders, understand their operation, and actively participate in their tracking."
+  },
+  "whatToExploreSection": {
+    "title": "What Can You Explore?",
+    "stationPanelCard": {
+      "title": "Station Dashboard",
+      "description": "Observe the live status and activity of our ground station."
+    },
+    "observationsCard": {
+      "title": "Observations",
+      "description": "Browse through data received from various satellites."
+    },
+    "satelliteImagesCard": {
+      "title": "Satellite Images",
+      "description": "View Earth images captured by weather satellites."
+    },
+    "satelliteInfoCard": {
+      "title": "Satellite Info",
+      "description": "Learn about the different satellites we track."
+    }
+  },
+  "technologyUsedSection": {
+    "title": "The Technology We Use",
+    "satnogsNetworkArticle": {
+      "title": "SatNOGS Network",
+      "description": "Our station is a proud member of the global SatNOGS network. SatNOGS (Satellite Networked Open Ground Station) is an open-source, community-driven project that operates ground stations worldwide. This collaborative effort enables comprehensive tracking and data reception from a multitude of satellites, making space observation accessible.",
+      "buttonText": "Visit SatNOGS"
+    },
+    "gnuRadioArticle": {
+      "title": "GNU Radio",
+      "description": "GNU Radio is a powerful, free, and open-source software development toolkit. It provides the signal processing blocks needed to implement software-defined radios (SDR). This technology is crucial for our ground station, allowing us to flexibly process and decode complex radio signals received from satellites.",
+      "buttonText": "Explore GNU Radio"
+    },
+    "sdrArticle": {
+      "title": "Software-Defined Radio (SDR)",
+      "description": "Software-Defined Radio is a radio communication technology where components traditionally implemented in hardware (mixers, filters, amplifiers, etc.) are performed by software on a computer. This offers enormous flexibility, allowing our station to adapt to different types of signals and satellites simply by changing the software."
+    }
+  },
+  "learnMoreSection": {
+    "title": "Learn More and Get Involved",
+    "documentationCard": {
+      "title": "Our Documentation",
+      "description": "Delve into how our platform works and the data we present.",
+      "linkText": "Read Documentation"
+    },
+    "aboutUsCard": {
+      "title": "About Us",
+      "description": "Learn more about the UIS Ground Station team and our mission.",
+      "linkText": "Meet the Team"
+    },
+    "educationalResourcesCard": {
+      "title": "Educational Resources",
+      "description": "Find useful links and materials to expand your knowledge.",
+      "linkText": "Explore Resources"
+    }
+  },
+  "imageNotAvailable": "Image Not Available"
+}

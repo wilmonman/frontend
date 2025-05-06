@@ -1,191 +1,116 @@
 // src/views/ResourcesPage.jsx
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next'; // <--- IMPORTAR
 // Importar iconos
 import {
   BookOpen, ExternalLink, Rocket, Wifi, Globe, Antenna, BrainCircuit, Database,
   MapPin, Gamepad2, Satellite, Radio, Star, Users, Code2, HardDrive, CalendarDays,
-  BarChart3, Lightbulb, Zap, PackageOpen, Tv, Link2 // Link2 para el botón de enlace
+  BarChart3, Lightbulb, Zap, PackageOpen, Tv, Link2
 } from 'lucide-react';
 
-// Icono CloudSun (si no está en lucide-react por defecto, se puede crear un SVG simple o usar otro)
-// Definido aquí para que esté disponible antes de su uso en curiousFactsData
+// Icono CloudSun (placeholder)
 const CloudSun = ({ size = 24, className = "" }) => (
-  // Usando CalendarDays como placeholder, puedes reemplazarlo con un SVG de CloudSun si lo tienes
-  // o si encuentras un icono adecuado en lucide-react (ej. Cloud, Sun) y los combinas.
-  // Por simplicidad, mantendremos CalendarDays por ahora.
-  <CalendarDays size={size} className={className} />
+  <CalendarDays size={size} className={className} /> // Placeholder
 );
 
-// --- Definiciones de Datos (Adaptadas y Ampliadas) ---
-
-// Enlaces Destacados Temáticos (Conjunto Ampliado en Español)
-const featuredLinksData = [
-  {
-    id: 'nasa',
-    url: "https://www.nasa.gov/",
-    icon: <Rocket size={32} className="text-red-600 dark:text-red-500" />,
-    thumbnail: "https://placehold.co/80x80/FEF2F2/DC2626?text=NASA",
-    title: "NASA Oficial",
-    description: "Explora las misiones, investigaciones y descubrimientos de la agencia espacial de EE. UU.",
-    bgColor: "bg-red-50 dark:bg-red-900/30", borderColor: "border-red-200 dark:border-red-700/50", hoverColor: "hover:border-red-400 dark:hover:border-red-500"
-  },
-  {
-    id: 'esa',
-    url: "https://www.esa.int/",
-    icon: <Rocket size={32} className="text-blue-600 dark:text-blue-500" />,
-    thumbnail: "https://placehold.co/80x80/EFF6FF/2563EB?text=ESA",
-    title: "Agencia Espacial Europea (ESA)",
-    description: "Descubre los proyectos y avances de la ESA en la exploración espacial y observación terrestre.",
-    bgColor: "bg-blue-50 dark:bg-blue-900/30", borderColor: "border-blue-200 dark:border-blue-700/50", hoverColor: "hover:border-blue-400 dark:hover:border-blue-500"
-  },
-  {
-    id: 'satnogsNetwork',
-    url: "https://network.satnogs.org/",
-    icon: <Users size={32} className="text-green-600 dark:text-green-500" />,
-    thumbnail: "https://placehold.co/80x80/ECFDF5/059669?text=SatNOGS",
-    title: "Red SatNOGS",
-    description: "La red global de estaciones terrenas satelitales de código abierto. ¡Nuestra estación es parte de ella!",
-    bgColor: "bg-green-50 dark:bg-green-900/30", borderColor: "border-green-200 dark:border-green-700/50", hoverColor: "hover:border-green-400 dark:hover:border-green-500"
-  },
-  {
-    id: 'heavensAbove',
-    url: "https://www.heavens-above.com/",
-    icon: <Star size={32} className="text-yellow-500 dark:text-yellow-400" />,
-    thumbnail: "https://placehold.co/80x80/FFFBEB/F59E0B?text=H-A",
-    title: "Heavens-Above",
-    description: "Predicciones precisas de pasos de satélites (incluida la ISS) visibles desde tu ubicación.",
-    bgColor: "bg-yellow-50 dark:bg-yellow-900/30", borderColor: "border-yellow-200 dark:border-yellow-700/50", hoverColor: "hover:border-yellow-400 dark:hover:border-yellow-500"
-  },
-  {
-    id: 'stuffinspace',
-    url: "http://stuffin.space/",
-    icon: <Globe size={32} className="text-cyan-600 dark:text-cyan-500" />,
-    thumbnail: "https://placehold.co/80x80/ECFEFF/0891B2?text=SiS",
-    title: "Stuff in Space",
-    description: "Visualización 3D en tiempo real de objetos orbitando la Tierra. ¡Impresionante!",
-    bgColor: "bg-cyan-50 dark:bg-cyan-900/30", borderColor: "border-cyan-200 dark:border-cyan-700/50", hoverColor: "hover:border-cyan-400 dark:hover:border-cyan-500"
-  },
-  {
-    id: 'satnogsDb',
-    url: "https://db.satnogs.org/",
-    icon: <Database size={32} className="text-sky-600 dark:text-sky-500" />,
-    thumbnail: "https://placehold.co/80x80/E0F2FE/0284C7?text=SatDB",
-    title: "SatNOGS DB",
-    description: "Base de datos colaborativa de satélites, transmisores y sus telemetrías.",
-    bgColor: "bg-sky-50 dark:bg-sky-900/30", borderColor: "border-sky-200 dark:border-sky-700/50", hoverColor: "hover:border-sky-400 dark:hover:border-sky-500"
-  },
-  {
-    id: 'n2yo',
-    url: "https://www.n2yo.com/",
-    icon: <MapPin size={32} className="text-purple-600 dark:text-purple-500" />,
-    thumbnail: "https://placehold.co/80x80/F3E8FF/7E22CE?text=N2YO",
-    title: "N2YO.com",
-    description: "Seguimiento de satélites en tiempo real, predicciones de pasos y mucha más información orbital.",
-    bgColor: "bg-purple-50 dark:bg-purple-900/30", borderColor: "border-purple-200 dark:border-purple-700/50", hoverColor: "hover:border-purple-400 dark:hover:border-purple-500"
-  },
-  {
-    id: 'celestrak',
-    url: "https://celestrak.org/",
-    icon: <BarChart3 size={32} className="text-orange-600 dark:text-orange-500" />,
-    thumbnail: "https://placehold.co/80x80/FFF7ED/EA580C?text=CelesTrak",
-    title: "CelesTrak",
-    description: "Fuente autorizada de datos orbitales (TLEs) y herramientas analíticas sobre objetos espaciales.",
-    bgColor: "bg-orange-50 dark:bg-orange-900/30", borderColor: "border-orange-200 dark:border-orange-700/50", hoverColor: "hover:border-orange-400 dark:hover:border-orange-500"
-  },
+// --- Definiciones de Datos BASE (solo IDs y datos no textuales) ---
+// Estas definiciones contendrán las claves para buscar en los archivos de traducción.
+const baseFeaturedLinksData = [
+  { id: 'nasa', url: "https://www.nasa.gov/", iconComponent: Rocket, iconColorClasses: "text-red-600 dark:text-red-500", thumbnailPlaceholder: "NASA", bgColor: "bg-red-50 dark:bg-red-900/30", borderColor: "border-red-200 dark:border-red-700/50", hoverColor: "hover:border-red-400 dark:hover:border-red-500" },
+  { id: 'esa', url: "https://www.esa.int/", iconComponent: Rocket, iconColorClasses: "text-blue-600 dark:text-blue-500", thumbnailPlaceholder: "ESA", bgColor: "bg-blue-50 dark:bg-blue-900/30", borderColor: "border-blue-200 dark:border-blue-700/50", hoverColor: "hover:border-blue-400 dark:hover:border-blue-500" },
+  { id: 'satnogsNetwork', url: "https://network.satnogs.org/", iconComponent: Users, iconColorClasses: "text-green-600 dark:text-green-500", thumbnailPlaceholder: "SatNOGS", bgColor: "bg-green-50 dark:bg-green-900/30", borderColor: "border-green-200 dark:border-green-700/50", hoverColor: "hover:border-green-400 dark:hover:border-green-500" },
+  { id: 'heavensAbove', url: "https://www.heavens-above.com/", iconComponent: Star, iconColorClasses: "text-yellow-500 dark:text-yellow-400", thumbnailPlaceholder: "H-A", bgColor: "bg-yellow-50 dark:bg-yellow-900/30", borderColor: "border-yellow-200 dark:border-yellow-700/50", hoverColor: "hover:border-yellow-400 dark:hover:border-yellow-500" },
+  { id: 'stuffinspace', url: "http://stuffin.space/", iconComponent: Globe, iconColorClasses: "text-cyan-600 dark:text-cyan-500", thumbnailPlaceholder: "SiS", bgColor: "bg-cyan-50 dark:bg-cyan-900/30", borderColor: "border-cyan-200 dark:border-cyan-700/50", hoverColor: "hover:border-cyan-400 dark:hover:border-cyan-500" },
+  { id: 'satnogsDb', url: "https://db.satnogs.org/", iconComponent: Database, iconColorClasses: "text-sky-600 dark:text-sky-500", thumbnailPlaceholder: "SatDB", bgColor: "bg-sky-50 dark:bg-sky-900/30", borderColor: "border-sky-200 dark:border-sky-700/50", hoverColor: "hover:border-sky-400 dark:hover:border-sky-500" },
+  { id: 'n2yo', url: "https://www.n2yo.com/", iconComponent: MapPin, iconColorClasses: "text-purple-600 dark:text-purple-500", thumbnailPlaceholder: "N2YO", bgColor: "bg-purple-50 dark:bg-purple-900/30", borderColor: "border-purple-200 dark:border-purple-700/50", hoverColor: "hover:border-purple-400 dark:hover:border-purple-500" },
+  { id: 'celestrak', url: "https://celestrak.org/", iconComponent: BarChart3, iconColorClasses: "text-orange-600 dark:text-orange-500", thumbnailPlaceholder: "CelesTrak", bgColor: "bg-orange-50 dark:bg-orange-900/30", borderColor: "border-orange-200 dark:border-orange-700/50", hoverColor: "hover:border-orange-400 dark:hover:border-orange-500" },
 ];
 
-// Enlaces de Interés por Nivel (en Español)
-const linksOfInterestData = [
-  // Principiante
-  { id: 'queEsUnSatelite', title: '¿Qué es un Satélite?', description: 'Una explicación sencilla de la NASA sobre los satélites y sus usos.', url: "https://spaceplace.nasa.gov/what-is-a-satellite/sp/", levelId: 'principiante', icon: <Lightbulb size={20} className="inline-block mr-2 text-yellow-500" /> },
-  { id: 'scan', title: 'Comunicaciones y Navegación Espacial (SCaN)', description: 'Programa de la NASA para la infraestructura de comunicación espacial.', url: "https://www.nasa.gov/directorates/heo/scan/index.html", levelId: 'principiante', icon: <Rocket size={20} className="inline-block mr-2 text-indigo-500" /> },
-  { id: 'arrl', title: 'ARRL', description: 'Asociación nacional de Radioaficionados en EE. UU. (recursos en inglés).', url: "http://www.arrl.org/", levelId: 'principiante', icon: <Radio size={20} className="inline-block mr-2 text-teal-500" /> },
-  { id: 'amsat', title: 'AMSAT', description: 'Corporación de Satélites de Radioaficionados, coordina proyectos satelitales amateur.', url: "https://www.amsat.org/", levelId: 'principiante', icon: <Satellite size={20} className="inline-block mr-2 text-purple-500" /> },
-  // Intermedio
-  { id: 'tiposDeOrbitas', title: 'Tipos de Órbitas Satelitales', description: 'Aprende sobre las órbitas LEO, MEO, GEO y más (ESA Kids).', url: "https://www.esa.int/kids/es/Aprende/El_Universo/Satelites/Tipos_de_orbitas", levelId: 'intermedio', icon: <Globe size={20} className="inline-block mr-2 text-blue-500" /> },
-  { id: 'comoFuncionanSats', title: '¿Cómo Funcionan los Satélites?', description: 'Una explicación de la tecnología satelital (HowStuffWorks, en inglés).', url: "https://science.howstuffworks.com/satellite.htm", levelId: 'intermedio', icon: <Satellite size={20} className="inline-block mr-2 text-sky-500" /> },
-  { id: 'espectroRadio', title: 'Asignación del Espectro Radioeléctrico', description: 'Información sobre la asignación de frecuencias de radio (ANE Colombia).', url: "https://www.ane.gov.co/Paginas/Servicios/Cuadro-Nacional-de-Atribucion-de-Bandas-de-Frecuencias-(CNABF).aspx", levelId: 'intermedio', icon: <Wifi size={20} className="inline-block mr-2 text-amber-500" /> },
-  { id: 'libreSpace', title: 'Libre Space Foundation', description: 'Fundación de código abierto que diseña tecnologías espaciales.', url: "https://libre.space/", levelId: 'intermedio', icon: <Users size={20} className="inline-block mr-2 text-lime-500" /> },
-  // Avanzado
-  { id: 'dsn', title: 'Red del Espacio Profundo (DSN)', description: 'Red internacional de antenas de la NASA para misiones interplanetarias.', url: "https://www.jpl.nasa.gov/missions/dsn/", levelId: 'avanzado', icon: <Rocket size={20} className="inline-block mr-2 text-indigo-700" /> },
-  { id: 'sdrIntro', title: 'Introducción a SDR con RTL-SDR', description: 'Información sobre Radio Definida por Software de bajo costo (sitio en inglés).', url: "https://www.rtl-sdr.com/about-rtl-sdr/", levelId: 'avanzado', icon: <HardDrive size={20} className="inline-block mr-2 text-rose-500" /> },
-  { id: 'gnuRadio', title: 'GNU Radio', description: 'Kit de herramientas de desarrollo de software libre para procesamiento de señales.', url: "https://www.gnuradio.org/", levelId: 'avanzado', icon: <Code2 size={20} className="inline-block mr-2 text-fuchsia-500" /> },
-  { id: 'dsp', title: 'DSPRelated', description: 'Comunidad y recursos para Procesamiento Digital de Señales (en inglés).', url: "https://www.dsprelated.com/", levelId: 'avanzado', icon: <BrainCircuit size={20} className="inline-block mr-2 text-pink-500" /> }
+const baseLinksOfInterestData = [
+  { id: 'queEsUnSatelite', url: "https://spaceplace.nasa.gov/what-is-a-satellite/sp/", levelId: 'principiante', iconComponent: Lightbulb, iconColorClasses: "text-yellow-500" },
+  { id: 'scan', url: "https://www.nasa.gov/directorates/heo/scan/index.html", levelId: 'principiante', iconComponent: Rocket, iconColorClasses: "text-indigo-500" },
+  { id: 'arrl', url: "http://www.arrl.org/", levelId: 'principiante', iconComponent: Radio, iconColorClasses: "text-teal-500" },
+  { id: 'amsat', url: "https://www.amsat.org/", levelId: 'principiante', iconComponent: Satellite, iconColorClasses: "text-purple-500" },
+  { id: 'tiposDeOrbitas', url: "https://www.esa.int/kids/es/Aprende/El_Universo/Satelites/Tipos_de_orbitas", levelId: 'intermedio', iconComponent: Globe, iconColorClasses: "text-blue-500" },
+  { id: 'comoFuncionanSats', url: "https://science.howstuffworks.com/satellite.htm", levelId: 'intermedio', iconComponent: Satellite, iconColorClasses: "text-sky-500" },
+  { id: 'espectroRadio', url: "https://www.ane.gov.co/Paginas/Servicios/Cuadro-Nacional-de-Atribucion-de-Bandas-de-Frecuencias-(CNABF).aspx", levelId: 'intermedio', iconComponent: Wifi, iconColorClasses: "text-amber-500" },
+  { id: 'libreSpace', url: "https://libre.space/", levelId: 'intermedio', iconComponent: Users, iconColorClasses: "text-lime-500" },
+  { id: 'dsn', url: "https://www.jpl.nasa.gov/missions/dsn/", levelId: 'avanzado', iconComponent: Rocket, iconColorClasses: "text-indigo-700" },
+  { id: 'sdrIntro', url: "https://www.rtl-sdr.com/about-rtl-sdr/", levelId: 'avanzado', iconComponent: HardDrive, iconColorClasses: "text-rose-500" },
+  { id: 'gnuRadio', url: "https://www.gnuradio.org/", levelId: 'avanzado', iconComponent: Code2, iconColorClasses: "text-fuchsia-500" },
+  { id: 'dsp', url: "https://www.dsprelated.com/", levelId: 'avanzado', iconComponent: BrainCircuit, iconColorClasses: "text-pink-500" }
 ];
 
-// Estilos para los niveles (en Español)
-const levelStyles = {
-  principiante: { label: 'Principiante', style: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300' },
-  intermedio: { label: 'Intermedio', style: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300' },
-  avanzado: { label: 'Avanzado', style: 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300' }
+// Base para estilos de niveles (solo las clases CSS, las etiquetas se traducirán)
+const baseLevelStyles = {
+  principiante: { style: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300' },
+  intermedio: { style: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300' },
+  avanzado: { style: 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300' }
 };
 
-// Datos para la sección de curiosidades con enlaces
-const curiousFactsData = [
-  {
-    id: 'gpsDiario',
-    icon: <MapPin size={28} className="text-blue-500" />,
-    title: 'GPS: Tu Guía Espacial',
-    text: '¿Sabías que el GPS de tu teléfono se conecta con al menos 4 satélites para saber dónde estás? ¡Hay una constelación de unos 30 satélites GPS orbitando la Tierra!',
-    link: 'https://www.gps.gov/systems/gps/spanish/',
-    linkText: 'Aprende más sobre GPS'
-  },
-  {
-    id: 'velocidadISS',
-    icon: <Rocket size={28} className="text-orange-500" />,
-    title: '¡A Toda Velocidad!',
-    text: 'La Estación Espacial Internacional (ISS) viaja a unos 28,000 km/h. ¡Eso es como ir de Bogotá a Medellín en menos de un minuto! Da una vuelta completa a la Tierra cada 90 minutos.',
-    link: 'https://www.nasa.gov/mission_pages/station/main/onthestation/facts_and_figures.html',
-    linkText: 'Datos de la ISS (NASA)'
-  },
-  {
-    id: 'basuraEspacial',
-    icon: <PackageOpen size={28} className="text-gray-500" />,
-    title: 'Basura en el Espacio',
-    text: 'Existen millones de pedazos de "basura espacial" orbitando la Tierra, desde satélites viejos hasta pequeñas piezas de cohetes. ¡Limpiar el espacio es un gran desafío!',
-    link: 'https://www.esa.int/Space_Safety/Space_Debris/Space_debris_by_the_numbers',
-    linkText: 'Basura espacial (ESA)'
-  },
-  {
-    id: 'satelitesMeteorologicos',
-    icon: <CloudSun size={28} className="text-sky-500" />,
-    title: 'Vigilantes del Clima',
-    text: 'Los satélites meteorológicos nos ayudan a predecir el tiempo, monitorear huracanes y estudiar el cambio climático, ¡todo desde cientos de kilómetros de altura!',
-    link: 'https://www.noaa.gov/education/resource-collections/satellite-NOAA-educations', // NOAA es una buena fuente
-    linkText: 'Satélites y clima (NOAA)'
-  },
-  {
-    id: 'televisionSatelital',
-    icon: <Tv size={28} className="text-purple-500" />,
-    title: 'TV desde el Cielo',
-    text: 'Muchos canales de televisión llegan a tu casa gracias a satélites geoestacionarios que parecen "flotar" fijos sobre un punto de la Tierra, a más de 35,000 km de altura.',
-    link: 'https://www.sba.gov/business-guide/plan-your-business/market-research-competitive-analysis', // Ejemplo genérico, un enlace más específico sería ideal
-    linkText: 'Cómo funciona la TV Satelital'
-  },
-  {
-    id: 'primerSatelite',
-    icon: <Zap size={28} className="text-yellow-500" />,
-    title: 'El "Bip Bip" que Cambió el Mundo',
-    text: 'El primer satélite artificial, Sputnik 1, lanzado en 1957, era una esfera metálica que solo emitía simples "bips" de radio, ¡pero inició la carrera espacial!',
-    link: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1957-001B',
-    linkText: 'Sobre el Sputnik 1 (NASA)'
-  }
+const baseCuriousFactsData = [
+  { id: 'gpsDiario', iconComponent: MapPin, iconColorClasses: "text-blue-500", link: 'https://www.gps.gov/systems/gps/spanish/' },
+  { id: 'velocidadISS', iconComponent: Rocket, iconColorClasses: "text-orange-500", link: 'https://www.nasa.gov/mission_pages/station/main/onthestation/facts_and_figures.html' },
+  { id: 'basuraEspacial', iconComponent: PackageOpen, iconColorClasses: "text-gray-500", link: 'https://www.esa.int/Space_Safety/Space_Debris/Space_debris_by_the_numbers' },
+  { id: 'satelitesMeteorologicos', iconComponent: CloudSun, iconColorClasses: "text-sky-500", link: 'https://www.noaa.gov/education/resource-collections/satellite-NOAA-educations' },
+  { id: 'televisionSatelital', iconComponent: Tv, iconColorClasses: "text-purple-500", link: 'https://www.sba.gov/business-guide/plan-your-business/market-research-competitive-analysis' }, // Considerar un enlace más específico
+  { id: 'primerSatelite', iconComponent: Zap, iconColorClasses: "text-yellow-500", link: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1957-001B' }
 ];
-// --- Fin Definiciones de Datos ---
+// --- Fin Definiciones de Datos BASE ---
 
 function ResourcesPage() {
+  const { t } = useTranslation('resources'); // <--- USAR NAMESPACE 'resources'
   const [sectionsVisible, setSectionsVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setSectionsVisible(true);
-    }, 100); // Pequeño retraso para permitir el renderizado inicial
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
 
+  // --- Construir datos con traducciones ---
+  const featuredLinksData = baseFeaturedLinksData.map(link => {
+    const Icon = link.iconComponent;
+    return {
+      ...link,
+      icon: <Icon size={32} className={link.iconColorClasses} />,
+      title: t(`featuredLinks.${link.id}.title`),
+      description: t(`featuredLinks.${link.id}.description`),
+      thumbnail: `https://placehold.co/80x80/${link.bgColor.split('/')[0].split('-')[1]}${link.iconColorClasses.split('-')[1]}/FFFFFF?text=${link.thumbnailPlaceholder}` // Simple placeholder logic
+    };
+  });
+
+  const linksOfInterestData = baseLinksOfInterestData.map(link => {
+    const Icon = link.iconComponent;
+    return {
+      ...link,
+      icon: <Icon size={20} className={`inline-block mr-2 ${link.iconColorClasses}`} />,
+      title: t(`linksOfInterest.${link.id}.title`),
+      description: t(`linksOfInterest.${link.id}.description`),
+    };
+  });
+
+  const levelStyles = {
+    principiante: { ...baseLevelStyles.principiante, label: t('levels.principiante') },
+    intermedio: { ...baseLevelStyles.intermedio, label: t('levels.intermedio') },
+    avanzado: { ...baseLevelStyles.avanzado, label: t('levels.avanzado') }
+  };
+  
+  const curiousFactsData = baseCuriousFactsData.map(fact => {
+    const Icon = fact.iconComponent;
+    return {
+      ...fact,
+      icon: <Icon size={28} className={fact.iconColorClasses} />,
+      title: t(`curiousFacts.${fact.id}.title`),
+      text: t(`curiousFacts.${fact.id}.text`),
+      linkText: t(`curiousFacts.${fact.id}.linkText`),
+    };
+  });
+  // --- Fin Construcción de datos con traducciones ---
+
   const animatedSectionClasses = "transition-all duration-700 ease-out transform";
 
-  // Componente para las tarjetas de datos curiosos
   const CuriousFactCard = ({ icon, title, text, link, linkText }) => (
     <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center h-full hover:shadow-xl transition-shadow duration-300">
       <div className="mb-4 p-3 rounded-full bg-indigo-100 dark:bg-indigo-900/50">
@@ -207,31 +132,26 @@ function ResourcesPage() {
     </div>
   );
 
-
   return (
     <div className="text-slate-800 dark:text-slate-200 font-sans overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
-        {/* Encabezado de la Página */}
         <section className="text-center mb-12 md:mb-16">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-4">
-            Recursos y Enlaces
+            {t('pageTitle')}
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-4xl mx-auto">
-            Explora sitios web útiles, herramientas y materiales educativos relacionados con la comunicación satelital, la tecnología de radio y las ciencias espaciales.
+            {t('pageSubtitle')}
           </p>
         </section>
 
-        {/* --- Sección de Recursos Destacados --- */}
         <section
-          className={`mb-12 md:mb-16 ${animatedSectionClasses} ${
-            sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: sectionsVisible ? '100ms' : '0ms' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <Star size={28} className="mr-3 text-amber-500 dark:text-amber-400" />
-            Recursos Destacados
+            {t('featuredSectionTitle')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredLinksData.map((link) => (
@@ -242,7 +162,7 @@ function ResourcesPage() {
                 rel="noopener noreferrer"
                 className={`flex flex-col items-center p-6 rounded-xl shadow-lg border ${link.borderColor} ${link.bgColor} ${link.hoverColor} dark:border-opacity-60 transition-all duration-300 group text-center transform hover:-translate-y-1.5 hover:shadow-2xl`}
               >
-                <img src={link.thumbnail} alt={link.title} className="w-20 h-20 mb-4 rounded-lg object-cover border-2 border-white dark:border-slate-600 shadow-md" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/80x80/94A3B8/FFFFFF?text=N/A"; }}/>
+                <img src={link.thumbnail} alt={link.title} className="w-20 h-20 mb-4 rounded-lg object-cover border-2 border-white dark:border-slate-600 shadow-md" onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/80x80/94A3B8/FFFFFF?text=${t('imagePlaceholderError')}`; }}/>
                 <div className="mb-2">{link.icon}</div>
                 <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-1.5">{link.title}</h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 flex-grow px-2">{link.description}</p>
@@ -252,18 +172,15 @@ function ResourcesPage() {
           </div>
         </section>
 
-        {/* --- Sección de Enlaces Generales --- */}
         <section
-          className={`mb-12 md:mb-16 ${animatedSectionClasses} ${ 
-            sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: sectionsVisible ? '300ms' : '0ms' }}
         >
-           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <BookOpen size={28} className="mr-3 text-slate-600 dark:text-slate-400" />
-            Enlaces de Aprendizaje por Nivel
-           </h2>
-           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {t('learningLinksSectionTitle')}
+          </h2>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {linksOfInterestData.map((link) => (
               <a
                 key={link.id}
@@ -279,25 +196,22 @@ function ResourcesPage() {
                 </h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-grow">{link.description}</p>
                 <div className="mt-auto pt-2">
-                  <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${levelStyles[link.levelId].style}`}>
-                    {levelStyles[link.levelId].label}
+                  <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${levelStyles[link.levelId]?.style || ''}`}>
+                    {levelStyles[link.levelId]?.label || link.levelId}
                   </span>
                 </div>
               </a>
             ))}
-           </div>
+          </div>
         </section>
 
-        {/* --- NUEVA SECCIÓN: Datos Curiosos y El Espacio en tu Vida --- */}
         <section
-          className={`${animatedSectionClasses} ${
-            sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: sectionsVisible ? '500ms' : '0ms' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <Lightbulb size={28} className="mr-3 text-yellow-400 dark:text-yellow-300" />
-            Datos Curiosos y El Espacio en tu Vida
+            {t('curiousFactsSectionTitle')}
           </h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {curiousFactsData.map((fact) => (
@@ -313,7 +227,7 @@ function ResourcesPage() {
           </div>
         </section>
 
-      </div> {/* Fin max-w-7xl */}
+      </div>
     </div>
   );
 }

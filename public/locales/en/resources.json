@@ -1,0 +1,133 @@
+{
+  "pageTitle": "Resources & Links",
+  "pageSubtitle": "Explore useful websites, tools, and educational materials related to satellite communication, radio technology, and space sciences.",
+  "featuredSectionTitle": "Featured Resources",
+  "learningLinksSectionTitle": "Learning Links by Level",
+  "curiousFactsSectionTitle": "Curious Facts & Space in Your Life",
+  "imagePlaceholderError": "N/A",
+
+  "featuredLinks": {
+    "nasa": {
+      "title": "Official NASA",
+      "description": "Explore missions, research, and discoveries from the U.S. space agency."
+    },
+    "esa": {
+      "title": "European Space Agency (ESA)",
+      "description": "Discover ESA's projects and advancements in space exploration and Earth observation."
+    },
+    "satnogsNetwork": {
+        "title": "SatNOGS Network",
+        "description": "The global network of open-source satellite ground stations. Our station is part of it!"
+    },
+    "heavensAbove": {
+        "title": "Heavens-Above",
+        "description": "Accurate predictions of satellite passes (including the ISS) visible from your location."
+    },
+    "stuffinspace": {
+        "title": "Stuff in Space",
+        "description": "Real-time 3D visualization of objects orbiting Earth. Impressive!"
+    },
+    "satnogsDb": {
+        "title": "SatNOGS DB",
+        "description": "Collaborative database of satellites, transmitters, and their telemetries."
+    },
+    "n2yo": {
+        "title": "N2YO.com",
+        "description": "Real-time satellite tracking, pass predictions, and much more orbital information."
+    },
+    "celestrak": {
+        "title": "CelesTrak",
+        "description": "Authoritative source for orbital data (TLEs) and analytical tools for space objects."
+    }
+  },
+
+  "levels": {
+    "principiante": "Beginner",
+    "intermedio": "Intermediate",
+    "avanzado": "Advanced"
+  },
+
+  "linksOfInterest": {
+    "queEsUnSatelite": {
+      "title": "What is a Satellite?",
+      "description": "A simple NASA explanation of satellites and their uses."
+    },
+    "scan": {
+        "title": "Space Communications and Navigation (SCaN)",
+        "description": "NASA's program for space communication infrastructure."
+    },
+    "arrl": {
+        "title": "ARRL",
+        "description": "National association for Amateur Radio in the USA."
+    },
+    "amsat": {
+        "title": "AMSAT",
+        "description": "Radio Amateur Satellite Corporation, coordinates amateur satellite projects."
+    },
+    "tiposDeOrbitas": {
+        "title": "Types of Satellite Orbits",
+        "description": "Learn about LEO, MEO, GEO orbits and more (ESA Kids)."
+    },
+    "comoFuncionanSats": {
+        "title": "How Satellites Work",
+        "description": "An explanation of satellite technology (HowStuffWorks)."
+    },
+    "espectroRadio": {
+        "title": "Radio Spectrum Allocation",
+        "description": "Information on radio frequency allocation (FCC for US example)."
+    },
+    "libreSpace": {
+        "title": "Libre Space Foundation",
+        "description": "Open-source foundation designing space technologies."
+    },
+    "dsn": {
+        "title": "Deep Space Network (DSN)",
+        "description": "NASA's international network of antennas for interplanetary missions."
+    },
+    "sdrIntro": {
+        "title": "Introduction to SDR with RTL-SDR",
+        "description": "Information about low-cost Software Defined Radio."
+    },
+    "gnuRadio": {
+        "title": "GNU Radio",
+        "description": "Free software development toolkit for signal processing."
+    },
+    "dsp": {
+        "title": "DSPRelated",
+        "description": "Community and resources for Digital Signal Processing."
+    }
+  },
+
+  "curiousFacts": {
+    "gpsDiario": {
+      "title": "GPS: Your Space Guide",
+      "text": "Did you know your phone's GPS connects with at least 4 satellites to know where you are? There's a constellation of about 30 GPS satellites orbiting Earth!",
+      "linkText": "Learn more about GPS"
+    },
+    "velocidadISS": {
+      "title": "Full Speed Ahead!",
+      "text": "The International Space Station (ISS) travels at about 28,000 km/h (17,500 mph). That's like going from New York to Los Angeles in about 10 minutes! It orbits Earth every 90 minutes.",
+      "linkText": "ISS Facts (NASA)"
+    },
+    "basuraEspacial": {
+        "title": "Space Debris",
+        "text": "There are millions of pieces of \"space junk\" orbiting Earth, from old satellites to small rocket parts. Cleaning up space is a big challenge!",
+        "linkText": "Space debris (ESA)"
+    },
+    "satelitesMeteorologicos": {
+        "title": "Weather Watchers",
+        "text": "Weather satellites help us predict weather, monitor hurricanes, and study climate change, all from hundreds of kilometers high!",
+        "linkText": "Satellites & climate (NOAA)"
+    },
+    "televisionSatelital": {
+        "title": "TV from the Sky",
+        "text": "Many TV channels reach your home thanks to geostationary satellites that seem to \"float\" fixed above a point on Earth, over 35,000 km high.",
+        "linkText": "How Satellite TV Works"
+    },
+    "primerSatelite": {
+        "title": "The \"Beep Beep\" That Changed the World",
+        "text": "The first artificial satellite, Sputnik 1, launched in 1957, was a metal sphere that only emitted simple radio \"beeps\", but it started the space race!",
+        "linkText": "About Sputnik 1 (NASA)"
+    }
+  }
+}

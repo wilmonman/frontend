@@ -1,0 +1,51 @@
+{
+  "page": {
+    "loadingData": "Cargando datos de la Estación Terrena para ID: {{stationId}}...",
+    "title": "Panel de Estación Terrena",
+    "stationIdLabel": "ID",
+    "refreshButton": "Actualizar",
+    "refreshButtonLoading": "Cargando...",
+    "refreshButtonAriaLabel": "Actualizar datos de la estación",
+    "errorLoadingData": "Error al cargar datos para la Estación ID {{stationId}}:",
+    "showingLastKnownData": "Mostrando los últimos datos conocidos.",
+    "updateFailed": "Falló la actualización:",
+    "updateFailedShowingLast": ". Mostrando últimos datos cargados.",
+    "noInfoAvailable": "No hay información disponible para la Estación ID: {{stationId}}.",
+    "errorFormatOrLength": "Formato de datos inválido o número inesperado de estaciones recibidas.",
+    "errorFetching": "Fallo al cargar datos de la estación: {{message}}",
+    "errorNotFound": "No se encontró ninguna estación con el ID: {{stationId}}"
+  },
+  "card": {
+    "waitingForData": "Esperando datos de la estación...",
+    "imageAlt": "Imagen de {{stationName}}",
+    "defaultStationName": "estación terrena",
+    "imagePlaceholderText": "Estación",
+    "unnamedStation": "Estación Sin Nombre",
+    "status": {
+      "online": "En Línea",
+      "offline": "Fuera de Línea",
+      "testing": "En Pruebas",
+      "unknown": "Desconocido"
+    },
+    "detailsTitle": "Detalles",
+    "locationLabel": "Ubicación",
+    "altitudeLabel": "Altitud",
+    "altitudeUnit": "m",
+    "ownerLabel": "Propietario",
+    "clientVersionLabel": "Versión Cliente",
+    "createdLabel": "Creada",
+    "lastSeenLabel": "Última vez vista",
+    "descriptionLabel": "Descripción",
+    "performanceStatsTitle": "Estadísticas de Rendimiento",
+    "successRateLabel": "Tasa de Éxito",
+    "observationsLabel": "Observaciones:",
+    "totalLabel": "Total",
+    "futureLabel": "Futuras",
+    "antennaConfigTitle": "Configuración de Antena",
+    "frequencyLabel": "Frec",
+    "noAntennaInfo": "No hay información de antena disponible.",
+    "locationMapTitle": "Mapa de Ubicación",
+    "dataNotAvailable": "N/D",
+    "invalidDate": "Fecha Inválida"
+  }
+}

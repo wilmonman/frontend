@@ -1,0 +1,27 @@
+{
+  "mainTitle": "Contact Us",
+  "subTitle": "Get in touch with the University or the School of Engineering.",
+  "uis": {
+    "alt": "UIS Campus Image",
+    "title": "University (UIS)",
+    "description": "Main contact information for the Universidad Industrial de Santander.",
+    "websiteLink": "Visit University Website"
+  },
+  "eisi": {
+    "alt": "EISI Building Image",
+    "title": "School (EISI)",
+    "description": "Contact information for the School of Electrical, Electronic and Telecommunications Engineering.",
+    "websiteLink": "Visit School Website"
+  },
+  "imageUnavailable": {
+    "uis": "UIS Image Unavailable",
+    "eisi": "EISI Image Unavailable"
+  },
+  "location": {
+    "title": "Our Location",
+    "address1": "Universidad Industrial de Santander",
+    "address2": "Cra. 27 Calle 9, Ciudad Universitaria, Bucaramanga, Santander, Colombia",
+    "mapPopup": "Universidad Industrial de Santander (UIS)<br />Main Campus",
+    "mapButton": "View on Google Maps"
+  }
+}
