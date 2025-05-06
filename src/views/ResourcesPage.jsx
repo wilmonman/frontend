@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import {
   BookOpen, ExternalLink, Rocket, Wifi, Globe, Antenna, BrainCircuit, Database,
   MapPin, Gamepad2, Satellite, Radio, Star, Users, Code2, HardDrive, CalendarDays,
-  BarChart3, Lightbulb, Zap, PackageOpen, Tv, Link2, CloudSun as LucideCloudSun
-  // Removed ImageIcon as it was for loading state of dynamic thumbnails
+  BarChart3, Lightbulb, Zap, PackageOpen, Tv, Link2, CloudSun as LucideCloudSun,
+  ImageOff as ImageIconOff // For favicon error/placeholder
 } from 'lucide-react';
 
 // --- Base Data Definitions ---
@@ -19,8 +19,6 @@ const baseFeaturedLinksData = [
   { id: 'satnogsDb', url: "https://db.satnogs.org/", iconComponent: Database, iconColorClasses: "text-sky-600 dark:text-sky-500", localThumbnail: "/thumbnails/satnogs_db.png" },
   { id: 'n2yo', url: "https://www.n2yo.com/", iconComponent: MapPin, iconColorClasses: "text-purple-600 dark:text-purple-500", localThumbnail: "/thumbnails/n2yo.png" },
   { id: 'celestrak', url: "https://celestrak.org/", iconComponent: BarChart3, iconColorClasses: "text-orange-600 dark:text-orange-500", localThumbnail: "/thumbnails/celestrak.png" },
-  // Add more localThumbnail paths as needed, e.g., "/thumbnails/your-image-name.png"
-  // Ensure these images exist in your `public/thumbnails/` directory.
 ];
 
 const baseLinksOfInterestData = [
@@ -53,6 +51,80 @@ const baseCuriousFactsData = [
   { id: 'primerSatelite', iconComponent: Zap, iconColorClasses: "text-yellow-500", link: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1957-001B' }
 ];
 
+// --- Card for Links of Interest with Favicon Fetching ---
+const InterestLinkCard = ({ link, t, levelStyles }) => {
+  const [faviconSrc, setFaviconSrc] = useState(null);
+  const [faviconError, setFaviconError] = useState(false);
+  const [isLoadingFavicon, setIsLoadingFavicon] = useState(true);
+
+  useEffect(() => {
+    if (link.url) {
+      setIsLoadingFavicon(true);
+      setFaviconError(false);
+      setFaviconSrc(null); // Reset on link change
+
+      let domain;
+      try {
+        domain = new URL(link.url).hostname;
+      } catch (e) {
+        console.error("Invalid URL for favicon:", link.url);
+        setFaviconError(true);
+        setIsLoadingFavicon(false);
+        return;
+      }
+
+      const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`; // Request a 32x32 icon
+
+      const img = new Image();
+      img.src = faviconUrl;
+      img.onload = () => {
+        setFaviconSrc(faviconUrl);
+        setIsLoadingFavicon(false);
+      };
+      img.onerror = () => {
+        console.warn(`Failed to load favicon for ${domain}`);
+        setFaviconError(true);
+        setIsLoadingFavicon(false);
+      };
+    }
+  }, [link.url]);
+
+  const OriginalIcon = link.iconComponent;
+
+  const renderIcon = () => {
+    if (isLoadingFavicon) {
+      // Simple loading state, could be a spinner or nothing
+      return <div className="w-5 h-5 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"></div>;
+    }
+    if (faviconSrc && !faviconError) {
+      return <img src={faviconSrc} alt={t('altText.faviconFor', { siteTitle: link.title })} className="w-5 h-5 rounded" />;
+    }
+    // Fallback to original Lucide icon
+    return <OriginalIcon size={20} className={link.iconColorClasses} />;
+  };
+
+  return (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-300 group transform hover:-translate-y-1.5 h-full flex flex-col"
+    >
+      <h4 className="text-lg font-semibold text-indigo-700 dark:text-indigo-400 mb-2 flex items-start">
+        <span className="mr-2 pt-0.5 flex items-center justify-center w-5 h-5">{renderIcon()}</span>
+        <span className="flex-grow">{link.title}</span>
+        <ExternalLink size={18} className="ml-2 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-300 flex-shrink-0" />
+      </h4>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-grow">{link.description}</p>
+      <div className="mt-auto pt-2">
+        <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${levelStyles[link.levelId]?.style || ''}`}>
+          {levelStyles[link.levelId]?.label || link.levelId}
+        </span>
+      </div>
+    </a>
+  );
+};
+
 
 function ResourcesPage() {
   const { t } = useTranslation('resources');
@@ -68,7 +140,6 @@ function ResourcesPage() {
   // Construct data with translations and local thumbnail paths
   const featuredLinksData = baseFeaturedLinksData.map(link => {
     const Icon = link.iconComponent;
-    // Derive card styling from iconColorClasses (same as your previous logic)
     const cardBgColor = link.iconColorClasses.replace('text-', 'bg-').replace('-600', '-50').replace('-500', '-50');
     const cardDarkBgColor = link.iconColorClasses.replace('text-', 'dark:bg-').replace('-600', '-900/30').replace('-500', '-900/30');
     const cardBorderColor = link.iconColorClasses.replace('text-', 'border-').replace('-600', '-200').replace('-500', '-200');
@@ -82,16 +153,17 @@ function ResourcesPage() {
       icon: <Icon size={32} className={link.iconColorClasses} />,
       title: t(`featuredLinks.${link.id}.title`),
       description: t(`featuredLinks.${link.id}.description`),
-      thumbnail: link.localThumbnail, // Use the direct path from base data
+      thumbnail: link.localThumbnail,
       cardClasses: cardClasses,
     };
   });
 
+  // Prepare links of interest data - title and description are translated here
   const linksOfInterestData = baseLinksOfInterestData.map(link => {
-    const Icon = link.iconComponent;
+    // The icon component itself (OriginalIcon) will be passed to InterestLinkCard
+    // Favicon fetching and conditional rendering will happen inside InterestLinkCard
     return {
-      ...link,
-      icon: <Icon size={20} className={`inline-block mr-2 ${link.iconColorClasses}`} />,
+      ...link, // Includes id, url, levelId, iconComponent, iconColorClasses
       title: t(`linksOfInterest.${link.id}.title`),
       description: t(`linksOfInterest.${link.id}.description`),
     };
@@ -150,7 +222,7 @@ function ResourcesPage() {
           </p>
         </section>
 
-        {/* Featured Links Section - Simplified to use local thumbnails */}
+        {/* Featured Links Section */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: sectionsVisible ? '100ms' : '0ms' }}
@@ -171,30 +243,27 @@ function ResourcesPage() {
                 <div className="w-full h-32 mb-4 rounded-md bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
                   {link.thumbnail ? (
                     <img
-                      src={link.thumbnail} // Path from public folder, e.g., /thumbnails/nasa.png
+                      src={link.thumbnail}
                       alt={t('altText.thumbnailFor', { siteTitle: link.title })}
-                      className="w-full h-full object-cover" // object-cover to fill, object-contain to fit
+                      className="w-full h-full object-cover"
                       onError={(e) => {
-                        e.target.onerror = null; // Prevent infinite loop if fallback also fails
-                        e.target.style.display = 'none'; // Hide broken image
-                        // Optionally, show a placeholder text or generic icon if image fails
+                        e.target.onerror = null;
+                        e.target.style.display = 'none';
                         const fallbackPlaceholder = e.target.parentElement?.querySelector('.thumbnail-fallback-text');
                         if(fallbackPlaceholder) fallbackPlaceholder.style.display = 'flex';
                       }}
                     />
                   ) : (
-                    // Fallback if no thumbnail is specified, or could be a generic icon
                     <div className="text-slate-500 text-xs p-2">{t('featuredLinks.noPreview', 'No preview')}</div>
                   )}
                    <div 
                         className="thumbnail-fallback-text w-full h-full items-center justify-center text-slate-500 text-xs"
-                        style={{display: 'none'}} // Initially hidden, shown on error
+                        style={{display: 'none'}}
                     >
                         {t('featuredLinks.previewErrorText', 'Preview N/A')}
                     </div>
                 </div>
-
-                <div className="mb-2">{link.icon}</div> {/* This is the Lucide icon for the category */}
+                <div className="mb-2">{link.icon}</div>
                 <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-1.5">{link.title}</h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 flex-grow px-2">{link.description}</p>
                 <ExternalLink size={18} className="mt-auto text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-300" />
@@ -203,7 +272,7 @@ function ResourcesPage() {
           </div>
         </section>
 
-        {/* Learning Links Section (remains unchanged) */}
+        {/* Learning Links Section - Now uses InterestLinkCard */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: sectionsVisible ? '300ms' : '0ms' }}
@@ -214,25 +283,12 @@ function ResourcesPage() {
           </h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {linksOfInterestData.map((link) => (
-              <a
+              <InterestLinkCard
                 key={link.id}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-300 group transform hover:-translate-y-1.5 h-full flex flex-col"
-              >
-                <h4 className="text-lg font-semibold text-indigo-700 dark:text-indigo-400 mb-2 flex items-start">
-                  <span className="mr-2 pt-0.5">{link.icon}</span>
-                  <span className="flex-grow">{link.title}</span>
-                  <ExternalLink size={18} className="ml-2 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-300 flex-shrink-0" />
-                </h4>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-grow">{link.description}</p>
-                <div className="mt-auto pt-2">
-                  <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${levelStyles[link.levelId]?.style || ''}`}>
-                    {levelStyles[link.levelId]?.label || link.levelId}
-                  </span>
-                </div>
-              </a>
+                link={link}
+                t={t}
+                levelStyles={levelStyles}
+              />
             ))}
           </div>
         </section>
