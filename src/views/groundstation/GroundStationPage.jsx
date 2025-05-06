@@ -40,28 +40,37 @@ function GroundStationPage() {
     }
 
     try {
-      console.log(`Fetching station data for fixed ID: ${TARGET_STATION_ID}... (Manual Refresh: ${isManualRefresh})`);
-      // Pass the TARGET_STATION_ID as a query parameter
+      console.log(`Workspaceing station data for fixed ID: ${TARGET_STATION_ID}... (Manual Refresh: ${isManualRefresh})`);
       const queryParams = { id: TARGET_STATION_ID };
-      const fetchedData = await fetchWithRetry(STATIONS_API_BASE_URL, queryParams);
-
-      if (Array.isArray(fetchedData) && fetchedData.length === 1) {
-        const theStation = fetchedData[0];
+    
+      // CORRECTED WAY TO HANDLE THE RETURN VALUE:
+      const { data: stationDataArray, headers } = await fetchWithRetry(STATIONS_API_BASE_URL, queryParams);
+      // 'headers' might not be used here, but it's good to be aware of it.
+    
+      // Now, your checks will work on the actual data array:
+      if (Array.isArray(stationDataArray) && stationDataArray.length === 1) {
+        const theStation = stationDataArray[0]; // Extract the single station object
         localStorage.setItem(localStorageKey, JSON.stringify(theStation));
         setStationData(theStation);
         console.log(`Station data for ID ${TARGET_STATION_ID} fetched and cached:`, theStation);
-      } else if (Array.isArray(fetchedData) && fetchedData.length === 0) {
+      } else if (Array.isArray(stationDataArray) && stationDataArray.length === 0) {
         setError(`No station found with ID: ${TARGET_STATION_ID}`);
         setStationData(null);
         localStorage.removeItem(localStorageKey);
       } else {
-        setError("Invalid data format received from the server.");
+        // This 'else' could be reached if the API unexpectedly returns multiple stations for a single ID query
+        // or if stationDataArray is not an array for some other reason (though fetchWithRetry should throw an error first if not JSON).
+        console.error("Unexpected data format or array length from API. stationDataArray:", stationDataArray);
+        setError("Invalid data format or unexpected number of stations received.");
         setStationData(null);
         localStorage.removeItem(localStorageKey);
       }
     } catch (e) {
       console.error(`Failed to fetch station data for ID ${TARGET_STATION_ID}:`, e);
       setError(`Failed to load station data: ${e.message}`);
+      // Consider if you want to clear stale data on error
+      // setStationData(null);
+      // localStorage.removeItem(localStorageKey);
     } finally {
       setLoading(false);
       setIsRefreshing(false);
