@@ -1,37 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Home, BookOpen, RadioTower, Eye, Image as ImageIcon, Satellite, Github, Sun, Moon, Globe, Menu, X, ExternalLink } from 'lucide-react'; // Added back missing icons if needed later
+import { Home, BookOpen, RadioTower, Eye, Image as ImageIcon, Satellite, Github, Sun, Moon, Globe, Menu, X, ExternalLink } from 'lucide-react'; // Satellite is already imported
 
-// --- Logo Component ---
+// --- Logo Component (Modified) ---
 const Logo = () => {
   const { t } = useTranslation('app');
 
   return (
-    <Link to="/" className="flex items-center space-x-2 flex-shrink-0" aria-label={t('logoAriaLabel', 'Navigate to Home')}> {/* Added default value */}
-      {/* Simple SVG Satellite Icon - Restored from first snippet */}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-blue-600 dark:text-blue-500 transition-colors duration-300" // Added transition
-      >
-        <path d="M5.6 19.4 8 17H4.2A7.8 7.8 0 0 1 9 2.8" />
-        <path d="m16 7 2.4 2.4" />
-        <path d="M10.4 6.6 7 10h3.8a7.8 7.8 0 0 1 4.7 14.7" />
-        <path d="M18.2 10.2A7.8 7.8 0 0 1 15 21.2" />
-        <path d="M17 8h4" />
-        <path d="m21 12-1.4 1.4" />
-        <path d="m18 17-1.4 1.4" />
-      </svg>
+    <Link to="/" className="flex items-center space-x-2 flex-shrink-0" aria-label={t('logoAriaLabel', 'Navigate to Home')}>
+      {/* Use the Satellite icon from lucide-react */}
+      <Satellite
+        size={32} // You can adjust the size as needed
+        className="text-blue-600 dark:text-blue-500 transition-colors duration-300" // Re-using existing color and transition classes
+      />
       <span className="text-xl font-bold text-slate-800 dark:text-slate-100 transition-colors duration-300">
-        {t('appName', 'SatUIS')} {/* Added default value */}
+        {t('appName', 'SatUIS')}
       </span>
     </Link>
   );
@@ -40,13 +24,12 @@ const Logo = () => {
 
 // --- Header Component ---
 const Header = () => {
-  const { t, i18n } = useTranslation('app'); // Get translation function and i18n instance
+  const { t, i18n } = useTranslation('app');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // Initial state determined by useEffect
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // --- Navigation Links Configuration (Using translation keys and paths) ---
   const navLinks = [
-    { key: 'nav.home', path: '/', icon: Home, exact: true }, // Add exact for home route matching
+    { key: 'nav.home', path: '/', icon: Home, exact: true },
     { key: 'nav.resources', path: '/resources', icon: BookOpen },
     { key: 'nav.groundStation', path: '/ground-station', icon: RadioTower },
     { key: 'nav.observations', path: '/observations', icon: Eye },
@@ -54,44 +37,42 @@ const Header = () => {
     { key: 'nav.satellites', path: '/satellites', icon: Satellite },
   ];
 
-  // --- Theme Initialization (Restored logic from first snippet) ---
+  // Theme Initialization
   useEffect(() => {
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
-    // Determine initial theme based on stored preference or OS setting
     const initialIsDark = storedTheme === 'dark' || (!storedTheme && prefersDark);
 
     setIsDarkMode(initialIsDark);
 
-    // Apply the theme class to the document root
     if (initialIsDark) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, []); // Run only once on mount
+  }, []);
 
-  // --- Theme Toggle Function (Integrated i18n for aria-label) ---
+  // Theme Toggle Function
   const toggleTheme = () => {
     const newIsDarkMode = !isDarkMode;
     setIsDarkMode(newIsDarkMode);
     if (newIsDarkMode) {
         document.documentElement.classList.add('dark');
-        localStorage.theme = 'dark'; // Persist preference
+        localStorage.setItem('theme', 'dark'); // Use setItem
     } else {
         document.documentElement.classList.remove('dark');
-        localStorage.theme = 'light'; // Persist preference
+        localStorage.setItem('theme', 'light'); // Use setItem
     }
   };
 
-  // --- Language Toggle Function (Using i18n instance) ---
+  // Language Toggle Function
   const toggleLanguage = () => {
-    const currentLang = i18n.language || 'en'; // Ensure we have a fallback
-    const newLang = currentLang.startsWith('es') ? 'en' : 'es'; // Toggle between 'en' and 'es' prefixes
+    const currentLang = i18n.language || 'en';
+    const newLang = currentLang.startsWith('es') ? 'en' : 'es';
     i18n.changeLanguage(newLang);
   };
 
-  // --- Close Mobile Menu on Resize (Restored from first snippet) ---
+  // Close Mobile Menu on Resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) { // Tailwind's 'md' breakpoint
@@ -99,16 +80,14 @@ const Header = () => {
       }
     };
     window.addEventListener('resize', handleResize);
-    // Cleanup listener on component unmount
     return () => window.removeEventListener('resize', handleResize);
-  }, []); // Run only once on mount
+  }, []);
 
-  // --- OS Theme Preference Listener (Restored from first snippet) ---
+  // OS Theme Preference Listener
   useEffect(() => {
     const matcher = window.matchMedia('(prefers-color-scheme: dark)');
     const listener = (e) => {
-      // IMPORTANT: Only update if the user hasn't explicitly chosen a theme via the button
-      if (!('theme' in localStorage)) {
+      if (!localStorage.getItem('theme')) { // Check if 'theme' key exists
         const newIsDarkMode = e.matches;
         setIsDarkMode(newIsDarkMode);
         if (newIsDarkMode) {
@@ -118,20 +97,18 @@ const Header = () => {
         }
       }
     };
-    // Add listener
     matcher.addEventListener('change', listener);
-    // Clean up listener on component unmount
     return () => matcher.removeEventListener('change', listener);
-  }, []); // Run only once on mount
+  }, []);
 
 
-  // --- NavLink Class Function (Inline for original style feel) ---
+  // NavLink Class Function
   const getNavLinkClasses = ({ isActive }, isMobile = false) => {
     const baseClasses = `flex items-center space-x-${isMobile ? '2' : '1.5'} transition duration-200 ease-in-out focus:outline-none`;
     const desktopPadding = 'px-3 py-2 rounded-md text-sm font-medium';
-    const mobilePadding = 'px-3 py-2.5 rounded-md text-base font-medium'; // Slightly larger touch target for mobile
-    const focusVisibleClasses = 'focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900'; // Desktop focus
-    const mobileFocusClasses = 'focus-visible:bg-slate-100 dark:focus-visible:bg-slate-800'; // Simpler mobile focus
+    const mobilePadding = 'px-3 py-2.5 rounded-md text-base font-medium';
+    const focusVisibleClasses = 'focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900';
+    const mobileFocusClasses = 'focus-visible:bg-slate-100 dark:focus-visible:bg-slate-800';
 
     const activeClasses = 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200';
     const inactiveClasses = 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-100';
@@ -145,12 +122,11 @@ const Header = () => {
   };
 
   return (
-    // Added back original animation class application style
     <header className="bg-white dark:bg-slate-900 shadow-md sticky top-0 z-50 transition-colors duration-300 animate-[slide-down_0.5s_ease-out_forwards]">
       {/* --- Main Header Bar --- */}
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
-          <Logo /> {/* Logo component now uses Link and t() */}
+          <Logo /> {/* Logo component now uses the Satellite icon */}
 
           {/* --- Desktop Navigation (Using NavLink) --- */}
           <nav className="hidden md:flex space-x-1 items-center">
@@ -158,24 +134,23 @@ const Header = () => {
               <NavLink
                 key={link.key}
                 to={link.path}
-                // Apply classes based on active state, replicating original style
                 className={({ isActive }) => getNavLinkClasses({ isActive }, false)}
-                end={link.exact} // Use 'end' prop for exact matching if specified
+                end={link.exact}
               >
                 <link.icon size={16} />
-                <span>{t(link.key, link.key.split('.').pop())}</span> {/* Translate name, provide fallback */}
+                <span>{t(link.key, link.key.split('.').pop())}</span>
               </NavLink>
             ))}
           </nav>
 
-          {/* --- Mobile Menu Button (Translate aria-label) --- */}
+          {/* --- Mobile Menu Button --- */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition duration-150 ease-in-out"
-              aria-label={t('mobileMenuButton.toggleLabel', 'Toggle menu')} // Translate aria-label
+              aria-label={t('mobileMenuButton.toggleLabel', 'Toggle menu')}
               aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-menu" // Link button to menu
+              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -183,26 +158,23 @@ const Header = () => {
         </div>
       </div>
 
-      {/* --- Secondary Bar (Translate buttons) --- */}
+      {/* --- Secondary Bar --- */}
       <div className="bg-slate-50 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 transition-colors duration-300">
         <div className="container mx-auto px-4 py-1.5 flex justify-end items-center space-x-4">
           {/* Language Switch */}
           <button
             onClick={toggleLanguage}
             className="flex items-center text-sm px-2 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition duration-150 ease-in-out"
-            // Translate aria-label dynamically
             aria-label={t('languageSwitcher.label', `Switch language to ${i18n.language?.startsWith('es') ? 'English' : 'Español'}`)}
           >
             <Globe size={16} className="mr-1.5" />
-            {/* Show the language TO switch to */}
             {i18n.language?.startsWith('es') ? 'EN' : 'ES'}
           </button>
 
           {/* Theme Switch */}
           <button
-            onClick={toggleTheme}
+            onClick={toggleTheme} // This is the button in question
             className="flex items-center text-sm px-2 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition duration-150 ease-in-out"
-            // Translate aria-label based on current theme state
             aria-label={t(isDarkMode ? 'themeSwitcher.labelLight' : 'themeSwitcher.labelDark', `Switch to ${isDarkMode ? 'light' : 'dark'} mode`)}
           >
             {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -210,14 +182,14 @@ const Header = () => {
         </div>
       </div>
 
-      {/* --- Mobile Navigation Menu (Using NavLink, original transition style) --- */}
+      {/* --- Mobile Navigation Menu --- */}
       <div
-        id="mobile-menu" // ID for aria-controls
+        id="mobile-menu"
         className={`
           md:hidden absolute top-full left-0 right-0 z-40 shadow-lg bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? 'transform translate-y-0 opacity-100 pointer-events-auto' : 'transform -translate-y-full opacity-0 pointer-events-none'}
         `}
-        aria-hidden={!isMobileMenuOpen} // Hide from screen readers when closed
+        aria-hidden={!isMobileMenuOpen}
        >
         <div className="container mx-auto px-4">
             <nav className="flex flex-col py-2 space-y-1">
@@ -225,13 +197,12 @@ const Header = () => {
                 <NavLink
                   key={link.key}
                   to={link.path}
-                  // Apply classes based on active state for mobile
                   className={({ isActive }) => getNavLinkClasses({ isActive }, true)}
-                  onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
-                  end={link.exact} // Use 'end' prop for exact matching
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  end={link.exact}
                 >
                   <link.icon size={18} />
-                  <span>{t(link.key, link.key.split('.').pop())}</span> {/* Translate name, provide fallback */}
+                  <span>{t(link.key, link.key.split('.').pop())}</span>
                 </NavLink>
               ))}
             </nav>
