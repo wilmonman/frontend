@@ -10,10 +10,10 @@ import {
 
 // Las fuentes de las imágenes del carrusel pueden permanecer, ya que solo traduciremos 'alt' y 'caption'
 const carouselImageDefinitions = [
-  { id: 'orbiting', src: "https://placehold.co/1200x400/64748B/FFFFFF?text=Satélite+Orbitando+la+Tierra", translationBaseKey: "carousel.item1" },
-  { id: 'radioSignals', src: "https://placehold.co/1200x400/7C3AED/FFFFFF?text=Señales+de+Radio+desde+el+Espacio", translationBaseKey: "carousel.item2" },
-  { id: 'groundStationDish', src: "https://placehold.co/1200x400/1D4ED8/FFFFFF?text=Antena+de+Estación+Terrena", translationBaseKey: "carousel.item3" },
-  { id: 'earthObservation', src: "https://placehold.co/1200x400/16A34A/FFFFFF?text=Imagen+de+Observación+Terrestre", translationBaseKey: "carousel.item4" }
+  { id: 'orbiting', src: "/images/orbit.gif", translationBaseKey: "carousel.item1" },
+  { id: 'radioSignals', src: "/images/sat.gif", translationBaseKey: "carousel.item2" },
+  { id: 'groundStationDish', src: "/images/planet.gif", translationBaseKey: "carousel.item3" },
+  { id: 'earthObservation', src: "/images/antenna.gif", translationBaseKey: "carousel.item4" }
 ];
 
 function HomePage() {
