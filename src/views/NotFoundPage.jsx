@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Use translation if needed
 
 function NotFoundPage() {
+  // You might want a key in app.json for 404 messages
+  const { t } = useTranslation('app');
+
   return (
     <div className="text-center py-10">
       <h1 className="text-6xl font-bold text-red-500 mb-4">404</h1>

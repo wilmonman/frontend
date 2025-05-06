@@ -1,6 +1,6 @@
 import React from "react";
 
-function Resources() {
+function ResourcesPage() {
     return (
         <div className="resources">
             <h1>Resources</h1>
@@ -10,4 +10,4 @@ function Resources() {
     );
 }
 
-export default Resources;
+export default ResourcesPage;

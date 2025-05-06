@@ -6,15 +6,15 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
 // Views Import
-import Home from './views/Home';
-import Contact from './views/Contact';
-import About from './views/About';
-import Resources from './views/Resources';
+import HomePage from './views/HomePage';
+import Contact from './views/ContactPage';
+import AboutPage from './views/AboutPage';
+import ResourcesPage from './views/ResourcesPage';
 import GroundStationPage from './views/GroundStation/GroundStationPage';
 import ObservationsPage from './views/observations/ObservationsPage';
 import ImagesPage from './views/images/ImagesPage';
 import SatellitesPage from './views/satellites/SatellitesPage';
-import NotFound from './views/NotFound';
+import NotFound from './views/NotFoundPage';
 // import Privacy from './views/Privacy';
 // import Docs from './views/Docs';
 
@@ -39,10 +39,10 @@ function App() {
         <Routes>
             {/* Routes using the MainLayout */}
             <Route path="/" element={<MainLayout />}>
-                <Route index element={<Home />} /> {/* Home page at '/' */}
-                <Route path="about" element={<About />} />
+                <Route index element={<HomePage />} /> {/* Home page at '/' */}
+                <Route path="about" element={<AboutPage />} />
                 <Route path="contact" element={<Contact />} />
-                <Route path="resources" element={<Resources />} />
+                <Route path="resources" element={<ResourcesPage />} />
                 <Route path="ground-station" element={<GroundStationPage />} />
                 <Route path="observations" element={<ObservationsPage />} />
                 <Route path="images" element={<ImagesPage />} />
