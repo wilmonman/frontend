@@ -14,9 +14,9 @@ import GroundStationPage from './views/groundstation/GroundStationPage';
 import ObservationsPage from './views/observations/ObservationsPage';
 import ImagesPage from './views/images/ImagesPage';
 import SatellitesPage from './views/satellites/SatellitesPage';
-import NotFound from './views/NotFoundPage';
-// import Privacy from './views/Privacy';
-// import Docs from './views/Docs';
+import NotFoundPage from './views/NotFoundPage';
+import PrivacyPage from './views/PrivacyPage';
+import DocumentationPage from './views/DocumentationPage';
 
 import './App.css'; 
 
@@ -47,11 +47,11 @@ function App() {
                 <Route path="observations" element={<ObservationsPage />} />
                 <Route path="images" element={<ImagesPage />} />
                 <Route path="satellites" element={<SatellitesPage />} />
-                {/* <Route path="privacy" element={<Privacy />} /> */}
-                {/* <Route path="docs" element={<Docs />} /> */}
+                <Route path="privacy" element={<PrivacyPage />} /> 
+                <Route path="docs" element={<DocumentationPage />} />
 
                 {/* Catch-all route for 404 Not Found pages */}
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={<NotFoundPage />} />
             </Route>
         </Routes>
     );
