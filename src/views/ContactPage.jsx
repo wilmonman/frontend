@@ -1,133 +1,135 @@
 // src/pages/ContactPage.jsx
 import React from 'react';
-import { useTranslation } from 'react-i18next'; // Import hook
-// Import icons (Mail icon added for variety)
+// Assuming react-i18next is set up
+import { useTranslation } from 'react-i18next';
+// Import icons
 import { MapPin, Building, School, ExternalLink, Phone, Mail, Info } from 'lucide-react';
+// Import Leaflet components
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+// Make sure Leaflet's CSS is imported globally in your app
+// e.g., import 'leaflet/dist/leaflet.css';
 
-function Contact() { // Renamed component
+function ContactPage() {
   const { t } = useTranslation('contact'); // Use the 'contact' namespace
 
-  // --- Keep specific data as variables or props ---
-  // Use more theme-aligned placeholders if desired
-  const uisImageUrl = "https://placehold.co/600x400/DBEAFE/1E3A8A?text=UIS+Campus"; // Blue theme
-  const eisiImageUrl = "https://placehold.co/600x400/D1FAE5/065F46?text=EISI-E3T+Building"; // Green theme
+  // --- Data ---
+  const uisImageUrl = "https://placehold.co/600x400/475569/FFFFFF?text=UIS+Campus"; // slate-600
+  const eisiImageUrl = "https://placehold.co/600x400/10B981/FFFFFF?text=EISI-E3T+Building"; // emerald-500
 
-  // These should ideally come from config or props, not hardcoded
   const uisPhoneNumber = "+57 (607) 6344000";
-  const eisiPhoneNumber = "+57 (607) 6344000 Ext. 2316"; // Example extension
-  const uisEmail = "correinstitucional@uis.edu.co"; // Example Email
-  const eisiEmail = "eisi@uis.edu.co"; // Example Email
-  // --- End specific data ---
+  const eisiPhoneNumber = "+57 (607) 6344000 Ext. 2316";
+  const uisEmail = "correinstitucional@uis.edu.co";
+  const eisiEmail = "eisi@uis.edu.co";
+
+  // --- Map Configuration ---
+  const uisCoordinates = [7.1383, -73.1227]; // More precise coordinates
+  const mapZoomLevel = 15;
+  const googleMapsLink = "https://maps.app.goo.gl/SH1DHTZ5TWA9vZxm9"; // Specific Google Maps share link
+  // --- End Map Configuration ---
 
 
   return (
-    // Main container - Match standard layout
-    <div className="text-gray-800 font-sans">
-      <div className="max-w-6xl mx-auto py-12 px-4 md:px-8"> {/* Match max-width, add padding */}
+    // Main container - Use theme colors
+    <div className="text-slate-800 dark:text-slate-200 font-sans">
+      {/* Constrain content width */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
-        {/* Header Section - Match standard header */}
-        <section className="text-center mb-12 md:mb-16"> {/* Use section, increase bottom margin */}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3"> {/* Match h1 style */}
-            {t('mainTitle')}
+        {/* Header Section - Themed */}
+        <section className="text-center mb-12 md:mb-16">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-4">
+            {t('mainTitle', 'Contact Us')}
           </h1>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto"> {/* Match intro text style */}
-            {t('subTitle')}
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-4xl mx-auto">
+            {t('subTitle', 'Get in touch with the University or the School of Engineering.')}
           </p>
         </section>
 
-        {/* Main Content Area: Two Cards - Wrapped in section */}
+        {/* Main Content Area: Two Cards */}
         <section className="mb-12 md:mb-16">
-            {/* Optional: Add a title for this section if needed */}
-            {/* <h2 className="text-3xl font-bold text-center text-gray-800 mb-8 flex items-center justify-center">
-              <Info size={28} className="mr-3 text-gray-700" />
-              {t('contactPointsTitle')} // Example: Add this key to contact.json
-            </h2> */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8"> {/* Consistent gap */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-              {/* University (UIS) Card - Apply standard card styling */}
-              <div className="bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden flex flex-col group hover:shadow-xl hover:border-indigo-300 transition-all duration-300 transform hover:-translate-y-1"> {/* Standard card styles + hover */}
-                <div className="w-full h-52 overflow-hidden"> {/* Slightly taller image */}
+              {/* University (UIS) Card - Themed */}
+              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col group hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 transform hover:-translate-y-1">
+                {/* ... Card content remains the same ... */}
+                <div className="w-full h-52 overflow-hidden">
                   <img
                     src={uisImageUrl}
-                    alt={t('uis.alt')}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // Added hover zoom effect
-                    onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/600x400/e0e0e0/757575?text=${encodeURIComponent(t('imageUnavailable.uis'))}`; }}
+                    alt={t('uis.alt', 'UIS Campus Image')}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/600x400/94A3B8/FFFFFF?text=${encodeURIComponent(t('imageUnavailable.uis', 'UIS Image Unavailable'))}`; }}
                   />
                 </div>
-                <div className="p-6 flex flex-col flex-grow"> {/* Increased padding */}
-                  <div className="flex items-center mb-4"> {/* Increased margin */}
-                    <div className="flex-shrink-0 bg-indigo-100 text-indigo-600 p-3 rounded-full mr-4"> {/* Larger padding, margin */}
-                      <Building size={24} strokeWidth={2} /> {/* Slightly larger icon */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center mb-4">
+                    <div className="flex-shrink-0 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 p-3 rounded-full mr-4">
+                      <Building size={24} strokeWidth={2} />
                     </div>
-                    <h2 className="text-xl font-semibold text-indigo-800">{t('uis.title')}</h2> {/* Match color to icon */}
+                    <h2 className="text-xl font-semibold text-indigo-800 dark:text-indigo-300">{t('uis.title', 'University (UIS)')}</h2>
                   </div>
-                  <p className="text-gray-600 mb-5 leading-relaxed text-sm"> {/* Consistent style, more margin */}
-                    {t('uis.description')}
+                  <p className="text-slate-600 dark:text-slate-300 mb-5 leading-relaxed text-sm">
+                    {t('uis.description', 'Main contact information for the Universidad Industrial de Santander.')}
                   </p>
-                  {/* Contact Details - Slightly larger icons/spacing */}
-                  <div className="space-y-3 text-sm mb-5"> {/* Increased spacing */}
-                    <div className="flex items-center text-gray-700">
-                        <Phone size={18} className="mr-3 text-gray-500 flex-shrink-0" /> {/* Larger icon/margin */}
-                        <span>{uisPhoneNumber}</span>
+                  <div className="space-y-3 text-sm mb-5">
+                    <div className="flex items-center text-slate-700 dark:text-slate-200">
+                      <Phone size={18} className="mr-3 text-slate-500 dark:text-slate-400 flex-shrink-0" />
+                      <span>{uisPhoneNumber}</span>
                     </div>
-                    <div className="flex items-center text-gray-700">
-                        <Mail size={18} className="mr-3 text-gray-500 flex-shrink-0" /> {/* Use Mail icon */}
-                        <a href={`mailto:${uisEmail}`} className="hover:text-indigo-600 hover:underline">{uisEmail}</a> {/* Make email clickable */}
+                    <div className="flex items-center text-slate-700 dark:text-slate-200">
+                      <Mail size={18} className="mr-3 text-slate-500 dark:text-slate-400 flex-shrink-0" />
+                      <a href={`mailto:${uisEmail}`} className="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline">{uisEmail}</a>
                     </div>
                   </div>
-                  {/* Website Link - Consistent styling */}
                   <a
                     href="https://uis.edu.co/es/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-indigo-600 hover:text-indigo-800 hover:underline transition-colors duration-200 group mt-auto text-sm font-medium" // Match style, added font-medium
+                    className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:underline transition-colors duration-200 group mt-auto text-sm font-medium"
                   >
-                    <ExternalLink size={16} className="mr-1.5 text-gray-500 group-hover:text-indigo-600 flex-shrink-0 transition-colors" /> {/* Match style, added transition */}
-                    <span>{t('uis.websiteLink')}</span>
+                    <ExternalLink size={16} className="mr-1.5 text-slate-500 dark:text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 flex-shrink-0 transition-colors" />
+                    <span>{t('uis.websiteLink', 'Visit University Website')}</span>
                   </a>
                 </div>
               </div>
 
-              {/* School (EISI) Card - Apply standard card styling */}
-              <div className="bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden flex flex-col group hover:shadow-xl hover:border-green-300 transition-all duration-300 transform hover:-translate-y-1"> {/* Standard card styles + hover */}
-                <div className="w-full h-52 overflow-hidden"> {/* Slightly taller image */}
+              {/* School (EISI) Card - Themed */}
+              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col group hover:shadow-xl hover:border-green-300 dark:hover:border-green-600 transition-all duration-300 transform hover:-translate-y-1">
+                 {/* ... Card content remains the same ... */}
+                 <div className="w-full h-52 overflow-hidden">
                   <img
                     src={eisiImageUrl}
-                    alt={t('eisi.alt')}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // Added hover zoom effect
-                    onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/600x400/e0e0e0/757575?text=${encodeURIComponent(t('imageUnavailable.eisi'))}`; }}
+                    alt={t('eisi.alt', 'EISI Building Image')}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/600x400/94A3B8/FFFFFF?text=${encodeURIComponent(t('imageUnavailable.eisi', 'EISI Image Unavailable'))}`; }}
                   />
                 </div>
-                <div className="p-6 flex flex-col flex-grow"> {/* Increased padding */}
-                  <div className="flex items-center mb-4"> {/* Increased margin */}
-                    <div className="flex-shrink-0 bg-green-100 text-green-600 p-3 rounded-full mr-4"> {/* Larger padding, margin */}
-                      <School size={24} strokeWidth={2} /> {/* Slightly larger icon */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center mb-4">
+                    <div className="flex-shrink-0 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 p-3 rounded-full mr-4">
+                      <School size={24} strokeWidth={2} />
                     </div>
-                    <h2 className="text-xl font-semibold text-green-800">{t('eisi.title')}</h2> {/* Match color to icon */}
+                    <h2 className="text-xl font-semibold text-green-800 dark:text-green-300">{t('eisi.title', 'School (EISI)')}</h2>
                   </div>
-                  <p className="text-gray-600 mb-5 leading-relaxed text-sm"> {/* Consistent style, more margin */}
-                    {t('eisi.description')}
+                  <p className="text-slate-600 dark:text-slate-300 mb-5 leading-relaxed text-sm">
+                    {t('eisi.description', 'Contact information for the School of Electrical, Electronic and Telecommunications Engineering.')}
                   </p>
-                  {/* Contact Details - Slightly larger icons/spacing */}
-                  <div className="space-y-3 text-sm mb-5"> {/* Increased spacing */}
-                      <div className="flex items-center text-gray-700">
-                          <Phone size={18} className="mr-3 text-gray-500 flex-shrink-0" /> {/* Larger icon/margin */}
-                          <span>{eisiPhoneNumber}</span>
+                  <div className="space-y-3 text-sm mb-5">
+                      <div className="flex items-center text-slate-700 dark:text-slate-200">
+                        <Phone size={18} className="mr-3 text-slate-500 dark:text-slate-400 flex-shrink-0" />
+                        <span>{eisiPhoneNumber}</span>
                       </div>
-                      <div className="flex items-center text-gray-700">
-                          <Mail size={18} className="mr-3 text-gray-500 flex-shrink-0" /> {/* Use Mail icon */}
-                          <a href={`mailto:${eisiEmail}`} className="hover:text-green-600 hover:underline">{eisiEmail}</a> {/* Make email clickable, match theme */}
+                      <div className="flex items-center text-slate-700 dark:text-slate-200">
+                        <Mail size={18} className="mr-3 text-slate-500 dark:text-slate-400 flex-shrink-0" />
+                        <a href={`mailto:${eisiEmail}`} className="hover:text-green-600 dark:hover:text-green-400 hover:underline">{eisiEmail}</a>
                       </div>
                   </div>
-                  {/* Website Link - Consistent styling */}
                   <a
                     href="https://e3t.uis.edu.co/eisi/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-indigo-600 hover:text-indigo-800 hover:underline transition-colors duration-200 group mt-auto text-sm font-medium" // Match style
+                    className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:underline transition-colors duration-200 group mt-auto text-sm font-medium"
                   >
-                    <ExternalLink size={16} className="mr-1.5 text-gray-500 group-hover:text-indigo-600 flex-shrink-0 transition-colors" /> {/* Match style */}
-                    <span>{t('eisi.websiteLink')}</span>
+                    <ExternalLink size={16} className="mr-1.5 text-slate-500 dark:text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 flex-shrink-0 transition-colors" />
+                    <span>{t('eisi.websiteLink', 'Visit School Website')}</span>
                   </a>
                 </div>
               </div>
@@ -135,38 +137,57 @@ function Contact() { // Renamed component
             </div>
         </section>
 
-        {/* Location Section - Styled as a standard section block */}
-        <section className="p-6 md:p-8 rounded-lg bg-gray-50 shadow border border-gray-100 text-center"> {/* Standard section style */}
-          {/* Standard section title */}
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 flex items-center justify-center">
-            <MapPin size={28} className="mr-3 text-red-600" /> {/* Use color from theme */}
-             {t('location.title')}
+        {/* Location Section - Themed with Map */}
+        <section className="p-6 md:p-8 rounded-lg bg-slate-50 dark:bg-slate-800/50 shadow border border-slate-100 dark:border-slate-700 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center justify-center">
+            <MapPin size={28} className="mr-3 text-red-600 dark:text-red-500" />
+             {t('location.title', 'Our Location')}
           </h2>
-          <div className="text-gray-700 mb-1"> {/* Adjusted text color/margin */}
-            {/* Location address line 1 */}
-            <span>{t('location.address1')}</span>
+          <div className="text-slate-700 dark:text-slate-200 mb-1">
+            <span>{t('location.address1', 'Universidad Industrial de Santander')}</span>
           </div>
-          <div className="text-sm text-gray-500">
-             {/* Location address line 2 */}
-            <p>{t('location.address2')}</p>
+          <div className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+            <p>{t('location.address2', 'Cra. 27 Calle 9, Ciudad Universitaria, Bucaramanga, Santander, Colombia')}</p>
           </div>
-           {/* Optional: Add a Google Maps Link/Embed Here */}
+
+          {/* Leaflet Map */}
+          <div className="h-80 w-full max-w-4xl mx-auto rounded-lg overflow-hidden border border-slate-200 dark:border-slate-600 shadow-inner mb-6">
+             <MapContainer
+                center={uisCoordinates}
+                zoom={mapZoomLevel}
+                scrollWheelZoom={false}
+                style={{ height: '100%', width: '100%' }}
+                className="z-0"
+             >
+                <TileLayer
+                  attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={uisCoordinates}>
+                  <Popup>
+                    Universidad Industrial de Santander (UIS) <br /> Main Campus
+                  </Popup>
+                </Marker>
+             </MapContainer>
+          </div>
+
+           {/* Google Maps Link Button - Updated href */}
            <div className="mt-6">
              <a
-                href="https://www.google.com/maps/place/Universidad+Industrial+de+Santander/@7.138609,-73.12228,17z/data=!3m1!4b1!4m6!3m5!1s0x8e681570811632e9:0xaa24c12750a41e9a!8m2!3d7.1386037!4d-73.1197051!16zL20vMDZrZ3Bi?entry=ttu" // Example Google Maps link
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-5 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition duration-300 shadow-sm"
+               href={googleMapsLink} // Use the variable with the actual link
+               target="_blank"
+               rel="noopener noreferrer"
+               className="inline-flex items-center justify-center px-5 py-2 border border-slate-300 dark:border-slate-600 text-sm font-medium rounded-md text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 transition duration-300 shadow-sm"
              >
-                {t('location.mapButton')} {/* Add key: "View on Google Maps" */}
-                <ExternalLink size={16} className="ml-2" />
+               {t('location.mapButton', 'View on Google Maps')}
+               <ExternalLink size={16} className="ml-2" />
              </a>
            </div>
         </section>
 
-      </div>
+      </div> {/* End max-w-7xl */}
     </div>
   );
 }
 
-export default Contact; // Ensure export matches filename if changed
+export default ContactPage;

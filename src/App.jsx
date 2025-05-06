@@ -7,7 +7,7 @@ import Footer from './components/layout/Footer';
 
 // Views Import
 import HomePage from './views/HomePage';
-import Contact from './views/ContactPage';
+import ContactPage from './views/ContactPage';
 import AboutPage from './views/AboutPage';
 import ResourcesPage from './views/ResourcesPage';
 import GroundStationPage from './views/GroundStation/GroundStationPage';
@@ -41,7 +41,7 @@ function App() {
             <Route path="/" element={<MainLayout />}>
                 <Route index element={<HomePage />} /> {/* Home page at '/' */}
                 <Route path="about" element={<AboutPage />} />
-                <Route path="contact" element={<Contact />} />
+                <Route path="contact" element={<ContactPage />} />
                 <Route path="resources" element={<ResourcesPage />} />
                 <Route path="ground-station" element={<GroundStationPage />} />
                 <Route path="observations" element={<ObservationsPage />} />
