@@ -10,7 +10,7 @@ import HomePage from './views/HomePage';
 import ContactPage from './views/ContactPage';
 import AboutPage from './views/AboutPage';
 import ResourcesPage from './views/ResourcesPage';
-import GroundStationPage from './views/GroundStation/GroundStationPage';
+import GroundStationPage from './views/groundstation/GroundStationPage';
 import ObservationsPage from './views/observations/ObservationsPage';
 import ImagesPage from './views/images/ImagesPage';
 import SatellitesPage from './views/satellites/SatellitesPage';
