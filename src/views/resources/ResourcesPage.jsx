@@ -2,16 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  BookOpen, ExternalLink, Rocket, Wifi, Globe, Antenna, BrainCircuit, Database, // Antenna is no longer directly used here but kept for other potential uses or if WebSdrEmbedSection was in the same file.
+  BookOpen, ExternalLink, Rocket, Wifi, Globe, Antenna, BrainCircuit, Database,
   MapPin, Gamepad2, Satellite, Radio, Star, Users, Code2, HardDrive, CalendarDays,
   BarChart3, Lightbulb, Zap, PackageOpen, Tv, Link2, CloudSun as LucideCloudSun,
-  ImageOff as ImageIconOff 
+  ImageOff as ImageIconOff // For favicon error/placeholder
 } from 'lucide-react';
 
-import WebSdrEmbedSection from './components/WebSDRSection'; // Assuming it's in the same directory for this example
-
-
 // --- Base Data Definitions ---
+// Added 'localThumbnail' property for static image paths
 const baseFeaturedLinksData = [
   { id: 'nasa', url: "https://www.nasa.gov/", iconComponent: Rocket, iconColorClasses: "text-red-600 dark:text-red-500", localThumbnail: "/thumbnails/nasa.png" },
   { id: 'esa', url: "https://www.esa.int/", iconComponent: Rocket, iconColorClasses: "text-blue-600 dark:text-blue-500", localThumbnail: "/thumbnails/esa.png" },
@@ -54,7 +52,7 @@ const baseCuriousFactsData = [
   { id: 'primerSatelite', iconComponent: Zap, iconColorClasses: "text-yellow-500", link: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1957-001B' }
 ];
 
-// --- Reusable Component for Links of Interest Card ---
+// --- Card for Links of Interest with Favicon Fetching ---
 const InterestLinkCard = ({ link, t, levelStyles }) => {
   const [faviconSrc, setFaviconSrc] = useState(null);
   const [faviconError, setFaviconError] = useState(false);
@@ -64,7 +62,7 @@ const InterestLinkCard = ({ link, t, levelStyles }) => {
     if (link.url) {
       setIsLoadingFavicon(true);
       setFaviconError(false);
-      setFaviconSrc(null); 
+      setFaviconSrc(null); // Reset on link change
 
       let domain;
       try {
@@ -76,7 +74,8 @@ const InterestLinkCard = ({ link, t, levelStyles }) => {
         return;
       }
 
-      const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+      const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`; // Request a 32x32 icon
+
       const img = new Image();
       img.src = faviconUrl;
       img.onload = () => {
@@ -95,11 +94,13 @@ const InterestLinkCard = ({ link, t, levelStyles }) => {
 
   const renderIcon = () => {
     if (isLoadingFavicon) {
+      // Simple loading state, could be a spinner or nothing
       return <div className="w-5 h-5 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"></div>;
     }
     if (faviconSrc && !faviconError) {
       return <img src={faviconSrc} alt={t('altText.faviconFor', { siteTitle: link.title })} className="w-5 h-5 rounded" />;
     }
+    // Fallback to original Lucide icon
     return <OriginalIcon size={20} className={link.iconColorClasses} />;
   };
 
@@ -125,11 +126,76 @@ const InterestLinkCard = ({ link, t, levelStyles }) => {
   );
 };
 
-// --- Reusable Component for Curious Fact Card ---
-const CuriousFactCard = ({ icon, title, text, link, linkText }) => (
+
+function ResourcesPage() {
+  const { t } = useTranslation('resources');
+  const [sectionsVisible, setSectionsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSectionsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Construct data with translations and local thumbnail paths
+  const featuredLinksData = baseFeaturedLinksData.map(link => {
+    const Icon = link.iconComponent;
+    // Dynamically generate Tailwind classes for card background, border, and hover states based on iconColorClasses
+    // This creates a subtle visual connection between the icon color and the card's theme.
+    const cardBgColor = link.iconColorClasses.replace('text-', 'bg-').replace('-600', '-50').replace('-500', '-50'); // e.g., text-red-600 -> bg-red-50
+    const cardDarkBgColor = link.iconColorClasses.replace('text-', 'dark:bg-').replace('-600', '-900/30').replace('-500', '-900/30'); // e.g., text-red-500 -> dark:bg-red-900/30
+    const cardBorderColor = link.iconColorClasses.replace('text-', 'border-').replace('-600', '-200').replace('-500', '-200'); // e.g., text-red-600 -> border-red-200
+    const cardDarkBorderColor = link.iconColorClasses.replace('text-', 'dark:border-').replace('-600', '-700/50').replace('-500', '-700/50'); // e.g., text-red-500 -> dark:border-red-700/50
+    const cardHoverBorderColor = link.iconColorClasses.replace('text-', 'hover:border-').replace('-600', '-400').replace('-500', '-400'); // e.g., text-red-600 -> hover:border-red-400
+    const cardDarkHoverBorderColor = link.iconColorClasses.replace('text-', 'dark:hover:border-').replace('-600', '-500').replace('-500', '-500'); // e.g., text-red-500 -> dark:hover:border-red-500
+    const cardClasses = `${cardBgColor} ${cardDarkBgColor} ${cardBorderColor} ${cardDarkBorderColor} ${cardHoverBorderColor} ${cardDarkHoverBorderColor}`;
+
+    return {
+      ...link,
+      icon: <Icon size={32} className={link.iconColorClasses} />,
+      title: t(`featuredLinks.${link.id}.title`), // Assumes translation keys like 'featuredLinks.nasa.title'
+      description: t(`featuredLinks.${link.id}.description`), // Assumes 'featuredLinks.nasa.description'
+      thumbnail: link.localThumbnail, // Use the direct path from base data
+      cardClasses: cardClasses, // Store the generated classes for the card
+    };
+  });
+
+  // Prepare links of interest data - title and description are translated here
+  const linksOfInterestData = baseLinksOfInterestData.map(link => {
+    // The icon component itself (OriginalIcon) will be passed to InterestLinkCard
+    // Favicon fetching and conditional rendering will happen inside InterestLinkCard
+    return {
+      ...link, // Includes id, url, levelId, iconComponent, iconColorClasses
+      title: t(`linksOfInterest.${link.id}.title`), // Assumes 'linksOfInterest.queEsUnSatelite.title'
+      description: t(`linksOfInterest.${link.id}.description`), // Assumes 'linksOfInterest.queEsUnSatelite.description'
+    };
+  });
+
+  const levelStyles = {
+    principiante: { ...baseLevelStyles.principiante, label: t('levels.principiante') },
+    intermedio: { ...baseLevelStyles.intermedio, label: t('levels.intermedio') },
+    avanzado: { ...baseLevelStyles.avanzado, label: t('levels.avanzado') }
+  };
+  
+  const curiousFactsData = baseCuriousFactsData.map(fact => {
+    const Icon = fact.iconComponent;
+    return {
+      ...fact,
+      icon: <Icon size={28} className={fact.iconColorClasses} />,
+      title: t(`curiousFacts.${fact.id}.title`), // Assumes 'curiousFacts.gpsDiario.title'
+      text: t(`curiousFacts.${fact.id}.text`), // Assumes 'curiousFacts.gpsDiario.text'
+      linkText: t(`curiousFacts.${fact.id}.linkText`), // Assumes 'curiousFacts.gpsDiario.linkText'
+    };
+  });
+
+  const animatedSectionClasses = "transition-all duration-700 ease-out transform";
+
+  // Card component for curious facts
+  const CuriousFactCard = ({ icon, title, text, link, linkText }) => (
     <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center h-full hover:shadow-xl transition-shadow duration-300">
       <div className="mb-4 p-3 rounded-full bg-indigo-100 dark:bg-indigo-900/50">
-        {icon}
+        {icon} {/* Render the pre-made icon element */}
       </div>
       <h4 className="text-lg font-semibold text-indigo-700 dark:text-indigo-400 mb-2">{title}</h4>
       <p className="text-sm text-slate-600 dark:text-slate-400 flex-grow mb-4">{text}</p>
@@ -147,75 +213,6 @@ const CuriousFactCard = ({ icon, title, text, link, linkText }) => (
     </div>
   );
 
-// --- Main ResourcesPage Component ---
-function ResourcesPage() {
-  const { t } = useTranslation('resources');
-  const [sectionsVisible, setSectionsVisible] = useState(false);
-  // State for the SDR embed URL. Set to a default WebSDR URL.
-  const [sdrEmbedUrl, setSdrEmbedUrl] = useState("http://websdr.ewi.utwente.nl:8901/");
-  // To disable the embed, you could set it to null:
-  // const [sdrEmbedUrl, setSdrEmbedUrl] = useState(null); 
-
-  useEffect(() => {
-    // Timer to trigger section animations
-    const timer = setTimeout(() => {
-      setSectionsVisible(true);
-    }, 100); // Short delay before starting animations
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Process featured links data
-  const featuredLinksData = baseFeaturedLinksData.map(link => {
-    const Icon = link.iconComponent;
-    const cardBgColor = link.iconColorClasses.replace('text-', 'bg-').replace('-600', '-50').replace('-500', '-50');
-    const cardDarkBgColor = link.iconColorClasses.replace('text-', 'dark:bg-').replace('-600', '-900/30').replace('-500', '-900/30');
-    const cardBorderColor = link.iconColorClasses.replace('text-', 'border-').replace('-600', '-200').replace('-500', '-200');
-    const cardDarkBorderColor = link.iconColorClasses.replace('text-', 'dark:border-').replace('-600', '-700/50').replace('-500', '-700/50');
-    const cardHoverBorderColor = link.iconColorClasses.replace('text-', 'hover:border-').replace('-600', '-400').replace('-500', '-400');
-    const cardDarkHoverBorderColor = link.iconColorClasses.replace('text-', 'dark:hover:border-').replace('-600', '-500').replace('-500', '-500');
-    const cardClasses = `${cardBgColor} ${cardDarkBgColor} ${cardBorderColor} ${cardDarkBorderColor} ${cardHoverBorderColor} ${cardDarkHoverBorderColor}`;
-
-    return {
-      ...link,
-      icon: <Icon size={32} className={link.iconColorClasses} />,
-      title: t(`featuredLinks.${link.id}.title`),
-      description: t(`featuredLinks.${link.id}.description`),
-      thumbnail: link.localThumbnail,
-      cardClasses: cardClasses,
-    };
-  });
-
-  // Process links of interest data
-  const linksOfInterestData = baseLinksOfInterestData.map(link => {
-    return {
-      ...link,
-      title: t(`linksOfInterest.${link.id}.title`),
-      description: t(`linksOfInterest.${link.id}.description`),
-    };
-  });
-
-  // Prepare level styles
-  const levelStyles = {
-    principiante: { ...baseLevelStyles.principiante, label: t('levels.principiante') },
-    intermedio: { ...baseLevelStyles.intermedio, label: t('levels.intermedio') },
-    avanzado: { ...baseLevelStyles.avanzado, label: t('levels.avanzado') }
-  };
-  
-  // Process curious facts data
-  const curiousFactsData = baseCuriousFactsData.map(fact => {
-    const Icon = fact.iconComponent;
-    return {
-      ...fact,
-      icon: <Icon size={28} className={fact.iconColorClasses} />,
-      title: t(`curiousFacts.${fact.id}.title`),
-      text: t(`curiousFacts.${fact.id}.text`),
-      linkText: t(`curiousFacts.${fact.id}.linkText`),
-    };
-  });
-
-  // Common Tailwind classes for animated sections
-  const animatedSectionClasses = "transition-all duration-700 ease-out transform";
-
   return (
     <div className="text-slate-800 dark:text-slate-200 font-sans overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -230,56 +227,57 @@ function ResourcesPage() {
           </p>
         </section>
 
-        {/* Interactive WebSDR Embed Section - Imported Component */}
-        <WebSdrEmbedSection 
-            sdrEmbedUrl={sdrEmbedUrl} 
-            t={t}
-            sectionsVisible={sectionsVisible}
-            animatedSectionClasses={animatedSectionClasses}
-        />
-
         {/* Featured Links Section */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          style={{ transitionDelay: sectionsVisible ? '300ms' : '0ms' }} 
+          style={{ transitionDelay: sectionsVisible ? '100ms' : '0ms' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <Star size={28} className="mr-3 text-amber-500 dark:text-amber-400" />
             {t('featuredSectionTitle')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Map over the processed featuredLinksData */}
             {featuredLinksData.map((link) => (
               <a
                 key={link.id}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                // Apply the dynamically generated card classes here
                 className={`flex flex-col items-center p-6 rounded-xl shadow-lg border ${link.cardClasses} dark:border-opacity-60 transition-all duration-300 group text-center transform hover:-translate-y-1.5 hover:shadow-2xl`}
               >
+                {/* Thumbnail container */}
                 <div className="w-full h-32 mb-4 rounded-md bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
                   {link.thumbnail ? (
                     <img
-                      src={link.thumbnail}
+                      src={link.thumbnail} // Use the thumbnail path
                       alt={t('altText.thumbnailFor', { siteTitle: link.title })}
                       className="w-full h-full object-cover"
                       onError={(e) => {
+                        // Prevent infinite loop if fallback also fails
                         e.target.onerror = null; 
+                        // Hide the broken image
                         e.target.style.display = 'none';
+                        // Attempt to show the text fallback
                         const fallbackPlaceholder = e.target.parentElement?.querySelector('.thumbnail-fallback-text');
                         if(fallbackPlaceholder) fallbackPlaceholder.style.display = 'flex';
                       }}
                     />
                   ) : (
+                    // If no thumbnail is provided in data, show this
                      <div className="text-slate-500 text-xs p-2">{t('featuredLinks.noPreview', 'No preview available')}</div>
                   )}
+                  {/* Fallback text, initially hidden, shown on image error */}
                    <div 
                       className="thumbnail-fallback-text w-full h-full items-center justify-center text-slate-500 text-xs"
-                      style={{display: 'none'}}
+                      style={{display: 'none'}} // Initially hidden
                     >
                       {t('featuredLinks.previewErrorText', 'Preview N/A')}
                     </div>
                 </div>
-                <div className="mb-2">{link.icon}</div>
+                {/* Icon, Title, Description, External Link Icon */}
+                <div className="mb-2">{link.icon}</div> {/* Render the pre-made icon element */}
                 <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-1.5">{link.title}</h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 flex-grow px-2">{link.description}</p>
                 <ExternalLink size={18} className="mt-auto text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-300" />
@@ -288,41 +286,43 @@ function ResourcesPage() {
           </div>
         </section>
 
-        {/* Learning Links Section */}
+        {/* Learning Links Section - Now uses InterestLinkCard */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          style={{ transitionDelay: sectionsVisible ? '500ms' : '0ms' }} 
+          style={{ transitionDelay: sectionsVisible ? '300ms' : '0ms' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <BookOpen size={28} className="mr-3 text-slate-600 dark:text-slate-400" />
             {t('learningLinksSectionTitle')}
           </h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Map over the processed linksOfInterestData */}
             {linksOfInterestData.map((link) => (
               <InterestLinkCard
                 key={link.id}
-                link={link}
+                link={link} // Pass the processed link object
                 t={t}
                 levelStyles={levelStyles}
               />
             ))}
           </div>
         </section>
-        
+
         {/* Curious Facts Section */}
         <section
           className={`${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          style={{ transitionDelay: sectionsVisible ? '700ms' : '0ms' }} 
+          style={{ transitionDelay: sectionsVisible ? '500ms' : '0ms' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <Lightbulb size={28} className="mr-3 text-yellow-400 dark:text-yellow-300" />
             {t('curiousFactsSectionTitle')}
           </h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Map over the processed curiousFactsData */}
             {curiousFactsData.map((fact) => (
               <CuriousFactCard
                 key={fact.id}
-                icon={fact.icon}
+                icon={fact.icon} // Pass the pre-made icon element
                 title={fact.title}
                 text={fact.text}
                 link={fact.link}
