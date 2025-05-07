@@ -6,13 +6,7 @@ import { Target, Satellite, Radio, Globe, Users, BookOpen, MapPin, GraduationCap
 function AboutPage() {
   const { t } = useTranslation('about');
 
-  // --- IMPORTANT: Replace with your actual GitHub Repo URL ---
-  const githubRepoUrl = "https://github.com/your-repo/your-project"; // ¡Reemplaza esto!
-  // Para pruebas, puedes dejarlo así o cambiarlo a tu URL real.
-  // const githubRepoUrl = "YOUR_GITHUB_REPO_URL_HERE";
-
-
-  // Verifica si la URL sigue siendo el placeholder
+  const githubRepoUrl = "https://github.com/wilmonman/frontend";
   const isGithubUrlPlaceholder = githubRepoUrl === "YOUR_GITHUB_REPO_URL_HERE" || githubRepoUrl === "https://github.com/your-repo/your-project";
 
 
