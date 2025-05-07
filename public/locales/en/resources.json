@@ -5,7 +5,6 @@
   "learningLinksSectionTitle": "Learning Links by Level",
   "curiousFactsSectionTitle": "Curious Facts & Space in Your Life",
   "imagePlaceholderError": "N/A",
-
   "featuredLinks": {
     "nasa": {
       "title": "Official NASA",
@@ -42,15 +41,14 @@
     "websdr": {
       "title": "WebSDR.org",
       "description": "A collection of Software-Defined Radio receivers accessible over the internet."
-    }
+    },
+    "noPreview": "No preview available"
   },
-
   "levels": {
     "principiante": "Beginner",
     "intermedio": "Intermediate",
     "avanzado": "Advanced"
   },
-
   "linksOfInterest": {
     "queEsUnSatelite": {
       "title": "What is a Satellite?",
@@ -101,7 +99,6 @@
       "description": "Community and resources for Digital Signal Processing."
     }
   },
-
   "curiousFacts": {
     "gpsDiario": {
       "title": "GPS: Your Space Guide",
@@ -134,13 +131,12 @@
       "linkText": "About Sputnik 1 (NASA)"
     }
   },
-
   "sdrInteractiveSection": {
     "featuredSite": {
-      "title": "Featured WebSDR: University of Twente",
-      "description": "Explore the radio spectrum with this popular WebSDR receiver, operated by the University of Twente in the Netherlands. Tune into various amateur radio bands, shortwave broadcasts, and more from anywhere in the world.",
-      "linkText": "Listen Live @ WebSDR Twente",
-      "thumbnailAlt": "Screenshot of the WebSDR interface from University of Twente"
+      "title": "Explore the Airwaves: Bordeaux WebSDR",
+      "description": "Tune into the radio spectrum live from Bordeaux, France! This WebSDR (Software Defined Radio) allows you to listen to a wide range of radio frequencies directly in your browser. \n\n**How to Use:** \n1. Visit the site using the link below. \n2. In the control panel (often on the left), enter a frequency in the 'Frequency' field (e.g., 145.800 MHz for ISS FM voice, or explore common bands like HF, VHF, UHF). \n3. Select a reception mode appropriate for the signal (e.g., FM for ISS voice/NOAA APT, NFM for most voice, AM for broadcast, USB/LSB for SSB communications). \n4. You can click on signals in the waterfall display to tune to them. Adjust bandwidth and audio settings for clarity. \n\n**Satellite Capabilities:** This station is excellent for satellite enthusiasts! Its coverage often includes the 137-138 MHz range (for weather satellites like NOAA APT), the 2-meter band (144-146 MHz, for ISS, amateur satellites) and the 70-centimeter band (430-440 MHz, for various amateur and other satellites). This allows you to potentially receive signals and telemetry from space directly!",
+      "linkText": "Listen Live @ WebSDR Bordeaux",
+      "thumbnailAlt": "Screenshot of the WebSDR interface from Bordeaux station"
     },
     "thumbnailError": "Thumbnail not available"
   },
