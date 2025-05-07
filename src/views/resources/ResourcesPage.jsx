@@ -9,7 +9,9 @@ import {
 } from 'lucide-react';
 
 // NEW: Import the WebSdrEmbedSection component
-import WebSdrEmbedSection from './components/WebSdrEmbedSection'; // Assuming it's in the same directory for this example
+// Adjust the path based on your project structure. For example, if it's in a 'components' subdirectory:
+// import WebSdrEmbedSection from './components/WebSdrEmbedSection'; 
+import WebSdrEmbedSection from './WebSdrEmbedSection'; // Assuming it's in the same directory for this example
 
 
 // --- Base Data Definitions ---
