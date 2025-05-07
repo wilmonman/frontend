@@ -38,6 +38,10 @@
     "celestrak": {
       "title": "CelesTrak",
       "description": "Fuente autorizada de datos orbitales (TLEs) y herramientas analíticas sobre objetos espaciales."
+    },
+    "websdr": {
+      "title": "WebSDR.org",
+      "description": "Una colección de receptores de Radio Definida por Software accesibles a través de internet."
     }
   },
 
@@ -61,40 +65,40 @@
       "description": "Asociación nacional de Radioaficionados en EE. UU. (recursos en inglés)."
     },
     "amsat": {
-        "title": "AMSAT",
-        "description": "Corporación de Satélites de Radioaficionados, coordina proyectos satelitales amateur."
+      "title": "AMSAT",
+      "description": "Corporación de Satélites de Radioaficionados, coordina proyectos satelitales amateur."
     },
     "tiposDeOrbitas": {
-        "title": "Tipos de Órbitas Satelitales",
-        "description": "Aprende sobre las órbitas LEO, MEO, GEO y más (ESA Kids)."
+      "title": "Tipos de Órbitas Satelitales",
+      "description": "Aprende sobre las órbitas LEO, MEO, GEO y más (ESA Kids)."
     },
     "comoFuncionanSats": {
-        "title": "¿Cómo Funcionan los Satélites?",
-        "description": "Una explicación de la tecnología satelital (HowStuffWorks, en inglés)."
+      "title": "¿Cómo Funcionan los Satélites?",
+      "description": "Una explicación de la tecnología satelital (HowStuffWorks, en inglés)."
     },
     "espectroRadio": {
-        "title": "Asignación del Espectro Radioeléctrico",
-        "description": "Información sobre la asignación de frecuencias de radio (ANE Colombia)."
+      "title": "Asignación del Espectro Radioeléctrico",
+      "description": "Información sobre la asignación de frecuencias de radio (ANE Colombia)."
     },
     "libreSpace": {
-        "title": "Libre Space Foundation",
-        "description": "Fundación de código abierto que diseña tecnologías espaciales."
+      "title": "Libre Space Foundation",
+      "description": "Fundación de código abierto que diseña tecnologías espaciales."
     },
     "dsn": {
-        "title": "Red del Espacio Profundo (DSN)",
-        "description": "Red internacional de antenas de la NASA para misiones interplanetarias."
+      "title": "Red del Espacio Profundo (DSN)",
+      "description": "Red internacional de antenas de la NASA para misiones interplanetarias."
     },
     "sdrIntro": {
-        "title": "Introducción a SDR con RTL-SDR",
-        "description": "Información sobre Radio Definida por Software de bajo costo (sitio en inglés)."
+      "title": "Introducción a SDR con RTL-SDR",
+      "description": "Información sobre Radio Definida por Software de bajo costo (sitio en inglés)."
     },
     "gnuRadio": {
-        "title": "GNU Radio",
-        "description": "Kit de herramientas de desarrollo de software libre para procesamiento de señales."
+      "title": "GNU Radio",
+      "description": "Kit de herramientas de desarrollo de software libre para procesamiento de señales."
     },
     "dsp": {
-        "title": "DSPRelated",
-        "description": "Comunidad y recursos para Procesamiento Digital de Señales (en inglés)."
+      "title": "DSPRelated",
+      "description": "Comunidad y recursos para Procesamiento Digital de Señales (en inglés)."
     }
   },
 
@@ -115,19 +119,33 @@
       "linkText": "Basura espacial (ESA)"
     },
     "satelitesMeteorologicos": {
-        "title": "Vigilantes del Clima",
-        "text": "Los satélites meteorológicos nos ayudan a predecir el tiempo, monitorear huracanes y estudiar el cambio climático, ¡todo desde cientos de kilómetros de altura!",
-        "linkText": "Satélites y clima (NOAA)"
+      "title": "Vigilantes del Clima",
+      "text": "Los satélites meteorológicos nos ayudan a predecir el tiempo, monitorear huracanes y estudiar el cambio climático, ¡todo desde cientos de kilómetros de altura!",
+      "linkText": "Satélites y clima (NOAA)"
     },
     "televisionSatelital": {
-        "title": "TV desde el Cielo",
-        "text": "Muchos canales de televisión llegan a tu casa gracias a satélites geoestacionarios que parecen \"flotar\" fijos sobre un punto de la Tierra, a más de 35,000 km de altura.",
-        "linkText": "Cómo funciona la TV Satelital"
+      "title": "TV desde el Cielo",
+      "text": "Muchos canales de televisión llegan a tu casa gracias a satélites geoestacionarios que parecen \"flotar\" fijos sobre un punto de la Tierra, a más de 35,000 km de altura.",
+      "linkText": "Cómo funciona la TV Satelital"
     },
     "primerSatelite": {
-        "title": "El \"Bip Bip\" que Cambió el Mundo",
-        "text": "El primer satélite artificial, Sputnik 1, lanzado en 1957, era una esfera metálica que solo emitía simples \"bips\" de radio, ¡pero inició la carrera espacial!",
-        "linkText": "Sobre el Sputnik 1 (NASA)"
+      "title": "El \"Bip Bip\" que Cambió el Mundo",
+      "text": "El primer satélite artificial, Sputnik 1, lanzado en 1957, era una esfera metálica que solo emitía simples \"bips\" de radio, ¡pero inició la carrera espacial!",
+      "linkText": "Sobre el Sputnik 1 (NASA)"
     }
+  },
+
+  "sdrInteractiveSection": {
+    "featuredSite": {
+      "title": "WebSDR Destacado: Universidad de Twente",
+      "description": "Explora el espectro radioeléctrico con este popular receptor WebSDR, operado por la Universidad de Twente en los Países Bajos. Sintoniza diversas bandas de radioaficionados, transmisiones de onda corta y más, desde cualquier parte del mundo.",
+      "linkText": "Escuchar en Vivo @ WebSDR Twente",
+      "thumbnailAlt": "Captura de pantalla de la interfaz WebSDR de la Universidad de Twente"
+    },
+    "thumbnailError": "Miniatura no disponible"
+  },
+  "altText": {
+    "faviconFor": "Favicon para {{siteTitle}}",
+    "thumbnailFor": "Miniatura para {{siteTitle}}"
   }
 }
