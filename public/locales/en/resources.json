@@ -16,28 +16,32 @@
       "description": "Discover ESA's projects and advancements in space exploration and Earth observation."
     },
     "satnogsNetwork": {
-        "title": "SatNOGS Network",
-        "description": "The global network of open-source satellite ground stations. Our station is part of it!"
+      "title": "SatNOGS Network",
+      "description": "The global network of open-source satellite ground stations. Our station is part of it!"
     },
     "heavensAbove": {
-        "title": "Heavens-Above",
-        "description": "Accurate predictions of satellite passes (including the ISS) visible from your location."
+      "title": "Heavens-Above",
+      "description": "Accurate predictions of satellite passes (including the ISS) visible from your location."
     },
     "stuffinspace": {
-        "title": "Stuff in Space",
-        "description": "Real-time 3D visualization of objects orbiting Earth. Impressive!"
+      "title": "Stuff in Space",
+      "description": "Real-time 3D visualization of objects orbiting Earth. Impressive!"
     },
     "satnogsDb": {
-        "title": "SatNOGS DB",
-        "description": "Collaborative database of satellites, transmitters, and their telemetries."
+      "title": "SatNOGS DB",
+      "description": "Collaborative database of satellites, transmitters, and their telemetries."
     },
     "n2yo": {
-        "title": "N2YO.com",
-        "description": "Real-time satellite tracking, pass predictions, and much more orbital information."
+      "title": "N2YO.com",
+      "description": "Real-time satellite tracking, pass predictions, and much more orbital information."
     },
     "celestrak": {
-        "title": "CelesTrak",
-        "description": "Authoritative source for orbital data (TLEs) and analytical tools for space objects."
+      "title": "CelesTrak",
+      "description": "Authoritative source for orbital data (TLEs) and analytical tools for space objects."
+    },
+    "websdr": {
+      "title": "WebSDR.org",
+      "description": "A collection of Software-Defined Radio receivers accessible over the internet."
     }
   },
 
@@ -53,48 +57,48 @@
       "description": "A simple NASA explanation of satellites and their uses."
     },
     "scan": {
-        "title": "Space Communications and Navigation (SCaN)",
-        "description": "NASA's program for space communication infrastructure."
+      "title": "Space Communications and Navigation (SCaN)",
+      "description": "NASA's program for space communication infrastructure."
     },
     "arrl": {
-        "title": "ARRL",
-        "description": "National association for Amateur Radio in the USA."
+      "title": "ARRL",
+      "description": "National association for Amateur Radio in the USA."
     },
     "amsat": {
-        "title": "AMSAT",
-        "description": "Radio Amateur Satellite Corporation, coordinates amateur satellite projects."
+      "title": "AMSAT",
+      "description": "Radio Amateur Satellite Corporation, coordinates amateur satellite projects."
     },
     "tiposDeOrbitas": {
-        "title": "Types of Satellite Orbits",
-        "description": "Learn about LEO, MEO, GEO orbits and more (ESA Kids)."
+      "title": "Types of Satellite Orbits",
+      "description": "Learn about LEO, MEO, GEO orbits and more (ESA Kids)."
     },
     "comoFuncionanSats": {
-        "title": "How Satellites Work",
-        "description": "An explanation of satellite technology (HowStuffWorks)."
+      "title": "How Satellites Work",
+      "description": "An explanation of satellite technology (HowStuffWorks)."
     },
     "espectroRadio": {
-        "title": "Radio Spectrum Allocation",
-        "description": "Information on radio frequency allocation (FCC for US example)."
+      "title": "Radio Spectrum Allocation",
+      "description": "Information on radio frequency allocation (FCC for US example)."
     },
     "libreSpace": {
-        "title": "Libre Space Foundation",
-        "description": "Open-source foundation designing space technologies."
+      "title": "Libre Space Foundation",
+      "description": "Open-source foundation designing space technologies."
     },
     "dsn": {
-        "title": "Deep Space Network (DSN)",
-        "description": "NASA's international network of antennas for interplanetary missions."
+      "title": "Deep Space Network (DSN)",
+      "description": "NASA's international network of antennas for interplanetary missions."
     },
     "sdrIntro": {
-        "title": "Introduction to SDR with RTL-SDR",
-        "description": "Information about low-cost Software Defined Radio."
+      "title": "Introduction to SDR with RTL-SDR",
+      "description": "Information about low-cost Software Defined Radio."
     },
     "gnuRadio": {
-        "title": "GNU Radio",
-        "description": "Free software development toolkit for signal processing."
+      "title": "GNU Radio",
+      "description": "Free software development toolkit for signal processing."
     },
     "dsp": {
-        "title": "DSPRelated",
-        "description": "Community and resources for Digital Signal Processing."
+      "title": "DSPRelated",
+      "description": "Community and resources for Digital Signal Processing."
     }
   },
 
@@ -110,24 +114,38 @@
       "linkText": "ISS Facts (NASA)"
     },
     "basuraEspacial": {
-        "title": "Space Debris",
-        "text": "There are millions of pieces of \"space junk\" orbiting Earth, from old satellites to small rocket parts. Cleaning up space is a big challenge!",
-        "linkText": "Space debris (ESA)"
+      "title": "Space Debris",
+      "text": "There are millions of pieces of \"space junk\" orbiting Earth, from old satellites to small rocket parts. Cleaning up space is a big challenge!",
+      "linkText": "Space debris (ESA)"
     },
     "satelitesMeteorologicos": {
-        "title": "Weather Watchers",
-        "text": "Weather satellites help us predict weather, monitor hurricanes, and study climate change, all from hundreds of kilometers high!",
-        "linkText": "Satellites & climate (NOAA)"
+      "title": "Weather Watchers",
+      "text": "Weather satellites help us predict weather, monitor hurricanes, and study climate change, all from hundreds of kilometers high!",
+      "linkText": "Satellites & climate (NOAA)"
     },
     "televisionSatelital": {
-        "title": "TV from the Sky",
-        "text": "Many TV channels reach your home thanks to geostationary satellites that seem to \"float\" fixed above a point on Earth, over 35,000 km high.",
-        "linkText": "How Satellite TV Works"
+      "title": "TV from the Sky",
+      "text": "Many TV channels reach your home thanks to geostationary satellites that seem to \"float\" fixed above a point on Earth, over 35,000 km high.",
+      "linkText": "How Satellite TV Works"
     },
     "primerSatelite": {
-        "title": "The \"Beep Beep\" That Changed the World",
-        "text": "The first artificial satellite, Sputnik 1, launched in 1957, was a metal sphere that only emitted simple radio \"beeps\", but it started the space race!",
-        "linkText": "About Sputnik 1 (NASA)"
+      "title": "The \"Beep Beep\" That Changed the World",
+      "text": "The first artificial satellite, Sputnik 1, launched in 1957, was a metal sphere that only emitted simple radio \"beeps\", but it started the space race!",
+      "linkText": "About Sputnik 1 (NASA)"
     }
+  },
+
+  "sdrInteractiveSection": {
+    "featuredSite": {
+      "title": "Featured WebSDR: University of Twente",
+      "description": "Explore the radio spectrum with this popular WebSDR receiver, operated by the University of Twente in the Netherlands. Tune into various amateur radio bands, shortwave broadcasts, and more from anywhere in the world.",
+      "linkText": "Listen Live @ WebSDR Twente",
+      "thumbnailAlt": "Screenshot of the WebSDR interface from University of Twente"
+    },
+    "thumbnailError": "Thumbnail not available"
+  },
+  "altText": {
+    "faviconFor": "Favicon for {{siteTitle}}",
+    "thumbnailFor": "Thumbnail for {{siteTitle}}"
   }
 }
