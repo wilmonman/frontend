@@ -9,7 +9,7 @@ import Footer from './components/layout/Footer';
 import HomePage from './views/HomePage';
 import ContactPage from './views/ContactPage';
 import AboutPage from './views/AboutPage';
-import ResourcesPage from './views/resources/ResourcesPage'; // Changed
+import ResourcesPage from './views/ResourcesPage'; // Changed
 import GroundStationPage from './views/groundstation/GroundStationPage';
 import ObservationsPage from './views/observations/ObservationsPage';
 import ImagesPage from './views/images/ImagesPage';
