@@ -42,6 +42,18 @@
       "title": "WebSDR.org",
       "description": "A collection of Software-Defined Radio receivers accessible over the internet."
     },
+    "nasaScienceTech": {
+      "title": "NASA Science & Technology",
+      "description": "Explore NASA's latest advancements and resources in space science and technology."
+    },
+    "nasaSatelliteGuide": {
+      "title": "NASA Satellite Guide",
+      "description": "An educational guide to satellites from NASA Space Place."
+    },
+    "nasaDsnGame": {
+      "title": "NASA DSN Game",
+      "description": "Play a game and learn about NASA's Deep Space Network."
+    },
     "noPreview": "No preview available"
   },
   "levels": {
