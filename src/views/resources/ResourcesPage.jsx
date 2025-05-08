@@ -9,7 +9,6 @@ import {
 } from 'lucide-react';
 
 // --- Base Data Definitions ---
-// Added 'localThumbnail' property for static image paths
 const baseFeaturedLinksData = [
   { id: 'nasa', url: "https://www.nasa.gov/", iconComponent: Rocket, iconColorClasses: "text-red-600 dark:text-red-500", localThumbnail: "/thumbnails/nasa.png" },
   { id: 'esa', url: "https://www.esa.int/", iconComponent: Rocket, iconColorClasses: "text-blue-600 dark:text-blue-500", localThumbnail: "/thumbnails/esa.png" },
@@ -19,7 +18,7 @@ const baseFeaturedLinksData = [
   { id: 'satnogsDb', url: "https://db.satnogs.org/", iconComponent: Database, iconColorClasses: "text-sky-600 dark:text-sky-500", localThumbnail: "/thumbnails/satnogs_db.png" },
   { id: 'n2yo', url: "https://www.n2yo.com/", iconComponent: MapPin, iconColorClasses: "text-purple-600 dark:text-purple-500", localThumbnail: "/thumbnails/n2yo.png" },
   { id: 'celestrak', url: "https://celestrak.org/", iconComponent: BarChart3, iconColorClasses: "text-orange-600 dark:text-orange-500", localThumbnail: "/thumbnails/celestrak.png" },
-  { id: 'websdr', url: "http://websdr.org/", iconComponent: Radio, iconColorClasses: "text-teal-600 dark:text-teal-500", localThumbnail: "/thumbnails/websdr.png" },
+  { id: 'websdr', url: "http://websdr.org/", iconComponent: Radio, iconColorClasses: "text-teal-600 dark:text-teal-500", localThumbnail: "/thumbnails/WebSDR.png" },
 ];
 
 const baseLinksOfInterestData = [
@@ -74,7 +73,7 @@ const InterestLinkCard = ({ link, t, levelStyles }) => {
         return;
       }
 
-      const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`; // Request a 32x32 icon
+      const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
 
       const img = new Image();
       img.src = faviconUrl;
@@ -88,19 +87,17 @@ const InterestLinkCard = ({ link, t, levelStyles }) => {
         setIsLoadingFavicon(false);
       };
     }
-  }, [link.url]); // Dependency array ensures this runs when link.url changes
+  }, [link.url]);
 
   const OriginalIcon = link.iconComponent;
 
   const renderIcon = () => {
     if (isLoadingFavicon) {
-      // Simple loading state, could be a spinner or nothing
       return <div className="w-5 h-5 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"></div>;
     }
     if (faviconSrc && !faviconError) {
       return <img src={faviconSrc} alt={t('altText.faviconFor', { siteTitle: link.title })} className="w-5 h-5 rounded" />;
     }
-    // Fallback to original Lucide icon
     return <OriginalIcon size={20} className={link.iconColorClasses} />;
   };
 
@@ -134,14 +131,12 @@ function ResourcesPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSectionsVisible(true);
-    }, 100); // Initial delay for the first animated section
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
 
-  // Construct data with translations and local thumbnail paths
   const featuredLinksData = baseFeaturedLinksData.map(link => {
     const Icon = link.iconComponent;
-    // Dynamically generate Tailwind classes for card background, border, and hover states based on iconColorClasses
     const cardBgColor = link.iconColorClasses.replace('text-', 'bg-').replace('-600', '-50').replace('-500', '-50'); 
     const cardDarkBgColor = link.iconColorClasses.replace('text-', 'dark:bg-').replace('-600', '-900/30').replace('-500', '-900/30'); 
     const cardBorderColor = link.iconColorClasses.replace('text-', 'border-').replace('-600', '-200').replace('-500', '-200'); 
@@ -160,7 +155,6 @@ function ResourcesPage() {
     };
   });
 
-  // Prepare links of interest data - title and description are translated here
   const linksOfInterestData = baseLinksOfInterestData.map(link => {
     return {
       ...link, 
@@ -188,11 +182,10 @@ function ResourcesPage() {
 
   const animatedSectionClasses = "transition-all duration-700 ease-out transform";
 
-  // Card component for curious facts
   const CuriousFactCard = ({ icon, title, text, link, linkText }) => (
     <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center h-full hover:shadow-xl transition-shadow duration-300">
       <div className="mb-4 p-3 rounded-full bg-indigo-100 dark:bg-indigo-900/50">
-        {icon} {/* Render the pre-made icon element */}
+        {icon}
       </div>
       <h4 className="text-lg font-semibold text-indigo-700 dark:text-indigo-400 mb-2">{title}</h4>
       <p className="text-sm text-slate-600 dark:text-slate-400 flex-grow mb-4">{text}</p>
@@ -213,7 +206,7 @@ function ResourcesPage() {
   // Data for the new WebSDR card
   const featuredWebSDR = {
     url: "http://ham.websdrbordeaux.fr:8000/index2.html", 
-    thumbnail: "/thumbnails/WebSDR.png", // Ensure this path is correct in your public/thumbnails folder
+    thumbnail: "/thumbnails/radio.png", 
     title: t('sdrInteractiveSection.featuredSite.title'),
     description: t('sdrInteractiveSection.featuredSite.description'),
     linkText: t('sdrInteractiveSection.featuredSite.linkText'),
@@ -224,7 +217,6 @@ function ResourcesPage() {
     <div className="text-slate-800 dark:text-slate-200 font-sans overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
-        {/* Page Title and Subtitle Section */}
         <section className="text-center mb-12 md:mb-16">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-4">
             {t('pageTitle')}
@@ -234,27 +226,24 @@ function ResourcesPage() {
           </p>
         </section>
 
-        {/* Featured WebSDR Card Section */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: sectionsVisible ? '100ms' : '0ms' }} 
         >
           <div className="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 hover:shadow-2xl transition-shadow duration-300">
             <div className="flex flex-col md:flex-row md:items-center">
-              {/* Thumbnail */}
               <div className="md:w-1/3 mb-6 md:mb-0 md:mr-8 flex-shrink-0">
                 <img
-                  src={featuredWebSDR.thumbnail}
+                  src={featuredWebSDR.thumbnail} // This will now be /thumbnails/radio.png
                   alt={featuredWebSDR.altText}
                   className="w-full h-auto object-cover rounded-lg shadow-md border border-slate-300 dark:border-slate-600"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.style.display = 'none'; // Hide broken image
-                    const fallback = e.target.nextElementSibling; // Attempt to show fallback text
+                    e.target.style.display = 'none'; 
+                    const fallback = e.target.nextElementSibling; 
                     if (fallback) fallback.style.display = 'block';
                   }}
                 />
-                {/* Fallback text for image error, initially hidden */}
                 <div 
                     className="w-full h-full flex items-center justify-center text-slate-500 dark:text-slate-400 text-sm bg-slate-100 dark:bg-slate-700 rounded-lg py-4"
                     style={{display: 'none'}} 
@@ -262,7 +251,6 @@ function ResourcesPage() {
                     {t('sdrInteractiveSection.thumbnailError', 'Thumbnail not available')}
                 </div>
               </div>
-              {/* Content */}
               <div className="flex-grow">
                 <h3 className="text-2xl md:text-3xl font-bold text-indigo-700 dark:text-indigo-400 mb-3 flex items-center">
                   <RadioTower size={28} className="mr-3 text-indigo-500 dark:text-indigo-400" />
@@ -287,18 +275,16 @@ function ResourcesPage() {
           </div>
         </section>
 
-        {/* Featured Links Section */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          style={{ transitionDelay: sectionsVisible ? '300ms' : '0ms' }} // Adjusted delay
+          style={{ transitionDelay: sectionsVisible ? '300ms' : '0ms' }} 
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <Star size={28} className="mr-3 text-amber-500 dark:text-amber-400" />
             {t('featuredSectionTitle')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Map over the processed featuredLinksData */}
-            {featuredLinksData.map((link) => (
+            {featuredLinksData.map((link) => ( // featuredLinksData now has the updated thumbnail for websdr id
               <a
                 key={link.id}
                 href={link.url}
@@ -306,9 +292,8 @@ function ResourcesPage() {
                 rel="noopener noreferrer"
                 className={`flex flex-col items-center p-6 rounded-xl shadow-lg border ${link.cardClasses} dark:border-opacity-60 transition-all duration-300 group text-center transform hover:-translate-y-1.5 hover:shadow-2xl`}
               >
-                {/* Thumbnail container */}
                 <div className="w-full h-32 mb-4 rounded-md bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
-                  {link.thumbnail ? (
+                  {link.thumbnail ? ( // The 'websdr' link will now use /thumbnails/WebSDR.png
                     <img
                       src={link.thumbnail} 
                       alt={t('altText.thumbnailFor', { siteTitle: link.title })}
@@ -323,16 +308,14 @@ function ResourcesPage() {
                   ) : (
                      <div className="text-slate-500 text-xs p-2">{t('featuredLinks.noPreview', 'No preview available')}</div>
                   )}
-                  {/* Fallback text, initially hidden, shown on image error */}
                    <div 
                       className="thumbnail-fallback-text w-full h-full items-center justify-center text-slate-500 text-xs"
-                      style={{display: 'none'}} // Initially hidden
+                      style={{display: 'none'}}
                     >
                       {t('imagePlaceholderError', 'N/A')}
                     </div>
                 </div>
-                {/* Icon, Title, Description, External Link Icon */}
-                <div className="mb-2">{link.icon}</div> {/* Render the pre-made icon element */}
+                <div className="mb-2">{link.icon}</div>
                 <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-1.5">{link.title}</h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 flex-grow px-2">{link.description}</p>
                 <ExternalLink size={18} className="mt-auto text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors duration-300" />
@@ -341,21 +324,19 @@ function ResourcesPage() {
           </div>
         </section>
 
-        {/* Learning Links Section - Now uses InterestLinkCard */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          style={{ transitionDelay: sectionsVisible ? '500ms' : '0ms' }} // Adjusted delay
+          style={{ transitionDelay: sectionsVisible ? '500ms' : '0ms' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <BookOpen size={28} className="mr-3 text-slate-600 dark:text-slate-400" />
             {t('learningLinksSectionTitle')}
           </h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Map over the processed linksOfInterestData */}
             {linksOfInterestData.map((link) => (
               <InterestLinkCard
                 key={link.id}
-                link={link} // Pass the processed link object
+                link={link}
                 t={t}
                 levelStyles={levelStyles}
               />
@@ -363,21 +344,19 @@ function ResourcesPage() {
           </div>
         </section>
 
-        {/* Curious Facts Section */}
         <section
           className={`${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          style={{ transitionDelay: sectionsVisible ? '700ms' : '0ms' }} // Adjusted delay
+          style={{ transitionDelay: sectionsVisible ? '700ms' : '0ms' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 flex items-center">
             <Lightbulb size={28} className="mr-3 text-yellow-400 dark:text-yellow-300" />
             {t('curiousFactsSectionTitle')}
           </h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Map over the processed curiousFactsData */}
             {curiousFactsData.map((fact) => (
               <CuriousFactCard
                 key={fact.id}
-                icon={fact.icon} // Pass the pre-made icon element
+                icon={fact.icon}
                 title={fact.title}
                 text={fact.text}
                 link={fact.link}
