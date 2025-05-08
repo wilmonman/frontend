@@ -5,7 +5,6 @@
   "learningLinksSectionTitle": "Enlaces de Aprendizaje por Nivel",
   "curiousFactsSectionTitle": "Datos Curiosos y El Espacio en tu Vida",
   "imagePlaceholderError": "N/A",
-
   "featuredLinks": {
     "nasa": {
       "title": "NASA Oficial",
@@ -42,15 +41,14 @@
     "websdr": {
       "title": "WebSDR.org",
       "description": "Una colección de receptores de Radio Definida por Software accesibles a través de internet."
-    }
+    },
+    "noPreview": "Miniatura no disponible"
   },
-
   "levels": {
     "principiante": "Principiante",
     "intermedio": "Intermedio",
     "avanzado": "Avanzado"
   },
-
   "linksOfInterest": {
     "queEsUnSatelite": {
       "title": "¿Qué es un Satélite?",
@@ -101,7 +99,6 @@
       "description": "Comunidad y recursos para Procesamiento Digital de Señales (en inglés)."
     }
   },
-
   "curiousFacts": {
     "gpsDiario": {
       "title": "GPS: Tu Guía Espacial",
@@ -134,13 +131,12 @@
       "linkText": "Sobre el Sputnik 1 (NASA)"
     }
   },
-
   "sdrInteractiveSection": {
     "featuredSite": {
-      "title": "WebSDR Destacado: Universidad de Twente",
-      "description": "Explora el espectro radioeléctrico con este popular receptor WebSDR, operado por la Universidad de Twente en los Países Bajos. Sintoniza diversas bandas de radioaficionados, transmisiones de onda corta y más, desde cualquier parte del mundo.",
-      "linkText": "Escuchar en Vivo @ WebSDR Twente",
-      "thumbnailAlt": "Captura de pantalla de la interfaz WebSDR de la Universidad de Twente"
+      "title": "Explora las Ondas: WebSDR Burdeos",
+      "description": "¡Sintoniza el espectro radioeléctrico en vivo desde Burdeos, Francia! Este WebSDR (Radio Definida por Software) te permite escuchar una amplia gama de frecuencias de radio directamente en tu navegador. \n\n**Cómo Usarlo:** \n1. Visita el sitio usando el enlace de abajo. \n2. En el panel de control (a menudo a la izquierda), ingresa una frecuencia en el campo 'Frequency' (p. ej., 145.800 MHz para voz FM de la ISS, o explora bandas comunes como HF, VHF, UHF). \n3. Selecciona un modo de recepción apropiado para la señal (p. ej., FM para voz de la ISS/NOAA APT, NFM para la mayoría de voz, AM para radiodifusión, USB/LSB para comunicaciones SSB). \n4. Puedes hacer clic en las señales en la visualización de cascada (waterfall) para sintonizarlas. Ajusta el ancho de banda y la configuración de audio para mayor claridad. \n\n**Capacidades Satelitales:** ¡Esta estación es excelente para los entusiastas de los satélites! Su cobertura a menudo incluye el rango de 137-138 MHz (para satélites meteorológicos como NOAA APT), la banda de 2 metros (144-146 MHz, para la ISS, satélites de radioaficionados) y la banda de 70 centímetros (430-440 MHz, para varios satélites de radioaficionados y otros). ¡Esto te permite recibir potencialmente señales y telemetría desde el espacio directamente!",
+      "linkText": "Escuchar en Vivo @ WebSDR Burdeos",
+      "thumbnailAlt": "Captura de pantalla de la interfaz WebSDR de la estación de Burdeos"
     },
     "thumbnailError": "Miniatura no disponible"
   },
