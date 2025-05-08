@@ -4,21 +4,19 @@ import { useTranslation } from 'react-i18next';
 import {
   BookOpen, ExternalLink, Rocket, Wifi, Globe, Antenna, BrainCircuit, Database,
   MapPin, Gamepad2, Satellite, Radio, Star, Users, Code2, HardDrive, CalendarDays,
-  BarChart3, Lightbulb, Zap, PackageOpen, Tv, Link2, LucideCloudSun, // Renamed CloudSun to LucideCloudSun to avoid conflict if a 'CloudSun' string is used in iconMap
+  BarChart3, Lightbulb, Zap, PackageOpen, Tv, Link2, LucideCloudSun, 
   ImageOff as ImageIconOff, RadioTower,
-  // --- New Icons for WebSDR section ---
-  MousePointerClick, // For steps like "visit the site"
-  Type,              // For "enter frequency"
-  Settings2,         // For "select mode"
-  Waves,             // For "click on waterfall/signals"
-  Volume2,           // For "adjust audio"
-  ListChecks,        // For notes/key points
-  Info,              // For general information
-  ChevronRight,      // For list item bullets
+  MousePointerClick, 
+  Type,              
+  Settings2,         
+  Waves,             
+  Volume2,           
+  ListChecks,        
+  Info,              
+  ChevronRight,      
 } from 'lucide-react';
 
 // --- Icon Map for dynamic icon rendering in WebSDR section ---
-// This allows you to specify icon names as strings in your i18n JSON file.
 const iconMap = {
   MousePointerClick,
   Type,
@@ -28,10 +26,11 @@ const iconMap = {
   ListChecks,
   Info,
   ChevronRight,
-  CloudSun: LucideCloudSun, // If you use "CloudSun" in JSON, it maps to LucideCloudSun
+  CloudSun: LucideCloudSun, 
   Satellite,
   RadioTower,
   ExternalLink,
+  Star, // Added Star for potential use in notes as per en.json
 };
 
 // --- Base Data Definitions ---
@@ -231,19 +230,14 @@ function ResourcesPage() {
     </div>
   );
 
-  // --- MODIFIED WebSDR Data Retrieval ---
-  // The `description` is now expected to be an object with `intro`, `steps`, `notesTitle`, `notes`, and `outro`.
-  // You'll need to update your i18n JSON file accordingly.
-  // See example structure in the conclusion of this response.
   const featuredWebSDR = {
     url: "http://ham.websdrbordeaux.fr:8000/index2.html", 
     thumbnail: "/thumbnails/radio.png", 
     title: t('sdrInteractiveSection.featuredSite.title'),
-    description: t('sdrInteractiveSection.featuredSite.description', { returnObjects: true }) || { intro: '', steps: [], notes: [], outro: '' }, // Ensure description is an object
+    description: t('sdrInteractiveSection.featuredSite.description', { returnObjects: true }) || { intro: '', steps: [], notesTitle: '', notes: [], outro: '' }, 
     linkText: t('sdrInteractiveSection.featuredSite.linkText'),
     altText: t('sdrInteractiveSection.featuredSite.thumbnailAlt')
   };
-  // --- END OF MODIFIED WebSDR Data Retrieval ---
 
   return (
     <div className="text-slate-800 dark:text-slate-200 font-sans overflow-x-hidden">
@@ -258,13 +252,13 @@ function ResourcesPage() {
           </p>
         </section>
 
-        {/* --- MODIFIED WebSDR Section Rendering --- */}
+        {/* --- WebSDR Section with Enhanced Styling --- */}
         <section
           className={`mb-12 md:mb-16 ${animatedSectionClasses} ${sectionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ transitionDelay: sectionsVisible ? '100ms' : '0ms' }} 
         >
           <div className="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 hover:shadow-2xl transition-shadow duration-300">
-            <div className="flex flex-col md:flex-row md:items-start"> {/* Changed to items-start for better alignment with text */}
+            <div className="flex flex-col md:flex-row md:items-start">
               <div className="md:w-1/3 mb-6 md:mb-0 md:mr-8 flex-shrink-0">
                 <img
                   src={featuredWebSDR.thumbnail}
@@ -274,11 +268,11 @@ function ResourcesPage() {
                     e.target.onerror = null;
                     e.target.style.display = 'none'; 
                     const fallback = e.target.nextElementSibling; 
-                    if (fallback) fallback.style.display = 'flex'; // Make sure it's flex for centering
+                    if (fallback) fallback.style.display = 'flex'; 
                   }}
                 />
                 <div 
-                  className="w-full h-48 flex items-center justify-center text-slate-500 dark:text-slate-400 text-sm bg-slate-100 dark:bg-slate-700 rounded-lg py-4" // Added fixed height for consistency
+                  className="w-full h-48 flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 text-sm bg-slate-100 dark:bg-slate-700 rounded-lg py-4"
                   style={{display: 'none'}} 
                 >
                   <ImageIconOff size={48} className="mb-2 text-slate-400 dark:text-slate-500" />
@@ -291,21 +285,23 @@ function ResourcesPage() {
                   {featuredWebSDR.title}
                 </h3>
                 
-                {/* Structured Description Rendering */}
                 {typeof featuredWebSDR.description === 'object' ? (
                   <div className="text-slate-600 dark:text-slate-400 text-base leading-relaxed space-y-4">
-                    {featuredWebSDR.description.intro && <p className="mb-4">{featuredWebSDR.description.intro}</p>}
+                    {featuredWebSDR.description.intro && <p className="mb-5 text-slate-700 dark:text-slate-300">{featuredWebSDR.description.intro}</p>}
 
+                    {/* Steps Section */}
                     {featuredWebSDR.description.steps && featuredWebSDR.description.steps.length > 0 && (
-                      <div className="mb-4">
-                        <h4 className="font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('sdrInteractiveSection.stepsTitle', 'How to explore:')}</h4>
-                        <ul className="space-y-2 pl-2">
+                      <div className="mb-5">
+                        <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-3 pb-1 border-b border-slate-300 dark:border-slate-600">
+                          {t('sdrInteractiveSection.stepsTitle', 'How to explore:')}
+                        </h4>
+                        <ul className="space-y-3"> {/* Increased space-y */}
                           {featuredWebSDR.description.steps.map((step, index) => {
                             const IconComponent = step.icon && iconMap[step.icon] ? iconMap[step.icon] : ChevronRight;
                             return (
-                              <li key={step.id || `step-${index}`} className="flex items-start">
-                                <IconComponent size={20} className="mr-3 mt-1 text-indigo-500 dark:text-indigo-400 flex-shrink-0" />
-                                <span>{step.text}</span>
+                              <li key={step.id || `step-${index}`} className="flex items-start space-x-3"> {/* Added space-x-3 */}
+                                <IconComponent size={22} className="mr-2 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" /> {/* Adjusted icon size and color */}
+                                <span className="text-slate-700 dark:text-slate-300">{step.text}</span>
                               </li>
                             );
                           })}
@@ -313,30 +309,35 @@ function ResourcesPage() {
                       </div>
                     )}
 
-                    {featuredWebSDR.description.notesTitle && <h4 className="font-semibold text-slate-700 dark:text-slate-300 mt-4 mb-2">{featuredWebSDR.description.notesTitle}</h4>}
+                    {/* Notes Section */}
                     {featuredWebSDR.description.notes && featuredWebSDR.description.notes.length > 0 && (
-                       <ul className="space-y-2 pl-2 mb-4">
+                       <div className="mb-5">
+                        {featuredWebSDR.description.notesTitle && 
+                            <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mt-6 mb-3 pb-1 border-b border-slate-300 dark:border-slate-600"> {/* Increased mt */}
+                                {featuredWebSDR.description.notesTitle}
+                            </h4>
+                        }
+                        <ul className="space-y-3"> {/* Increased space-y */}
                           {featuredWebSDR.description.notes.map((note, index) => {
                             const IconComponent = note.icon && iconMap[note.icon] ? iconMap[note.icon] : Info;
                             return (
-                              <li key={note.id || `note-${index}`} className="flex items-start">
-                                <IconComponent size={20} className="mr-3 mt-1 text-sky-500 dark:text-sky-400 flex-shrink-0" />
-                                <span>{note.text}</span>
+                              <li key={note.id || `note-${index}`} className="flex items-start space-x-3"> {/* Added space-x-3 */}
+                                <IconComponent size={22} className="mr-2 mt-0.5 text-sky-600 dark:text-sky-400 flex-shrink-0" /> {/* Adjusted icon size and color */}
+                                <span className="text-slate-700 dark:text-slate-300">{note.text}</span>
                               </li>
                             );
                           })}
                         </ul>
+                       </div>
                     )}
                     
-                    {featuredWebSDR.description.outro && <p className="mt-4 font-medium text-indigo-600 dark:text-indigo-300">{featuredWebSDR.description.outro}</p>}
+                    {featuredWebSDR.description.outro && <p className="mt-5 font-medium text-indigo-700 dark:text-indigo-300">{featuredWebSDR.description.outro}</p>}
                   </div>
                 ) : (
-                  // Fallback for old string format - though ideally JSON should be updated
                   <p className="text-slate-600 dark:text-slate-400 mb-6 text-base leading-relaxed whitespace-pre-line">
                     {featuredWebSDR.description}
                   </p>
                 )}
-                {/* End of Structured Description Rendering */}
 
                 <a
                   href={featuredWebSDR.url}
@@ -351,7 +352,7 @@ function ResourcesPage() {
             </div>
           </div>
         </section>
-        {/* --- END OF MODIFIED WebSDR Section --- */}
+        {/* --- END OF WebSDR Section --- */}
 
 
         <section
@@ -388,10 +389,10 @@ function ResourcesPage() {
                        <div className="text-slate-500 text-xs p-2">{t('featuredLinks.noPreview', 'No preview available')}</div>
                   )}
                    <div 
-                      className="thumbnail-fallback-text w-full h-full items-center justify-center text-slate-500 text-xs p-2" // Added padding
+                      className="thumbnail-fallback-text w-full h-full flex flex-col items-center justify-center text-slate-500 text-xs p-2" 
                       style={{display: 'none'}}
                     >
-                      <ImageIconOff size={32} className="mb-1 text-slate-400 dark:text-slate-500" /> {/* Icon for fallback */}
+                      <ImageIconOff size={32} className="mb-1 text-slate-400 dark:text-slate-500" />
                       {t('imagePlaceholderError', 'N/A')}
                     </div>
                 </div>

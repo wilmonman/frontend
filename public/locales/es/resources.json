@@ -134,11 +134,28 @@
   "sdrInteractiveSection": {
     "featuredSite": {
       "title": "Explora radio en vivo",
-      "description": "¡Sintoniza el espectro radioeléctrico en vivo desde Francia! Esta pagina en WebSDR te permite escuchar una amplia gama de frecuencias de radio directamente en tu navegador. \n\n1 Visita el sitio usando el enlace de abajo. \n2. En el panel de control ingresa una frecuencia en el campo 'Frequency'. \n3. Selecciona un modo de recepción apropiado para la señal (AM,FM NFM para la estaciones y radiodifusion). \n4\n\n Puedes hacer clic en las señales en la visualización de cascada (waterfall) para sintonizarlas. Ajusta el ancho de banda y la configuración de audio para mayor claridad. \n Eta estacion es una de muchas que puedes ver en WebSDR, la cobertura a menudo incluye el rango de 137-138 MHz, para satélites meteorológicos como NOAA APT, la banda de 2 metros de 144-146 MHz, para la ISS, satélites de radioaficionados y la banda de 70 centímetros entre 430-440 MHz, para varios satélites de radioaficionados. \n\n ¡Esto te permite recibir potencialmente señales y telemetría desde el espacio directamente!",
+      "description": {
+        "intro": "¡Sintoniza el espectro radioeléctrico en vivo desde Francia! Esta página en WebSDR te permite escuchar una amplia gama de frecuencias de radio directamente en tu navegador.",
+        "steps": [
+          { "id": "sdr_step1_es", "text": "Visita el sitio usando el enlace de abajo.", "icon": "ExternalLink" },
+          { "id": "sdr_step2_es", "text": "En el panel de control, ingresa una frecuencia en el campo 'Frequency'.", "icon": "Type" },
+          { "id": "sdr_step3_es", "text": "Selecciona un modo de recepción apropiado para la señal (AM, NFM para estaciones y radiodifusión).", "icon": "Settings2" },
+          { "id": "sdr_step4_es", "text": "Puedes hacer clic en las señales en la visualización de cascada (waterfall) para sintonizarlas. Ajusta el ancho de banda y la configuración de audio para mayor claridad.", "icon": "Waves" }
+        ],
+        "notesTitle": "Bandas de Interés Satelital:",
+        "notes": [
+          { "id": "sdr_note1_es", "text": "Esta estación es una de muchas que puedes ver en WebSDR. La cobertura a menudo incluye:", "icon": "ListChecks" },
+          { "id": "sdr_note2_es", "text": "El rango de 137-138 MHz, para satélites meteorológicos como NOAA APT.", "icon": "CloudSun" },
+          { "id": "sdr_note3_es", "text": "La banda de 2 metros de 144-146 MHz, para la ISS y satélites de radioaficionados.", "icon": "Satellite" },
+          { "id": "sdr_note4_es", "text": "La banda de 70 centímetros entre 430-440 MHz, para varios satélites de radioaficionados.", "icon": "RadioTower" }
+        ],
+        "outro": "¡Esto te permite recibir potencialmente señales y telemetría desde el espacio directamente!"
+      },
       "linkText": "Escuchar en Vivo WebSDR Burdeos",
       "thumbnailAlt": "Captura de pantalla de la interfaz WebSDR de la estación de Burdeos"
     },
-    "thumbnailError": "Miniatura no disponible"
+    "thumbnailError": "Miniatura no disponible",
+    "stepsTitle": "Cómo explorar:"
   },
   "altText": {
     "faviconFor": "Favicon para {{siteTitle}}",
