@@ -61,7 +61,7 @@ const InterestLinkCard = ({ link, t, levelStyles }) => {
     if (link.url) {
       setIsLoadingFavicon(true);
       setFaviconError(false);
-      setFaviconSrc(null); // Reset on link change
+      setFaviconSrc(null); 
 
       let domain;
       try {
@@ -137,13 +137,23 @@ function ResourcesPage() {
 
   const featuredLinksData = baseFeaturedLinksData.map(link => {
     const Icon = link.iconComponent;
-    const cardBgColor = link.iconColorClasses.replace('text-', 'bg-').replace('-600', '-50').replace('-500', '-50'); 
-    const cardDarkBgColor = link.iconColorClasses.replace('text-', 'dark:bg-').replace('-600', '-900/30').replace('-500', '-900/30'); 
-    const cardBorderColor = link.iconColorClasses.replace('text-', 'border-').replace('-600', '-200').replace('-500', '-200'); 
-    const cardDarkBorderColor = link.iconColorClasses.replace('text-', 'dark:border-').replace('-600', '-700/50').replace('-500', '-700/50'); 
-    const cardHoverBorderColor = link.iconColorClasses.replace('text-', 'hover:border-').replace('-600', '-400').replace('-500', '-400'); 
-    const cardDarkHoverBorderColor = link.iconColorClasses.replace('text-', 'dark:hover:border-').replace('-600', '-500').replace('-500', '-500'); 
+
+    // --- MODIFIED CARD CLASS GENERATION LOGIC ---
+    // Extract the base color name (e.g., "red", "blue") from the iconColorClasses string.
+    // This is more robust than the previous string replacement chain.
+    const colorMatch = link.iconColorClasses.match(/text-([a-zA-Z]+)-/);
+    const colorName = colorMatch ? colorMatch[1] : 'slate'; // Default to 'slate' if no match
+
+    // Define card classes based on the extracted color name
+    const cardBgColor = `bg-${colorName}-50`;
+    const cardDarkBgColor = `dark:bg-${colorName}-900/30`; // Using a common dark shade pattern
+    const cardBorderColor = `border-${colorName}-200`;
+    const cardDarkBorderColor = `dark:border-${colorName}-700/50`; // Using a common dark shade pattern
+    const cardHoverBorderColor = `hover:border-${colorName}-400`;
+    const cardDarkHoverBorderColor = `dark:hover:border-${colorName}-500`;
+    
     const cardClasses = `${cardBgColor} ${cardDarkBgColor} ${cardBorderColor} ${cardDarkBorderColor} ${cardHoverBorderColor} ${cardDarkHoverBorderColor}`;
+    // --- END OF MODIFIED CARD CLASS GENERATION LOGIC ---
 
     return {
       ...link,
@@ -203,7 +213,6 @@ function ResourcesPage() {
     </div>
   );
 
-  // Data for the new WebSDR card
   const featuredWebSDR = {
     url: "http://ham.websdrbordeaux.fr:8000/index2.html", 
     thumbnail: "/thumbnails/radio.png", 
@@ -234,7 +243,7 @@ function ResourcesPage() {
             <div className="flex flex-col md:flex-row md:items-center">
               <div className="md:w-1/3 mb-6 md:mb-0 md:mr-8 flex-shrink-0">
                 <img
-                  src={featuredWebSDR.thumbnail} // This will now be /thumbnails/radio.png
+                  src={featuredWebSDR.thumbnail}
                   alt={featuredWebSDR.altText}
                   className="w-full h-auto object-cover rounded-lg shadow-md border border-slate-300 dark:border-slate-600"
                   onError={(e) => {
@@ -284,7 +293,7 @@ function ResourcesPage() {
             {t('featuredSectionTitle')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredLinksData.map((link) => ( // featuredLinksData now has the updated thumbnail for websdr id
+            {featuredLinksData.map((link) => (
               <a
                 key={link.id}
                 href={link.url}
@@ -293,7 +302,7 @@ function ResourcesPage() {
                 className={`flex flex-col items-center p-6 rounded-xl shadow-lg border ${link.cardClasses} dark:border-opacity-60 transition-all duration-300 group text-center transform hover:-translate-y-1.5 hover:shadow-2xl`}
               >
                 <div className="w-full h-32 mb-4 rounded-md bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
-                  {link.thumbnail ? ( // The 'websdr' link will now use /thumbnails/WebSDR.png
+                  {link.thumbnail ? (
                     <img
                       src={link.thumbnail} 
                       alt={t('altText.thumbnailFor', { siteTitle: link.title })}
