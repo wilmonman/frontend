@@ -152,7 +152,7 @@
         ],
         "outro": "This allows you to potentially receive signals and telemetry from space directly!"
       },
-      "linkText": "Listen Live @ WebSDR Bordeaux",
+      "linkText": "Listen Live WebSDR Bordeaux",
       "thumbnailAlt": "Screenshot of the WebSDR interface from Bordeaux station"
     },
     "thumbnailError": "Thumbnail not available",
